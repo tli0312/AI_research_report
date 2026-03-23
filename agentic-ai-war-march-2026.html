@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Agentic AI War — Market Analysis, March 2026</title>
+<style>
+  :root {
+    --bg: #0f1117;
+    --surface: #181b24;
+    --surface2: #1e2230;
+    --border: #2a2e3d;
+    --text: #e4e6ed;
+    --text-dim: #8b8fa3;
+    --accent-anthropic: #d97706;
+    --accent-msft: #3b82f6;
+    --accent-google: #22c55e;
+    --accent-openai: #a78bfa;
+    --accent-red: #ef4444;
+    --accent-teal: #14b8a6;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    padding: 0;
+  }
+
+  /* HERO */
+  .hero {
+    background: linear-gradient(135deg, #1a1030 0%, #0f1117 50%, #0a1628 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 60px 40px 50px;
+    text-align: center;
+  }
+  .hero-label {
+    display: inline-block;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent-teal);
+    border: 1px solid rgba(20,184,166,0.3);
+    padding: 4px 14px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+  }
+  .hero h1 {
+    font-size: 42px;
+    font-weight: 700;
+    letter-spacing: -1px;
+    background: linear-gradient(135deg, #e4e6ed 30%, #a78bfa 70%, #14b8a6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 12px;
+  }
+  .hero .subtitle {
+    font-size: 18px;
+    color: var(--text-dim);
+    max-width: 680px;
+    margin: 0 auto;
+  }
+  .hero .date {
+    font-size: 13px;
+    color: var(--text-dim);
+    margin-top: 18px;
+    opacity: 0.7;
+  }
+
+  /* LAYOUT */
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 40px 30px;
+  }
+
+  /* EXECUTIVE SUMMARY */
+  .exec-summary {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 32px 36px;
+    margin-bottom: 48px;
+  }
+  .exec-summary h2 {
+    font-size: 20px;
+    margin-bottom: 16px;
+    color: var(--accent-teal);
+  }
+  .exec-summary p {
+    color: var(--text-dim);
+    font-size: 15px;
+    margin-bottom: 12px;
+  }
+
+  /* SECTION */
+  .section { margin-bottom: 56px; }
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section-header .num {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--accent-teal);
+    border: 1px solid rgba(20,184,166,0.4);
+    width: 30px; height: 30px;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 8px;
+    flex-shrink: 0;
+  }
+  .section-header h2 {
+    font-size: 22px;
+    font-weight: 600;
+  }
+
+  /* PLAYER CARDS */
+  .player-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 24px;
+  }
+  .player-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px 26px;
+    transition: border-color 0.2s;
+  }
+  .player-card:hover { border-color: #444; }
+  .player-card.anthropic { border-top: 3px solid var(--accent-anthropic); }
+  .player-card.microsoft { border-top: 3px solid var(--accent-msft); }
+  .player-card.google { border-top: 3px solid var(--accent-google); }
+  .player-card.openai { border-top: 3px solid var(--accent-openai); }
+
+  .player-card .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 14px;
+  }
+  .player-card h3 { font-size: 18px; font-weight: 600; }
+  .player-card .offerings {
+    font-size: 12px;
+    color: var(--text-dim);
+    background: var(--surface2);
+    padding: 3px 10px;
+    border-radius: 6px;
+  }
+  .player-card p {
+    font-size: 14px;
+    color: var(--text-dim);
+    margin-bottom: 10px;
+  }
+  .player-card .highlight {
+    font-size: 13px;
+    color: var(--text);
+    background: rgba(20,184,166,0.08);
+    border-left: 3px solid var(--accent-teal);
+    padding: 8px 12px;
+    border-radius: 0 6px 6px 0;
+    margin-top: 12px;
+  }
+
+  /* PILLAR TABLE */
+  .pillar-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 24px;
+    font-size: 14px;
+  }
+  .pillar-table thead th {
+    background: var(--surface2);
+    padding: 14px 16px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--text-dim);
+    border-bottom: 1px solid var(--border);
+  }
+  .pillar-table thead th:first-child { width: 140px; }
+  .pillar-table tbody td {
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+    color: var(--text-dim);
+    line-height: 1.6;
+  }
+  .pillar-table tbody tr:last-child td { border-bottom: none; }
+  .pillar-table .company-cell {
+    font-weight: 600;
+    color: var(--text);
+    white-space: nowrap;
+  }
+  .pillar-table .company-cell.anthropic { color: var(--accent-anthropic); }
+  .pillar-table .company-cell.microsoft { color: var(--accent-msft); }
+  .pillar-table .company-cell.google { color: var(--accent-google); }
+  .pillar-table .company-cell.openai { color: var(--accent-openai); }
+
+  /* BADGE */
+  .badge {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-right: 4px;
+  }
+  .badge-local { background: rgba(20,184,166,0.15); color: #14b8a6; }
+  .badge-cloud { background: rgba(167,139,250,0.15); color: #a78bfa; }
+  .badge-hybrid { background: rgba(59,130,246,0.15); color: #3b82f6; }
+  .badge-leader { background: rgba(34,197,94,0.15); color: #22c55e; }
+  .badge-risk { background: rgba(239,68,68,0.12); color: #ef4444; }
+
+  /* VERDICT */
+  .verdict-box {
+    background: linear-gradient(135deg, rgba(217,119,6,0.08) 0%, rgba(20,184,166,0.08) 100%);
+    border: 1px solid rgba(217,119,6,0.25);
+    border-radius: 12px;
+    padding: 28px 32px;
+    margin-top: 12px;
+  }
+  .verdict-box h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--accent-anthropic);
+    margin-bottom: 12px;
+  }
+  .verdict-box p {
+    font-size: 14px;
+    color: var(--text-dim);
+    margin-bottom: 10px;
+  }
+
+  /* SCORECARD */
+  .scorecard {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin: 24px 0;
+  }
+  .score-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+  }
+  .score-item .score-label {
+    font-size: 12px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+  .score-item .score-value {
+    font-size: 28px;
+    font-weight: 700;
+  }
+  .score-item .score-company {
+    font-size: 13px;
+    color: var(--text-dim);
+    margin-top: 4px;
+  }
+  .score-item.s-anthropic .score-value { color: var(--accent-anthropic); }
+  .score-item.s-msft .score-value { color: var(--accent-msft); }
+  .score-item.s-google .score-value { color: var(--accent-google); }
+  .score-item.s-openai .score-value { color: var(--accent-openai); }
+
+  /* FOOTER */
+  .footer {
+    text-align: center;
+    padding: 40px 30px;
+    font-size: 12px;
+    color: var(--text-dim);
+    border-top: 1px solid var(--border);
+    opacity: 0.6;
+  }
+
+  /* PROSE */
+  .prose { font-size: 15px; color: var(--text-dim); }
+  .prose p { margin-bottom: 14px; }
+  .prose strong { color: var(--text); }
+
+  @media (max-width: 768px) {
+    .player-grid { grid-template-columns: 1fr; }
+    .scorecard { grid-template-columns: 1fr 1fr; }
+    .hero h1 { font-size: 28px; }
+    .hero { padding: 40px 20px 30px; }
+    .container { padding: 24px 16px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-label">Market Intelligence Brief</div>
+  <h1>The Agentic AI War</h1>
+  <p class="subtitle">A strategic analysis of the four-way battle for the autonomous agent platform layer — who's winning, how, and what it means for enterprise adoption.</p>
+  <p class="date">March 23, 2026 &mdash; Prepared for Tong Li</p>
+</div>
+
+<div class="container">
+
+  <!-- EXEC SUMMARY -->
+  <div class="exec-summary">
+    <h2>Executive Summary</h2>
+    <p>The agentic AI market has shifted from a benchmarks race to a <strong>platform architecture war</strong>. As of March 2026, four major players — Anthropic, Microsoft, Google, and OpenAI — have each placed fundamentally different bets on how autonomous agents should execute, persist, and earn enterprise trust. Anthropic is betting on <strong>local-first sandboxing</strong> with phone-to-desktop handoff. Microsoft is leveraging its <strong>unmatched enterprise distribution</strong> through Microsoft 365 and Azure. Google is pursuing a <strong>universal multimodal agent</strong> that follows users across devices and form factors. OpenAI is scaling <strong>cloud-native async execution</strong> with the deepest consumer install base.</p>
+    <p>The central finding: <strong>Anthropic currently leads the Enterprise Trust battle</strong> through its local VM sandboxing architecture, OS-level isolation primitives, and zero-data-retention commitments — but Microsoft's distribution advantage and sovereign data processing rollout make it the most formidable long-term competitor for regulated industries.</p>
+  </div>
+
+  <!-- SCORECARD -->
+  <div class="scorecard">
+    <div class="score-item s-anthropic">
+      <div class="score-label">Enterprise Trust</div>
+      <div class="score-value">#1</div>
+      <div class="score-company">Anthropic</div>
+    </div>
+    <div class="score-item s-msft">
+      <div class="score-label">Distribution</div>
+      <div class="score-value">#1</div>
+      <div class="score-company">Microsoft</div>
+    </div>
+    <div class="score-item s-google">
+      <div class="score-label">Device Handoff</div>
+      <div class="score-value">#1</div>
+      <div class="score-company">Google</div>
+    </div>
+    <div class="score-item s-openai">
+      <div class="score-label">Async Execution</div>
+      <div class="score-value">#1</div>
+      <div class="score-company">OpenAI</div>
+    </div>
+  </div>
+
+  <!-- SECTION 1: THE PLAYERS -->
+  <div class="section">
+    <div class="section-header">
+      <div class="num">1</div>
+      <h2>The Combatants & Their Primary Offerings</h2>
+    </div>
+
+    <div class="player-grid">
+      <div class="player-card anthropic">
+        <div class="card-header">
+          <h3>Anthropic</h3>
+          <span class="offerings">Code / Cowork / Dispatch</span>
+        </div>
+        <p><strong>Claude Code</strong> is a terminal-native agentic coding tool that runs locally with OS-level sandboxing (Linux bubblewrap, macOS seatbelt). It reduces permission prompts by 84% inside sandboxed environments while maintaining strict filesystem and network isolation.</p>
+        <p><strong>Cowork</strong> (research preview, Feb 2026) extends Claude Code's power to knowledge workers. It runs a full Linux VM locally on the user's machine with multi-layered security: VM + sandbox + seccomp + network allowlists. Supports plugins, MCP connectors, and persistent file access.</p>
+        <p><strong>Dispatch</strong> (March 17, 2026) introduces phone-to-desktop remote control — users can initiate, monitor, and steer desktop agent tasks from their mobile device, as long as the desktop app is running.</p>
+        <div class="highlight">Philosophy: "Your data never leaves your machine." Agent runs in a local sandbox; only API calls and package registry traffic leave the VM.</div>
+      </div>
+
+      <div class="player-card microsoft">
+        <div class="card-header">
+          <h3>Microsoft</h3>
+          <span class="offerings">Copilot / AutoDev / Agent 365</span>
+        </div>
+        <p><strong>Microsoft 365 Copilot (Wave 3)</strong> has evolved from a chat assistant to an agentic layer embedded across Word, Excel, PowerPoint, and Teams. "Agent Mode" enables iterative, multi-step document collaboration. Notably, Wave 3 includes <strong>Copilot Cowork</strong> — built in partnership with Anthropic using Claude.</p>
+        <p><strong>AutoDev</strong> (launched May 2025) is a fully autonomous coding agent that manages end-to-end software projects: file editing, testing, git operations, and cloud deployment inside Docker containers. Achieves 91.5% on HumanEval.</p>
+        <p><strong>Agent 365</strong> (GA May 2026) provides a unified governance platform to observe, manage, and secure agents across the enterprise.</p>
+        <div class="highlight">Philosophy: "Meet enterprises where they already live." Agents embedded in M365 + Azure, governed by existing IT infrastructure.</div>
+      </div>
+
+      <div class="player-card google">
+        <div class="card-header">
+          <h3>Google</h3>
+          <span class="offerings">Gemini / Astra / Mariner</span>
+        </div>
+        <p><strong>Gemini 2.0+</strong> serves as the foundational model layer, with native multimodal reasoning, tool use, and agentic planning capabilities. Gemini 2.5 Computer Use enables browser-driving tasks through predefined actions.</p>
+        <p><strong>Project Astra</strong> is a universal AI assistant prototype with real-time vision, audio, and memory. Available on Android/iOS via Gemini Live, with smart glasses hardware expected 2026. Crucially, Astra maintains context across device switches (phone → glasses) without interruption.</p>
+        <p><strong>Project Mariner</strong> is a browser-native agent built on Gemini 2.0 that can run up to 10 parallel tasks — research, bookings, purchases — simultaneously within Chrome and Workspace.</p>
+        <div class="highlight">Philosophy: "One agent, every surface." From phone camera to browser to smart glasses, the agent follows you and never drops context.</div>
+      </div>
+
+      <div class="player-card openai">
+        <div class="card-header">
+          <h3>OpenAI</h3>
+          <span class="offerings">ChatGPT Agent / Codex</span>
+        </div>
+        <p><strong>ChatGPT Agent</strong> (formerly Operator, deprecated Aug 2025) combines Operator's browser interaction, Deep Research's synthesis, and ChatGPT's conversational fluency. Powered by CUA (Computer-Using Agent) model with GPT-4o vision + reinforcement learning. Rolling out to Pro, Plus, Team, Enterprise.</p>
+        <p><strong>Codex</strong> (Jan 2026) is a cloud-based autonomous coding agent. Each task runs in its own isolated cloud sandbox pre-loaded with your repository. Internet is disabled during execution for security. Powered by codex-1 (optimized o3). Fully asynchronous — assign a task, close your laptop, return to a completed PR.</p>
+        <div class="highlight">Philosophy: "Fire and forget." Cloud-native async execution at scale; the agent works while you sleep.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 2: THREE PILLARS -->
+  <div class="section">
+    <div class="section-header">
+      <div class="num">2</div>
+      <h2>The Three Pillar Analysis</h2>
+    </div>
+
+    <!-- PILLAR 1 -->
+    <h3 style="font-size:17px; margin-bottom:14px; color:var(--accent-teal);">Pillar 1 — Local vs. Cloud Execution</h3>
+    <table class="pillar-table">
+      <thead>
+        <tr>
+          <th>Player</th>
+          <th>Execution Model</th>
+          <th>Architecture Details</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="company-cell anthropic">Anthropic</td>
+          <td><span class="badge badge-local">LOCAL-FIRST</span></td>
+          <td>Cowork runs a <strong>full Linux VM on the user's machine</strong> using native virtualization. Inside the VM: sandbox + seccomp + network allowlist. Only Anthropic API calls and package registry traffic leave the machine. Claude Code uses OS-level primitives (bubblewrap/seatbelt) for filesystem and network isolation without containers. Code and data stay local.</td>
+        </tr>
+        <tr>
+          <td class="company-cell microsoft">Microsoft</td>
+          <td><span class="badge badge-cloud">CLOUD</span> <span class="badge badge-hybrid">HYBRID</span></td>
+          <td>M365 Copilot processes within <strong>Microsoft's cloud service boundary</strong>, honoring existing M365 data protection and access controls. New in 2026: sovereign data processing rolling out to 15 countries, allowing local in-region processing. AutoDev runs in <strong>Docker containers</strong> but predominantly cloud-hosted via Azure. Agent 365 provides centralized governance.</td>
+        </tr>
+        <tr>
+          <td class="company-cell google">Google</td>
+          <td><span class="badge badge-cloud">CLOUD</span></td>
+          <td>Gemini, Astra, and Mariner all run in <strong>Google's cloud infrastructure</strong>. Mariner operates within a Chrome extension context, interacting with the user's browser but reasoning server-side. Astra processes multimodal input (camera, audio) through cloud endpoints. Google offers confidential computing encryption but execution remains cloud-dependent.</td>
+        </tr>
+        <tr>
+          <td class="company-cell openai">OpenAI</td>
+          <td><span class="badge badge-cloud">CLOUD</span></td>
+          <td>ChatGPT Agent uses its <strong>own cloud-hosted browser</strong> instance. Codex runs each task in an <strong>isolated cloud sandbox</strong> with internet access disabled during execution. Codex CLI exists as a local terminal tool, but the heavy lifting (code generation, test execution) happens in OpenAI's cloud. Security model: isolation via containerization, not local execution.</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="prose" style="margin-bottom:36px;">
+      <p><strong>Analysis:</strong> Anthropic is the only major player that has committed to a local-first execution model for its flagship consumer/prosumer agent product. This is an architecturally bold bet — it trades the scalability advantages of cloud execution for a fundamentally stronger privacy and trust story. Microsoft's hybrid approach (cloud-native with sovereign processing options) is the pragmatic enterprise play. Google and OpenAI remain cloud-dependent, relying on container isolation and access controls rather than locality for their security narrative.</p>
+    </div>
+
+    <!-- PILLAR 2 -->
+    <h3 style="font-size:17px; margin-bottom:14px; color:var(--accent-teal);">Pillar 2 — Synchronous (Chat) vs. Asynchronous (Background) Task Handling</h3>
+    <table class="pillar-table">
+      <thead>
+        <tr>
+          <th>Player</th>
+          <th>Model</th>
+          <th>Capabilities</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="company-cell anthropic">Anthropic</td>
+          <td><span class="badge badge-local">SYNC</span> with async emerging</td>
+          <td>Cowork is primarily <strong>synchronous</strong> — the user watches the agent work in a live desktop session. Dispatch adds a remote-monitoring layer (phone-to-desktop), but the agent still requires the desktop app to be running. Claude Code operates in foreground terminal sessions. <strong>True background/async execution is not yet a core offering.</strong></td>
+        </tr>
+        <tr>
+          <td class="company-cell microsoft">Microsoft</td>
+          <td><span class="badge badge-hybrid">HYBRID</span></td>
+          <td>M365 Copilot Agent Mode supports both <strong>interactive collaboration and autonomous background tasks</strong>. Copilot Studio enables building agents that trigger on events and run without user presence. However, most current UX is still chat-initiated and foreground. Agent 365 governance implies an infrastructure designed for persistent background agents.</td>
+        </tr>
+        <tr>
+          <td class="company-cell google">Google</td>
+          <td><span class="badge badge-hybrid">HYBRID</span></td>
+          <td>Project Mariner can run <strong>up to 10 parallel tasks</strong> simultaneously — a form of concurrent async. However, tasks are initiated within an active browser session. Astra maintains persistent memory across interactions, enabling pick-up-where-you-left-off continuity. Not yet a true "fire and forget" background model.</td>
+        </tr>
+        <tr>
+          <td class="company-cell openai">OpenAI</td>
+          <td><span class="badge badge-leader">ASYNC LEADER</span></td>
+          <td>Codex is <strong>fully asynchronous by design</strong>: assign a coding task, close your laptop, return to a completed pull request. Each task runs in its own cloud sandbox independently. ChatGPT Agent combines real-time chat with background task execution. Developer API offers explicit "background mode" for long-running tasks without timeouts. <strong>Most mature async story in the market.</strong></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="prose" style="margin-bottom:36px;">
+      <p><strong>Analysis:</strong> OpenAI has the clearest async-first vision, particularly through Codex. The "assign and walk away" model is a genuine workflow innovation for developers. Anthropic's sync-first model is a natural consequence of its local-first architecture — a local VM needs the host machine running. Dispatch is a bridge solution (remote-monitor from phone), but Anthropic hasn't yet shipped a true cloud-based background agent. This is arguably Anthropic's biggest architectural gap. Microsoft and Google occupy the middle ground with hybrid approaches that are evolving toward more autonomous background execution.</p>
+    </div>
+
+    <!-- PILLAR 3 -->
+    <h3 style="font-size:17px; margin-bottom:14px; color:var(--accent-teal);">Pillar 3 — Device-to-Device Handoff Capabilities</h3>
+    <table class="pillar-table">
+      <thead>
+        <tr>
+          <th>Player</th>
+          <th>Rating</th>
+          <th>Handoff Architecture</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="company-cell anthropic">Anthropic</td>
+          <td><span class="badge badge-hybrid">EMERGING</span></td>
+          <td><strong>Dispatch</strong> (March 2026) is Anthropic's first device handoff feature: initiate or monitor desktop agent tasks from your phone. However, this is specifically a phone → desktop remote-control pattern, not a symmetric multi-device context transfer. The desktop must remain on and running. Context lives on the local machine, not in a cross-device cloud layer.</td>
+        </tr>
+        <tr>
+          <td class="company-cell microsoft">Microsoft</td>
+          <td><span class="badge badge-hybrid">STRONG</span></td>
+          <td>M365's existing cross-device infrastructure (Windows, mobile apps, web) provides a natural handoff layer. Copilot context persists in Microsoft Graph, accessible from any authenticated device. However, <strong>agent state handoff</strong> (handing off a mid-execution agentic task between devices) is not yet a first-class feature — the graph stores data context, not live agent state.</td>
+        </tr>
+        <tr>
+          <td class="company-cell google">Google</td>
+          <td><span class="badge badge-leader">LEADER</span></td>
+          <td><strong>Project Astra is the gold standard</strong> for device handoff. Users can switch between Android phone, prototype smart glasses, and desktop without losing conversational or task context. Astra's persistent memory layer abstracts away the device boundary entirely. Combined with Mariner (browser) and Gemini Live (mobile), Google is building the most seamless cross-surface agent. Target: a "Universal Agent" by late 2026.</td>
+        </tr>
+        <tr>
+          <td class="company-cell openai">OpenAI</td>
+          <td><span class="badge badge-hybrid">MODERATE</span></td>
+          <td>ChatGPT's cross-platform availability (web, mobile, desktop) provides basic conversation continuity. Codex tasks persist in the cloud and can be checked from any device. However, there is <strong>no explicit device-handoff feature</strong> for live agent sessions — no equivalent to Dispatch or Astra's context-preserving device switching.</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="prose" style="margin-bottom:36px;">
+      <p><strong>Analysis:</strong> Google's lead in device handoff stems from its hardware + software integration strategy (Android, glasses, Workspace, Chrome). Astra's ability to maintain context across completely different form factors — from a phone camera recognizing a broken appliance to a browser purchasing the replacement part — is the most compelling cross-device story. Anthropic's Dispatch is clever but architecturally constrained by the local-first model: the desktop is the bottleneck. Microsoft has the infrastructure for handoff but hasn't yet made it agentic. OpenAI has largely ignored this dimension in favor of async execution.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 3: ENTERPRISE TRUST -->
+  <div class="section">
+    <div class="section-header">
+      <div class="num">3</div>
+      <h2>The Enterprise Trust Battle</h2>
+    </div>
+
+    <table class="pillar-table">
+      <thead>
+        <tr>
+          <th>Dimension</th>
+          <th style="color:var(--accent-anthropic)">Anthropic</th>
+          <th style="color:var(--accent-msft)">Microsoft</th>
+          <th style="color:var(--accent-google)">Google</th>
+          <th style="color:var(--accent-openai)">OpenAI</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="company-cell">Data Residency</td>
+          <td><strong>Local VM</strong> — data stays on user machine</td>
+          <td>Cloud with <strong>sovereign processing</strong> (15 countries)</td>
+          <td>Google Cloud regions; confidential computing</td>
+          <td>Cloud-hosted; isolated containers</td>
+        </tr>
+        <tr>
+          <td class="company-cell">Sandbox Isolation</td>
+          <td>VM + sandbox + seccomp + network allowlist (multi-layer)</td>
+          <td>M365 service boundary; Docker for AutoDev</td>
+          <td>Browser extension context; cloud-side processing</td>
+          <td>Per-task cloud containers; internet disabled during Codex execution</td>
+        </tr>
+        <tr>
+          <td class="company-cell">Training Data Policy</td>
+          <td>Does <strong>not</strong> train on customer data; ZDR available</td>
+          <td>Does <strong>not</strong> train on M365 customer data</td>
+          <td>Enterprise tier: no training on customer data</td>
+          <td>Enterprise: no training on customer data</td>
+        </tr>
+        <tr>
+          <td class="company-cell">Compliance</td>
+          <td>SOC 2 Type I & II, HIPAA (BAA), ISO 27001</td>
+          <td>SOC 2, GDPR, HIPAA, FedRAMP, ISO 27001 (broadest)</td>
+          <td>SOC 2, GDPR, HIPAA, ISO 27001</td>
+          <td>SOC 2, GDPR, HIPAA</td>
+        </tr>
+        <tr>
+          <td class="company-cell">Prompt Injection Rate</td>
+          <td><strong>4.7%</strong> (Constitutional AI)</td>
+          <td>Not publicly disclosed</td>
+          <td>Not publicly disclosed</td>
+          <td>Not publicly disclosed</td>
+        </tr>
+        <tr>
+          <td class="company-cell">Agent Governance</td>
+          <td>Permission prompts; sandbox escape alerts</td>
+          <td><strong>Agent 365</strong> (GA May 2026) — unified governance</td>
+          <td>Chrome extension permissions model</td>
+          <td>User approval checkpoints; CUA self-correction</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="verdict-box">
+      <h3>Verdict: Who Is Winning Enterprise Trust?</h3>
+      <p><strong>Anthropic leads on architecture.</strong> The local VM + multi-layer sandbox model is the strongest technical answer to "where does my data go?" that any vendor offers today. When the agent runs on your machine, inside an isolated VM, with network traffic restricted to only Anthropic's API and package registries, the attack surface is fundamentally smaller than any cloud-hosted alternative. The 84% reduction in permission prompts through sandboxing demonstrates that security and usability aren't zero-sum. For organizations where data sovereignty is non-negotiable — healthcare, legal, defense — Anthropic's architecture is the most compelling.</p>
+      <p><strong>Microsoft leads on governance and distribution.</strong> Agent 365 (GA May 2026) gives IT teams a single pane to observe, govern, and secure agents across the entire organization — something no other vendor offers at comparable scale. Microsoft's sovereign data processing rollout to 15 countries, plus its FedRAMP certifications, make it the strongest play for regulated global enterprises that need compliance checkboxes ticked. The existing M365 service boundary and Graph-based access controls mean enterprises don't need new infrastructure.</p>
+      <p><strong>Google and OpenAI trail on trust narratives.</strong> Both rely on cloud-container isolation, which is technically sound but harder to explain to a CISO. OpenAI's Codex approach — disabling internet during execution — is elegant but still means your code runs on OpenAI's servers. Google's confidential computing is a strong technical feature but isn't well-marketed in the agentic context.</p>
+      <p style="margin-bottom:0; color:var(--text); font-weight:500;">Bottom line: If the question is "who has the best security architecture for agentic AI," the answer is Anthropic. If the question is "who will win the most enterprise contracts," the answer is probably still Microsoft — because trust in enterprises is as much about procurement relationships and compliance paperwork as it is about architecture.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 4: STRATEGIC OUTLOOK -->
+  <div class="section">
+    <div class="section-header">
+      <div class="num">4</div>
+      <h2>Strategic Outlook & Key Risks</h2>
+    </div>
+    <div class="prose">
+      <p><strong>Anthropic's risk</strong> is that local-first limits scale and async capability. As competitors ship "fire and forget" background agents, Anthropic must answer the question: can a local VM model support true async workflows without the desktop being on? Dispatch is a bridge, not a solution. Revenue growth ($1B → $7B run rate in 2025) and a potential 2026 listing signal confidence, but the product must evolve.</p>
+      <p><strong>Microsoft's risk</strong> is complexity and fragmentation. Between Copilot, AutoDev, Agent 365, Copilot Studio, and the Anthropic-powered Copilot Cowork, the product surface is sprawling. Enterprise buyers may struggle to understand which agent does what. The partnership with Anthropic for Copilot Cowork is telling — it suggests Microsoft's own model capabilities may not be sufficient for the most demanding agentic use cases.</p>
+      <p><strong>Google's risk</strong> is execution and enterprise credibility. Project Astra's device-handoff demo is the most compelling vision of any player, but Google has a history of sunsetting products before they reach maturity. The "Universal Agent" by late 2026 is an ambitious timeline. Google also lacks Microsoft's enterprise sales machine and Anthropic's trust narrative.</p>
+      <p><strong>OpenAI's risk</strong> is trust erosion and commoditization. OpenAI was "the default" for enterprise AI in 2024-2025, but that position is actively eroding. The shift from Operator to ChatGPT Agent (deprecating and re-integrating within 7 months) signals strategic uncertainty. Codex's async model is best-in-class for developers, but the broader consumer/enterprise agent story is less differentiated than competitors'.</p>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  Market Analysis Report &mdash; March 23, 2026 &mdash; Prepared using publicly available information. Not investment advice.
+</div>
+
+</body>
+</html>
