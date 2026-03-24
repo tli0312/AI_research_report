@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The 2026 Agentic AI War — Strategic Intelligence Report</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap');
+
+  :root {
+    --bg-primary: #0a0a0f;
+    --bg-secondary: #111118;
+    --bg-card: #16161f;
+    --bg-card-hover: #1c1c28;
+    --border: #2a2a3a;
+    --border-accent: #3d3d55;
+    --text-primary: #e8e8f0;
+    --text-secondary: #9898b0;
+    --text-muted: #6a6a82;
+    --accent-blue: #4a7dff;
+    --accent-cyan: #22d3ee;
+    --accent-purple: #a855f7;
+    --accent-pink: #ec4899;
+    --accent-orange: #f97316;
+    --accent-green: #10b981;
+    --accent-red: #ef4444;
+    --accent-yellow: #eab308;
+    --gradient-hero: linear-gradient(135deg, #4a7dff 0%, #a855f7 50%, #ec4899 100%);
+    --gradient-card: linear-gradient(135deg, rgba(74,125,255,0.08) 0%, rgba(168,85,247,0.08) 100%);
+    --glow-blue: 0 0 40px rgba(74,125,255,0.15);
+    --glow-purple: 0 0 40px rgba(168,85,247,0.15);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* --- NAVIGATION --- */
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background: rgba(10,10,15,0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+  }
+  nav .nav-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+  }
+  nav .brand {
+    font-weight: 800;
+    font-size: 0.85rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    background: var(--gradient-hero);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  nav .nav-links {
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+  }
+  nav .nav-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    transition: color 0.2s;
+  }
+  nav .nav-links a:hover { color: var(--text-primary); }
+
+  /* --- HERO --- */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 8rem 2rem 4rem;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(ellipse at 30% 20%, rgba(74,125,255,0.06) 0%, transparent 50%),
+                radial-gradient(ellipse at 70% 80%, rgba(168,85,247,0.06) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 50%, rgba(236,72,153,0.03) 0%, transparent 50%);
+    animation: heroShift 20s ease-in-out infinite alternate;
+  }
+  @keyframes heroShift {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(-3%, -3%) scale(1.05); }
+  }
+  .hero-content { position: relative; max-width: 900px; }
+  .hero .classification {
+    display: inline-block;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent-red);
+    border: 1px solid rgba(239,68,68,0.3);
+    padding: 0.35rem 1rem;
+    border-radius: 100px;
+    margin-bottom: 2rem;
+  }
+  .hero h1 {
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-weight: 900;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    margin-bottom: 1.5rem;
+  }
+  .hero h1 .gradient-text {
+    background: var(--gradient-hero);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .hero .subtitle {
+    font-size: 1.15rem;
+    color: var(--text-secondary);
+    max-width: 650px;
+    margin: 0 auto 2.5rem;
+    font-weight: 400;
+  }
+  .hero .meta-bar {
+    display: flex;
+    justify-content: center;
+    gap: 2.5rem;
+    flex-wrap: wrap;
+  }
+  .hero .meta-item {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+  .hero .meta-item span {
+    color: var(--text-secondary);
+    font-weight: 600;
+  }
+
+  /* --- SECTIONS --- */
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+  section {
+    padding: 5rem 0;
+  }
+  .section-label {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+  .section-label.blue { color: var(--accent-blue); }
+  .section-label.purple { color: var(--accent-purple); }
+  .section-label.cyan { color: var(--accent-cyan); }
+  .section-label.pink { color: var(--accent-pink); }
+  .section-label.orange { color: var(--accent-orange); }
+  .section-label.green { color: var(--accent-green); }
+
+  h2 {
+    font-size: 2.2rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+  h3 {
+    font-size: 1.35rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.01em;
+  }
+  p.section-intro {
+    color: var(--text-secondary);
+    font-size: 1.05rem;
+    max-width: 750px;
+    margin-bottom: 3rem;
+  }
+
+  /* --- CARDS --- */
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.25rem;
+  }
+  .card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2rem;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .card:hover {
+    background: var(--bg-card-hover);
+    border-color: var(--border-accent);
+    transform: translateY(-2px);
+  }
+  .card .card-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    margin-bottom: 1.25rem;
+  }
+  .card .card-icon.blue { background: rgba(74,125,255,0.12); }
+  .card .card-icon.purple { background: rgba(168,85,247,0.12); }
+  .card .card-icon.cyan { background: rgba(34,211,238,0.12); }
+  .card .card-icon.pink { background: rgba(236,72,153,0.12); }
+  .card .card-icon.orange { background: rgba(249,115,22,0.12); }
+  .card .card-icon.green { background: rgba(16,185,129,0.12); }
+
+  .card h3 { font-size: 1.1rem; }
+  .card p { color: var(--text-secondary); font-size: 0.9rem; line-height: 1.65; }
+
+  /* --- STATS BAR --- */
+  .stats-bar {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.25rem;
+    margin: 3rem 0;
+  }
+  .stat-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.5rem;
+    text-align: center;
+  }
+  .stat-card .stat-value {
+    font-size: 2.2rem;
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    line-height: 1;
+    margin-bottom: 0.35rem;
+  }
+  .stat-card .stat-value.blue { color: var(--accent-blue); }
+  .stat-card .stat-value.purple { color: var(--accent-purple); }
+  .stat-card .stat-value.cyan { color: var(--accent-cyan); }
+  .stat-card .stat-value.pink { color: var(--accent-pink); }
+  .stat-card .stat-value.orange { color: var(--accent-orange); }
+  .stat-card .stat-value.green { color: var(--accent-green); }
+  .stat-card .stat-label {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    font-weight: 500;
+    letter-spacing: 0.02em;
+  }
+
+  /* --- BATTLEFIELD MAP --- */
+  .battlefield {
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    margin: 2rem 0;
+  }
+  .battlefield-header {
+    background: var(--bg-card);
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  .battlefield table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .battlefield th {
+    background: var(--bg-card);
+    padding: 0.85rem 1.25rem;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+  .battlefield td {
+    padding: 1rem 1.25rem;
+    font-size: 0.88rem;
+    border-bottom: 1px solid rgba(42,42,58,0.5);
+    color: var(--text-secondary);
+    vertical-align: top;
+  }
+  .battlefield tr:hover td { background: rgba(74,125,255,0.03); }
+  .battlefield .company-name {
+    font-weight: 700;
+    color: var(--text-primary);
+    white-space: nowrap;
+  }
+  .badge {
+    display: inline-block;
+    font-size: 0.65rem;
+    font-weight: 600;
+    padding: 0.2rem 0.6rem;
+    border-radius: 100px;
+    letter-spacing: 0.02em;
+  }
+  .badge.leader { background: rgba(16,185,129,0.15); color: var(--accent-green); }
+  .badge.contender { background: rgba(74,125,255,0.15); color: var(--accent-blue); }
+  .badge.wildcard { background: rgba(249,115,22,0.15); color: var(--accent-orange); }
+  .badge.disruptor { background: rgba(168,85,247,0.15); color: var(--accent-purple); }
+
+  /* --- TIMELINE --- */
+  .timeline {
+    position: relative;
+    padding-left: 2.5rem;
+    margin: 2rem 0;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--accent-blue), var(--accent-purple), var(--accent-pink));
+    border-radius: 2px;
+  }
+  .timeline-item {
+    position: relative;
+    padding: 1.5rem 0;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -2.65rem;
+    top: 1.8rem;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--accent-blue);
+    border: 2px solid var(--bg-primary);
+    box-shadow: 0 0 12px rgba(74,125,255,0.4);
+  }
+  .timeline-item .tl-date {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent-blue);
+    margin-bottom: 0.4rem;
+  }
+  .timeline-item h4 {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 0.35rem;
+  }
+  .timeline-item p {
+    font-size: 0.88rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  /* --- FORECAST BOXES --- */
+  .forecast-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin: 2rem 0;
+  }
+  .forecast-box {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .forecast-box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+  }
+  .forecast-box.q1::before { background: var(--gradient-hero); }
+  .forecast-box.q2::before { background: linear-gradient(90deg, var(--accent-cyan), var(--accent-green)); }
+  .forecast-box.q3::before { background: linear-gradient(90deg, var(--accent-orange), var(--accent-yellow)); }
+  .forecast-box .question-num {
+    font-size: 0.65rem;
+    font-weight: 800;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+  .forecast-box .question-num.q1-color { color: var(--accent-purple); }
+  .forecast-box .question-num.q2-color { color: var(--accent-cyan); }
+  .forecast-box .question-num.q3-color { color: var(--accent-orange); }
+
+  .forecast-box h3 {
+    font-size: 1.4rem;
+    font-weight: 800;
+    margin-bottom: 1.25rem;
+    line-height: 1.3;
+  }
+  .forecast-box .verdict {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.78rem;
+    font-weight: 700;
+    padding: 0.45rem 1rem;
+    border-radius: 100px;
+    margin-bottom: 1.25rem;
+  }
+  .verdict.yes { background: rgba(16,185,129,0.12); color: var(--accent-green); border: 1px solid rgba(16,185,129,0.25); }
+  .verdict.partial { background: rgba(234,179,8,0.12); color: var(--accent-yellow); border: 1px solid rgba(234,179,8,0.25); }
+  .verdict.complex { background: rgba(168,85,247,0.12); color: var(--accent-purple); border: 1px solid rgba(168,85,247,0.25); }
+
+  .forecast-box .body-text {
+    color: var(--text-secondary);
+    font-size: 0.92rem;
+    line-height: 1.75;
+    margin-bottom: 1.25rem;
+  }
+  .forecast-box .sub-section {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+  }
+  .forecast-box .sub-section h4 {
+    font-size: 0.9rem;
+    font-weight: 700;
+    margin-bottom: 0.6rem;
+    color: var(--text-primary);
+  }
+
+  /* --- PROBABILITY METER --- */
+  .prob-meter {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 1rem 0;
+  }
+  .prob-bar-bg {
+    flex: 1;
+    height: 8px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .prob-bar-fill {
+    height: 100%;
+    border-radius: 8px;
+    transition: width 1s ease;
+  }
+  .prob-bar-fill.high { background: linear-gradient(90deg, var(--accent-green), var(--accent-cyan)); }
+  .prob-bar-fill.medium { background: linear-gradient(90deg, var(--accent-yellow), var(--accent-orange)); }
+  .prob-bar-fill.low { background: linear-gradient(90deg, var(--accent-orange), var(--accent-red)); }
+  .prob-label {
+    font-size: 0.78rem;
+    font-weight: 700;
+    min-width: 40px;
+    text-align: right;
+  }
+
+  /* --- RISK MATRIX --- */
+  .risk-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1rem;
+    margin: 2rem 0;
+  }
+  .risk-item {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.25rem;
+  }
+  .risk-item .risk-level {
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+  .risk-item .risk-level.critical { color: var(--accent-red); }
+  .risk-item .risk-level.elevated { color: var(--accent-orange); }
+  .risk-item .risk-level.moderate { color: var(--accent-yellow); }
+  .risk-item h4 { font-size: 0.95rem; margin-bottom: 0.4rem; }
+  .risk-item p { font-size: 0.82rem; color: var(--text-muted); line-height: 1.55; }
+
+  /* --- DIVIDER --- */
+  .divider {
+    border: none;
+    height: 1px;
+    background: var(--border);
+    margin: 3rem 0;
+  }
+
+  /* --- FOOTER --- */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 3rem 2rem;
+    text-align: center;
+  }
+  footer p {
+    color: var(--text-muted);
+    font-size: 0.78rem;
+  }
+  footer a { color: var(--accent-blue); text-decoration: none; }
+
+  /* --- PULL QUOTE --- */
+  .pull-quote {
+    border-left: 3px solid var(--accent-purple);
+    padding: 1.25rem 1.75rem;
+    margin: 2rem 0;
+    background: rgba(168,85,247,0.04);
+    border-radius: 0 12px 12px 0;
+  }
+  .pull-quote p {
+    font-size: 1.05rem;
+    font-weight: 500;
+    font-style: italic;
+    color: var(--text-secondary);
+    line-height: 1.7;
+  }
+  .pull-quote cite {
+    display: block;
+    margin-top: 0.6rem;
+    font-size: 0.78rem;
+    font-style: normal;
+    color: var(--text-muted);
+    font-weight: 600;
+  }
+
+  /* --- RESPONSIVE --- */
+  @media (max-width: 768px) {
+    .hero { min-height: auto; padding: 7rem 1.5rem 3rem; }
+    .hero h1 { font-size: 2rem; }
+    .stats-bar { grid-template-columns: repeat(2, 1fr); }
+    .card-grid { grid-template-columns: 1fr; }
+    .battlefield { overflow-x: auto; }
+    .battlefield table { min-width: 700px; }
+    nav .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav>
+  <div class="nav-inner">
+    <div class="brand">Strategic Intelligence</div>
+    <ul class="nav-links">
+      <li><a href="#battlefield">Battlefield</a></li>
+      <li><a href="#vectors">Attack Vectors</a></li>
+      <li><a href="#forecasts">Forecasts</a></li>
+      <li><a href="#timeline">Timeline</a></li>
+      <li><a href="#risks">Risk Matrix</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="classification">Strategic Intelligence Brief &mdash; Q1 2026</div>
+    <h1>The 2026 <span class="gradient-text">Agentic AI War</span></h1>
+    <p class="subtitle">
+      A strategic analysis of the competitive landscape, the rise of asynchronous delegation, the evolution of human oversight, and which company will own the operating system layer for autonomous workflows.
+    </p>
+    <div class="meta-bar">
+      <div class="meta-item">Date: <span>March 23, 2026</span></div>
+      <div class="meta-item">Forecast Horizon: <span>12 Months &rarr; March 2027</span></div>
+      <div class="meta-item">Classification: <span>Open Distribution</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- KEY METRICS -->
+<section>
+  <div class="container">
+    <div class="section-label blue">Market Pulse</div>
+    <h2>The War in Numbers</h2>
+    <p class="section-intro">The agentic AI market is undergoing explosive growth, with infrastructure spending, adoption rates, and competitive intensity all hitting inflection points in Q1 2026.</p>
+
+    <div class="stats-bar">
+      <div class="stat-card">
+        <div class="stat-value blue">$52B</div>
+        <div class="stat-label">Projected market by 2030 (from $7.8B today)</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value purple">40%</div>
+        <div class="stat-label">Enterprise apps embedding agents by EOY 2026 (Gartner)</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value cyan">11%</div>
+        <div class="stat-label">Organizations in production with agentic AI today</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value pink">$200M</div>
+        <div class="stat-label">Pentagon contract ceiling per awardee (4 labs)</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value orange">200%+</div>
+        <div class="stat-label">YoY growth in Claude paid subscribers</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value green">30–50%</div>
+        <div class="stat-label">Process time reduction in enterprise deployments</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXECUTIVE SUMMARY -->
+<section>
+  <div class="container">
+    <div class="section-label purple">Executive Summary</div>
+    <h2>State of the Conflict</h2>
+    <p class="section-intro">
+      The "Agentic AI War" of 2026 is not a single battle but a multi-front conflict fought across infrastructure, product surfaces, enterprise orchestration, and government contracts. Unlike the 2023–2024 "model quality" wars, the axis of competition has shifted decisively from intelligence to execution&mdash;who can turn reasoning into reliable, autonomous action across real-world workflows.
+    </p>
+
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-icon blue">&#9878;</div>
+        <h3>From Chatbots to Agents</h3>
+        <p>The industry has undergone its "microservices revolution." Single all-purpose assistants are being replaced by orchestrated teams of specialized agents communicating via standardized protocols (MCP, A2A, ACP). The question is no longer "how smart is the model?" but "how much can it do unsupervised?"</p>
+      </div>
+      <div class="card">
+        <div class="card-icon purple">&#9881;</div>
+        <h3>The Infrastructure Arms Race</h3>
+        <p>CapEx spending is staggering: OpenAI targets $600B in compute through 2030, Google is spending up to $185B, Microsoft burned $37B in Q4 2025 alone, and Anthropic launched a $50B data center initiative. This is not a features war&mdash;it is an industrial-scale land grab.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon pink">&#9733;</div>
+        <h3>The Pentagon Wildcard</h3>
+        <p>The Defense Department awarded $200M prototype contracts to Anthropic, OpenAI, Google DeepMind, and xAI. Anthropic's public refusal to accept unconstrained military deployment has escalated into an industry-defining feud with OpenAI, while Google quietly expands Pentagon work behind the scenes.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon cyan">&#8644;</div>
+        <h3>Standards as Strategy</h3>
+        <p>The formation of the Linux Foundation's Agentic AI Foundation&mdash;co-founded by Anthropic, OpenAI, and Block, with AWS, Google, and Microsoft as members&mdash;signals that interoperability is now a competitive moat. The company that defines the protocols defines the battlefield.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BATTLEFIELD MAP -->
+<section id="battlefield">
+  <div class="container">
+    <div class="section-label cyan">Competitive Intelligence</div>
+    <h2>The Battlefield Map</h2>
+    <p class="section-intro">Six entities are fighting for control of agentic AI's value chain. Each occupies a distinct strategic position with unique advantages and critical vulnerabilities.</p>
+
+    <div class="battlefield">
+      <div class="battlefield-header">Competitive Positioning Matrix &mdash; March 2026</div>
+      <table>
+        <thead>
+          <tr>
+            <th>Company</th>
+            <th>Position</th>
+            <th>Agentic Product Surface</th>
+            <th>Core Advantage</th>
+            <th>Critical Vulnerability</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="company-name">Microsoft</td>
+            <td><span class="badge leader">Leader</span></td>
+            <td>Copilot Studio, Copilot Cowork (w/ Claude), M365 Agents, Azure AI Foundry</td>
+            <td>Distribution to 400M+ M365 seats; enterprise trust; multi-model strategy (OpenAI + Anthropic)</td>
+            <td>Dependence on third-party models; "agent washing" risk in legacy workflows</td>
+          </tr>
+          <tr>
+            <td class="company-name">Anthropic</td>
+            <td><span class="badge contender">Contender</span></td>
+            <td>Claude Code, Claude Cowork, Claude Dispatch (mobile-to-desktop), Agent SDK</td>
+            <td>Best-in-class local execution; safety brand; developer trust; pioneered "phone-as-remote" paradigm</td>
+            <td>Limited enterprise distribution; no first-party cloud infrastructure; consumer scale lags</td>
+          </tr>
+          <tr>
+            <td class="company-name">Google / DeepMind</td>
+            <td><span class="badge contender">Contender</span></td>
+            <td>Gemini Agents, Project Mariner (browser), Android on-device agents, A2A protocol</td>
+            <td>Deepest multimodal stack; 2B+ Android devices; Search + Maps + Workspace integration</td>
+            <td>Organizational complexity; slow product shipping; consumer trust deficit in AI privacy</td>
+          </tr>
+          <tr>
+            <td class="company-name">OpenAI</td>
+            <td><span class="badge contender">Contender</span></td>
+            <td>ChatGPT Agent (Operator), CUA API, Codex, GPT Store</td>
+            <td>Largest consumer mindshare; strongest brand recognition; massive developer ecosystem</td>
+            <td>Cloud-only execution model; weak enterprise governance story; growing safety credibility gap</td>
+          </tr>
+          <tr>
+            <td class="company-name">Apple</td>
+            <td><span class="badge wildcard">Wildcard</span></td>
+            <td>Apple Intelligence, Ferret-UI Lite (on-device agent), Siri 2026 overhaul, Xcode AI agents</td>
+            <td>Ultimate on-device execution (3B param local models); 2B+ active devices; unmatched privacy brand</td>
+            <td>Behind on frontier model capability; historically slow AI shipping; closed ecosystem limits third-party agents</td>
+          </tr>
+          <tr>
+            <td class="company-name">xAI / Grok</td>
+            <td><span class="badge disruptor">Disruptor</span></td>
+            <td>Grok agents, Pentagon prototype, X platform integration</td>
+            <td>Musk's political leverage; Pentagon access; vertical X/Tesla data integration</td>
+            <td>Unproven enterprise story; talent retention; reputational volatility</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- THREE ATTACK VECTORS -->
+<section id="vectors">
+  <div class="container">
+    <div class="section-label orange">Strategic Analysis</div>
+    <h2>Three Decisive Attack Vectors</h2>
+    <p class="section-intro">The war is being fought on three fronts simultaneously. Winning one is insufficient. The eventual "OS winner" must dominate at least two of three.</p>
+
+    <div class="card-grid">
+      <div class="card" style="border-top: 2px solid var(--accent-blue);">
+        <h3>1. Local Execution &amp; Privacy</h3>
+        <p>The shift from cloud-only to local-first agent execution is the defining architectural trend of 2026. Anthropic's Cowork runs agents in sandboxed local VMs. Apple's Ferret-UI Lite processes on-device. The privacy advantage is decisive for enterprise and consumer trust alike. Cloud-only agents (OpenAI's Operator) face a structural disadvantage as data sovereignty regulations tighten globally.</p>
+      </div>
+      <div class="card" style="border-top: 2px solid var(--accent-purple);">
+        <h3>2. Asynchronous Delegation</h3>
+        <p>The killer UX pattern is "fire-and-forget": delegate a complex task to an agent, walk away, get notified when it's done. Anthropic's Claude Dispatch (March 2026) pioneered the phone-to-desktop async model. Google's Mariner handles 10 concurrent browser tasks. Microsoft Copilot Cowork sequences multi-app workflows with approval gates. The race is to minimize "time-to-delegation" to zero.</p>
+      </div>
+      <div class="card" style="border-top: 2px solid var(--accent-pink);">
+        <h3>3. Enterprise Orchestration</h3>
+        <p>The enterprise "nervous system" layer&mdash;connecting multiple agents, tools, data sources, and governance controls&mdash;is the highest-value chokepoint. Microsoft's Copilot Studio with MCP support, PwC's Agent OS, and Zoom's expanded platform all target this layer. Over 40% of agentic projects will fail by 2027 due to legacy system integration failures (Deloitte), making orchestration the decisive bottleneck.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THREE KEY FORECASTS -->
+<section id="forecasts">
+  <div class="container">
+    <div class="section-label green">12-Month Forecasts</div>
+    <h2>Three Questions That Will Define 2026–2027</h2>
+
+    <div class="forecast-grid">
+
+      <!-- QUESTION 1 -->
+      <div class="forecast-box q1">
+        <div class="question-num q1-color">Forecast 01</div>
+        <h3>Will the "Mobile-as-Remote" Model Become the Industry Standard?</h3>
+        <div class="verdict partial">&#9679; HIGH PROBABILITY &mdash; Standard by mid-2027, but fragmented</div>
+
+        <p class="body-text">
+          Anthropic's Claude Dispatch, launched March 17, 2026 as a research preview, established the definitive reference architecture: use your phone as a remote control to initiate, monitor, and steer AI agents executing locally on your desktop. This "phone-to-desktop" pattern solves a fundamental UX problem&mdash;complex agentic workflows require a full computing environment (file system access, IDE, browser, terminal), but the command interface should be as lightweight as sending a text message.
+        </p>
+        <p class="body-text">
+          The pattern is converging from multiple directions simultaneously. Google's Project Mariner enables mobile-initiated browser automation with up to 10 concurrent tasks. Microsoft's Copilot Cowork, powered by Anthropic's Claude, sequences multi-app workflows across M365 that users monitor via mobile notifications. Apple's 2026 Siri overhaul aims to transform the iPhone into a "system orchestrator" dispatching tasks across the entire Apple ecosystem.
+        </p>
+
+        <div class="prob-meter">
+          <span class="prob-label" style="color: var(--accent-green);">78%</span>
+          <div class="prob-bar-bg"><div class="prob-bar-fill high" style="width: 78%;"></div></div>
+          <span style="font-size: 0.75rem; color: var(--text-muted);">Probability of industry-standard adoption by March 2027</span>
+        </div>
+
+        <div class="sub-section">
+          <h4>The Fragmentation Risk</h4>
+          <p class="body-text">
+            The model will become standard in concept but fragmented in implementation. Anthropic owns local desktop execution. Google owns Android + browser. Apple owns the device ecosystem. Microsoft owns enterprise M365. No single player controls the full phone&rarr;agent&rarr;execution&rarr;result pipeline. The 12-month forecast: we'll see 3&ndash;4 incompatible "mobile-as-remote" implementations, each dominant in their respective ecosystem, with MCP emerging as the only viable interoperability bridge. True cross-platform standardization is an 18&ndash;24 month outcome, not a 12-month one.
+          </p>
+        </div>
+      </div>
+
+      <!-- QUESTION 2 -->
+      <div class="forecast-box q2">
+        <div class="question-num q2-color">Forecast 02</div>
+        <h3>How Will the "Babysitting Problem" Evolve as Agents Become More Autonomous?</h3>
+        <div class="verdict complex">&#9679; STRUCTURAL TRANSFORMATION &mdash; From human-in-the-loop to human-on-the-loop</div>
+
+        <p class="body-text">
+          Six months ago, users were babysitting every action their agents took&mdash;approving each file edit, each API call, each browser click. The quality gap has closed dramatically. As one industry analysis noted, "the quality of code meeting developers' eyes for the first time is now close to indistinguishable from code they would have handcrafted themselves." The direction is set: more autonomy, more parallelism, more orchestration, less babysitting.
+        </p>
+        <p class="body-text">
+          The industry is converging on a three-tier autonomy architecture that will mature over the next 12 months:
+        </p>
+
+        <div class="card-grid" style="margin-top: 1.5rem;">
+          <div class="card" style="border-left: 3px solid var(--accent-green);">
+            <h3>Tier 1: Full Autonomy</h3>
+            <p><strong>Now &rarr; expanding through 2027.</strong> Low-stakes, well-defined tasks: code formatting, data transforms, scheduling, research summaries. The "Ralph Wiggum Loop" pattern&mdash;letting agents iterate autonomously until tests pass&mdash;is already production-standard in development workflows.</p>
+          </div>
+          <div class="card" style="border-left: 3px solid var(--accent-yellow);">
+            <h3>Tier 2: Bounded Autonomy</h3>
+            <p><strong>Mainstream by Q3 2026.</strong> Agents execute 90% of a workflow autonomously but are hard-wired to pause at "interrupt patterns"&mdash;actions exceeding dollar thresholds, external communications, legal/compliance boundaries. Users become "runtime supervisors" who edit plans, not keystrokes.</p>
+          </div>
+          <div class="card" style="border-left: 3px solid var(--accent-red);">
+            <h3>Tier 3: Agent-Supervised Agents</h3>
+            <p><strong>Emerging by Q1 2027.</strong> Supervisor agents monitor execution agents, escalating to humans only at genuine decision boundaries. The org chart of the future: "3 engineers with 10 agents running in parallel." Humans govern strategy; agents govern execution.</p>
+          </div>
+        </div>
+
+        <div class="pull-quote">
+          <p>"The calcification of functions, systems, data, people, and processes prevents radical simplification. The obstacle isn't capability; it's organizational willingness to fundamentally rethink workflows around what agents can already do."</p>
+          <cite>&mdash; May Habib, CEO of Writer, at Insight Partners ScaleUp:AI</cite>
+        </div>
+
+        <div class="sub-section">
+          <h4>The 12-Month Forecast</h4>
+          <p class="body-text">
+            The "Babysitting Problem" won't disappear&mdash;it will be restructured. By March 2027, the dominant pattern will be "Human-on-the-Loop": agents operate autonomously within guardrails, with humans intervening at pre-defined escalation points rather than supervising continuously. The critical unsolved challenge is <strong>scalable oversight</strong>&mdash;when enterprises run thousands of parallel agent instances, current governance models collapse. Expect the emergence of dedicated "Agent Operations" (AgentOps) roles and tooling as a new category, analogous to DevOps a decade ago.
+          </p>
+        </div>
+
+        <div class="prob-meter">
+          <span class="prob-label" style="color: var(--accent-yellow);">65%</span>
+          <div class="prob-bar-bg"><div class="prob-bar-fill medium" style="width: 65%;"></div></div>
+          <span style="font-size: 0.75rem; color: var(--text-muted);">Probability that "human-on-the-loop" is the dominant enterprise pattern by March 2027</span>
+        </div>
+      </div>
+
+      <!-- QUESTION 3 -->
+      <div class="forecast-box q3">
+        <div class="question-num q3-color">Forecast 03</div>
+        <h3>Which Company Will Become the "Operating System" for Agentic Workflows&mdash;and What's Their Missing Piece?</h3>
+        <div class="verdict complex">&#9679; ASSESSMENT: Microsoft leads, but the OS hasn't been built yet</div>
+
+        <p class="body-text">
+          The "Agentic OS" will be the most valuable software layer of the next decade&mdash;the platform that orchestrates agents, manages permissions, routes data, and provides the governance layer that enterprises require. Multiple players are racing toward it, but no one has assembled the complete stack.
+        </p>
+
+        <div class="battlefield" style="margin: 2rem 0;">
+          <div class="battlefield-header">Agentic OS Capability Assessment</div>
+          <table>
+            <thead>
+              <tr>
+                <th>Company</th>
+                <th>OS Score</th>
+                <th>Strengths</th>
+                <th>The Missing Piece</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="company-name">Microsoft</td>
+                <td><span style="color: var(--accent-green); font-weight: 800;">8.2 / 10</span></td>
+                <td>Enterprise distribution (M365), governance (Entra ID), multi-model (OpenAI+Claude), MCP support, Copilot Studio orchestration</td>
+                <td><strong style="color: var(--accent-orange);">Local execution.</strong> Copilot Cowork runs in sandboxed cloud environments. Without a local-first agent runtime on users' machines, Microsoft depends on Anthropic for the most trusted execution model. If Anthropic tightens this partnership, Microsoft's OS story fractures.</td>
+              </tr>
+              <tr>
+                <td class="company-name">Anthropic</td>
+                <td><span style="color: var(--accent-blue); font-weight: 800;">7.4 / 10</span></td>
+                <td>Best local execution (Cowork VM), safety governance, Dispatch (mobile-as-remote), Agent SDK, developer mindshare</td>
+                <td><strong style="color: var(--accent-orange);">Enterprise distribution &amp; data layer.</strong> Anthropic has no M365, no Workspace, no CRM, no ERP. It builds the best agents but lacks the enterprise application surface where agents need to act. The missing piece is a first-party enterprise connective tissue layer.</td>
+              </tr>
+              <tr>
+                <td class="company-name">Google</td>
+                <td><span style="color: var(--accent-blue); font-weight: 800;">7.1 / 10</span></td>
+                <td>Deepest multimodal models, A2A protocol, Workspace integration, Android device fleet, Project Mariner</td>
+                <td><strong style="color: var(--accent-orange);">Product cohesion &amp; enterprise trust.</strong> Google has every piece of the stack but ships them as disconnected experiments. Mariner, Gemini agents, Android AI, and Workspace AI feel like four different companies. The missing piece is a unified orchestration vision.</td>
+              </tr>
+              <tr>
+                <td class="company-name">Apple</td>
+                <td><span style="color: var(--accent-purple); font-weight: 800;">5.8 / 10</span></td>
+                <td>On-device execution, 2B+ device footprint, privacy brand, ecosystem control</td>
+                <td><strong style="color: var(--accent-orange);">Frontier model capability &amp; developer openness.</strong> Ferret-UI Lite is impressive but struggles with multi-step tasks. Apple's closed ecosystem prevents third-party agent frameworks. Until Apple opens up or acquires frontier model capability, it remains a platform, not an OS.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="sub-section">
+          <h4>The Verdict</h4>
+          <p class="body-text">
+            <strong>Microsoft is best positioned to become the agentic OS&mdash;but its missing piece is existential.</strong> Microsoft's Copilot ecosystem already functions as a proto-OS: it orchestrates agents across M365 apps, enforces governance through Entra ID, supports MCP for tool connectivity, and now integrates Anthropic's Claude for superior reasoning. With 400M+ enterprise seats, no competitor matches its distribution.
+          </p>
+          <p class="body-text">
+            However, Microsoft's critical vulnerability is its dependence on cloud-only execution and third-party models. The most trusted agentic paradigm&mdash;local execution with privacy guarantees&mdash;is owned by Anthropic (Cowork) and Apple (on-device models). Microsoft's Copilot Cowork literally runs on Anthropic's Claude. If the industry converges on local-first as the default, Microsoft either needs to build its own local agent runtime or risk becoming a distribution layer that doesn't control its own core technology.
+          </p>
+          <p class="body-text">
+            <strong>The missing piece for the entire industry</strong> is a unified agent identity, permissions, and audit framework that works across vendors. Today, every platform has its own governance model. The company that ships a cross-platform "agent passport"&mdash;a universal identity and permission system for agents operating across tools, apps, and organizations&mdash;will own the true OS layer. This is the strategic gap. It doesn't exist yet. It will by 2027.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- 12-MONTH TIMELINE -->
+<section id="timeline">
+  <div class="container">
+    <div class="section-label purple">Forward Calendar</div>
+    <h2>12-Month Forecast Timeline</h2>
+    <p class="section-intro">Key inflection points expected between now and March 2027, based on current trajectory analysis.</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="tl-date">Q2 2026 (Apr–Jun)</div>
+        <h4>The Protocol Wars Heat Up</h4>
+        <p>MCP reaches ubiquitous adoption across major platforms. Google's A2A protocol competes for multi-agent communication standard. The Agentic AI Foundation publishes its first interoperability spec. Claude Dispatch exits research preview. Apple previews Siri agent overhaul at WWDC.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="tl-date">Q3 2026 (Jul–Sep)</div>
+        <h4>Enterprise Tier 2 Autonomy Goes Mainstream</h4>
+        <p>"Bounded autonomy" becomes the default enterprise pattern. Microsoft ships multi-agent orchestration GA in Copilot Studio. First major "AgentOps" startups raise Series A rounds. Gartner publishes first "Agentic AI Magic Quadrant." OpenAI ships local execution capability to close the gap with Anthropic.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="tl-date">Q4 2026 (Oct–Dec)</div>
+        <h4>The Consolidation Phase</h4>
+        <p>40% enterprise agent embedding target (Gartner) is tested. First wave of agentic project failures in enterprises with legacy integration gaps (Deloitte's 40% failure prediction begins materializing). M&amp;A activity spikes as orchestration startups get acquired. Apple ships Siri agent with on-device execution to 2B+ devices.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="tl-date">Q1 2027 (Jan–Mar)</div>
+        <h4>The OS Layer Crystallizes</h4>
+        <p>The "Agentic OS" winner becomes clear based on enterprise adoption data. Agent-supervised-agent architectures enter early production. "Agent passport" (cross-platform identity) emerges as the decisive battleground. BPO displacement accelerates. The industry transitions from "can agents do this?" to "should agents do this?"</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RISK MATRIX -->
+<section id="risks">
+  <div class="container">
+    <div class="section-label pink">Risk Assessment</div>
+    <h2>Strategic Risk Matrix</h2>
+    <p class="section-intro">Key risks that could alter the competitive landscape or slow the agentic AI transition over the forecast horizon.</p>
+
+    <div class="risk-grid">
+      <div class="risk-item">
+        <div class="risk-level critical">Critical</div>
+        <h4>Legacy Integration Failure</h4>
+        <p>Over 40% of agentic projects may fail by 2027 due to legacy systems lacking real-time APIs. Enterprises attempting to layer agents onto existing workflows instead of redesigning them face catastrophic ROI disappointment.</p>
+      </div>
+      <div class="risk-item">
+        <div class="risk-level critical">Critical</div>
+        <h4>Scalable Oversight Collapse</h4>
+        <p>When enterprises run thousands of parallel agent instances, current governance models are insufficient. A single high-profile autonomous agent failure (financial loss, data breach, PR disaster) could trigger regulatory backlash that freezes adoption industry-wide.</p>
+      </div>
+      <div class="risk-item">
+        <div class="risk-level elevated">Elevated</div>
+        <h4>Protocol Fragmentation</h4>
+        <p>MCP, A2A, and ACP are competing standards. If the industry fails to converge, enterprises face vendor lock-in, and the "agentic OS" becomes multiple incompatible ecosystems rather than a unified layer.</p>
+      </div>
+      <div class="risk-item">
+        <div class="risk-level elevated">Elevated</div>
+        <h4>Regulatory Intervention</h4>
+        <p>EU AI Act enforcement begins tightening. If regulators classify autonomous agents as "high-risk AI systems" broadly, compliance costs could make agentic AI uneconomical for mid-market enterprises, concentrating the market among hyperscalers.</p>
+      </div>
+      <div class="risk-item">
+        <div class="risk-level elevated">Elevated</div>
+        <h4>Anthropic-OpenAI Feud Escalation</h4>
+        <p>The Pentagon dispute and public accusations between Amodei and Altman are destabilizing industry cooperation. If the feud fractures the Agentic AI Foundation before standards ship, the interoperability window closes.</p>
+      </div>
+      <div class="risk-item">
+        <div class="risk-level moderate">Moderate</div>
+        <h4>Workforce Backlash</h4>
+        <p>BPO displacement and open headcount reduction will generate political and social pressure. The "3 engineers + 10 agents" org model, while efficient, faces cultural resistance that could slow adoption in risk-averse industries.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BOTTOM LINE -->
+<section>
+  <div class="container">
+    <hr class="divider">
+    <div class="section-label green">Bottom Line</div>
+    <h2>The Strategic Calculus</h2>
+
+    <div class="pull-quote" style="border-left-color: var(--accent-blue); background: rgba(74,125,255,0.04); margin-bottom: 2rem;">
+      <p>The 2026 Agentic AI War is not about who builds the smartest model. It's about who builds the most trusted execution layer. Intelligence is commoditizing. Execution, governance, and trust are not.</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card">
+        <h3>If You're Building</h3>
+        <p>Bet on MCP as the integration standard. Design for bounded autonomy from day one. Build interrupt patterns and audit trails before building features. The winners in the agent app layer will be those who solve governance, not intelligence.</p>
+      </div>
+      <div class="card">
+        <h3>If You're Investing</h3>
+        <p>The "AgentOps" category (monitoring, governance, identity for agents) is the most underinvested and highest-ceiling opportunity. Avoid pure-play agent builders&mdash;the OS layer will subsume them. Look for companies building the "agent passport" layer.</p>
+      </div>
+      <div class="card">
+        <h3>If You're Deploying</h3>
+        <p>Don't layer agents onto existing processes. Redesign workflows agent-native. Start with Tier 1 (full autonomy) use cases, build organizational trust, then graduate to Tier 2 (bounded autonomy). Budget 40% of your agentic initiative for integration, not model costs.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOURCES -->
+<section>
+  <div class="container">
+    <hr class="divider">
+    <div class="section-label blue">Sources &amp; References</div>
+    <h2>Research Bibliography</h2>
+    <p style="color: var(--text-secondary); font-size: 0.88rem; line-height: 1.8; margin-top: 1rem;">
+      <a href="https://www.deloitte.com/us/en/insights/topics/technology-management/tech-trends/2026/agentic-ai-strategy.html" style="color: var(--accent-blue); text-decoration: none;">Deloitte Tech Trends 2026: Agentic AI Strategy</a><br>
+      <a href="https://www.insightpartners.com/ideas/ai-autonomy/" style="color: var(--accent-blue); text-decoration: none;">Insight Partners: The Agent Era and AI Autonomy</a><br>
+      <a href="https://jvaneyck.wordpress.com/2026/03/14/the-shape-of-things-to-come-whats-actually-happening-in-ai-augmented-coding-early-2026/" style="color: var(--accent-blue); text-decoration: none;">The Shape of Things to Come: AI-Augmented Coding in Early 2026</a><br>
+      <a href="https://fortune.com/2026/03/05/anthropic-openai-feud-pentagon-dispute-ai-safety-dilemma-personalities/" style="color: var(--accent-blue); text-decoration: none;">Fortune: The Anthropic-OpenAI Feud and Pentagon Dispute</a><br>
+      <a href="https://venturebeat.com/orchestration/microsoft-announces-copilot-cowork-with-help-from-anthropic-a-cloud-powered" style="color: var(--accent-blue); text-decoration: none;">VentureBeat: Microsoft Announces Copilot Cowork with Anthropic</a><br>
+      <a href="https://www.technologyreview.com/2026/01/05/1130662/whats-next-for-ai-in-2026/" style="color: var(--accent-blue); text-decoration: none;">MIT Technology Review: What's Next for AI in 2026</a><br>
+      <a href="https://mlq.ai/news/anthropic-launches-claude-dispatch-for-remote-desktop-ai-control/" style="color: var(--accent-blue); text-decoration: none;">MLQ: Anthropic Launches Claude Dispatch</a><br>
+      <a href="https://9to5mac.com/2026/02/20/apple-researchers-develop-on-device-ai-agent-that-interacts-with-apps-for-you/" style="color: var(--accent-blue); text-decoration: none;">9to5Mac: Apple's On-Device AI Agent (Ferret-UI Lite)</a><br>
+      <a href="https://deepmind.google/models/project-mariner/" style="color: var(--accent-blue); text-decoration: none;">Google DeepMind: Project Mariner</a><br>
+      <a href="https://www.microsoft.com/en-us/microsoft-copilot/blog/copilot-studio/6-core-capabilities-to-scale-agent-adoption-in-2026/" style="color: var(--accent-blue); text-decoration: none;">Microsoft Copilot Blog: 6 Core Capabilities for Agent Adoption in 2026</a><br>
+      <a href="https://roibypractus.com/2026/03/19/human-in-the-loop-the-secret-to-building-ethical-agentic-ai-systems/" style="color: var(--accent-blue); text-decoration: none;">Practus: Human-in-the-Loop for Ethical Agentic AI</a><br>
+      <a href="https://eu.36kr.com/en/p/3589328631202050" style="color: var(--accent-blue); text-decoration: none;">36Kr: Agentic AI Foundation Launch (OpenAI, Anthropic, Google)</a><br>
+      <a href="https://www.fluid.ai/blog/agentic-operating-system" style="color: var(--accent-blue); text-decoration: none;">Fluid AI: Agentic OS &mdash; Why Every Enterprise Will Run on AI-Native Operating Systems</a><br>
+      <a href="https://www.pwc.com/us/en/about-us/newsroom/press-releases/pwc-launches-ai-agent-operating-system-enterprises.html" style="color: var(--accent-blue); text-decoration: none;">PwC: AI Agent Operating System for Enterprises</a><br>
+      <a href="https://machinelearningmastery.com/7-agentic-ai-trends-to-watch-in-2026/" style="color: var(--accent-blue); text-decoration: none;">Machine Learning Mastery: 7 Agentic AI Trends for 2026</a>
+    </p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>Strategic Intelligence Report &mdash; The 2026 Agentic AI War &mdash; Prepared March 23, 2026</p>
+  <p style="margin-top: 0.5rem;">Research synthesized from 15+ primary sources across industry analysis, company announcements, and expert commentary.</p>
+</footer>
+
+</body>
+</html>
