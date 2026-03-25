@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Agentic Web: A Strategic Foresight Analysis (2026–2036)</title>
+<style>
+  :root {
+    --bg-primary: #0d1117;
+    --bg-secondary: #161b22;
+    --bg-tertiary: #21262d;
+    --bg-accent: #1a1f2e;
+    --text-primary: #e6edf3;
+    --text-secondary: #8b949e;
+    --text-muted: #6e7681;
+    --accent-blue: #58a6ff;
+    --accent-green: #3fb950;
+    --accent-orange: #d29922;
+    --accent-red: #f85149;
+    --accent-purple: #bc8cff;
+    --border-color: #30363d;
+    --border-subtle: #21262d;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    line-height: 1.75;
+    font-size: 17px;
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 3rem 2rem 6rem;
+  }
+
+  header {
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 2rem;
+    margin-bottom: 3rem;
+  }
+
+  header .meta {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: 0.75rem;
+  }
+
+  h1 {
+    font-size: 2.4rem;
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+  }
+
+  header .subtitle {
+    font-size: 1.15rem;
+    color: var(--text-secondary);
+    font-weight: 400;
+  }
+
+  h2 {
+    font-size: 1.65rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-top: 3.5rem;
+    margin-bottom: 1.25rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--accent-blue);
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+  }
+
+  h4 {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--accent-purple);
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  p { margin-bottom: 1rem; }
+
+  a { color: var(--accent-blue); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  .executive-summary {
+    background: linear-gradient(135deg, #1a1f2e 0%, #161b22 100%);
+    border: 1px solid var(--border-color);
+    border-left: 4px solid var(--accent-blue);
+    border-radius: 8px;
+    padding: 2rem;
+    margin-bottom: 3rem;
+  }
+
+  .executive-summary h2 {
+    margin-top: 0;
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .phase-card {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1.75rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .phase-card .phase-label {
+    display: inline-block;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 0.2rem 0.7rem;
+    border-radius: 20px;
+    margin-bottom: 0.75rem;
+  }
+
+  .phase-1 .phase-label { background: var(--accent-green); color: #0d1117; }
+  .phase-2 .phase-label { background: var(--accent-blue); color: #0d1117; }
+  .phase-3 .phase-label { background: var(--accent-orange); color: #0d1117; }
+  .phase-4 .phase-label { background: var(--accent-purple); color: #0d1117; }
+
+  .phase-card h3 { margin-top: 0.5rem; color: var(--text-primary); }
+
+  .phase-detail {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+
+  .phase-detail div {
+    background: var(--bg-tertiary);
+    padding: 1rem;
+    border-radius: 6px;
+  }
+
+  .phase-detail .label {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.4rem;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+  }
+
+  thead th {
+    background: var(--bg-tertiary);
+    text-align: left;
+    padding: 0.75rem 1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    border-bottom: 2px solid var(--border-color);
+  }
+
+  tbody td {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--border-subtle);
+    color: var(--text-secondary);
+    vertical-align: top;
+  }
+
+  tbody tr:hover { background: var(--bg-secondary); }
+
+  .confidence-high { color: var(--accent-green); font-weight: 600; }
+  .confidence-medium { color: var(--accent-orange); font-weight: 600; }
+  .confidence-low { color: var(--accent-red); font-weight: 600; }
+
+  .callout {
+    background: var(--bg-accent);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1.25rem 1.5rem;
+    margin: 1.5rem 0;
+    font-style: italic;
+    color: var(--text-secondary);
+  }
+
+  .wildcard {
+    border-left: 4px solid var(--accent-red);
+  }
+
+  .indicator-card {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .indicator-card .indicator-num {
+    display: inline-block;
+    width: 28px;
+    height: 28px;
+    line-height: 28px;
+    text-align: center;
+    border-radius: 50%;
+    background: var(--accent-blue);
+    color: #0d1117;
+    font-weight: 700;
+    font-size: 0.85rem;
+    margin-right: 0.5rem;
+  }
+
+  .sources {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border-color);
+    font-size: 0.9rem;
+    color: var(--text-muted);
+  }
+
+  .sources a { color: var(--text-secondary); }
+
+  @media (max-width: 640px) {
+    body { padding: 1.5rem 1rem 4rem; font-size: 16px; }
+    h1 { font-size: 1.8rem; }
+    .phase-detail { grid-template-columns: 1fr; }
+    table { font-size: 0.85rem; }
+    thead th, tbody td { padding: 0.5rem 0.6rem; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="meta">Strategic Foresight Document &mdash; March 2026</div>
+  <h1>The Agentic Web</h1>
+  <div class="subtitle">A Predictive Analysis of How Autonomous AI Agents Will Reshape the Internet&mdash;2026 to 2036</div>
+</header>
+
+<!-- ============================================ -->
+<!-- EXECUTIVE SUMMARY                            -->
+<!-- ============================================ -->
+
+<div class="executive-summary">
+<h2>Executive Summary</h2>
+
+<p>The internet is undergoing its fifth major platform shift. After the transitions from static pages (Web 1.0) to user-generated content (Web 2.0), from desktops to mobile, and from human-facing websites to the API economy, we are now entering the era of the agentic web&mdash;an internet increasingly navigated, transacted upon, and shaped by autonomous AI agents acting on behalf of humans and organizations.</p>
+
+<p>This is not a speculative exercise. As of March 2026, the infrastructure is already materializing. Anthropic's Model Context Protocol (MCP) has become the de facto standard for connecting AI models to external tools, adopted by OpenAI, Google, and Microsoft. Google's Agent2Agent (A2A) protocol, now donated to the Linux Foundation, enables cross-vendor agent interoperability. NIST has launched its AI Agent Standards Initiative with active comment periods on agent identity and authorization. Gartner projects 40% of enterprise applications will embed AI agents by the end of 2026. And the first major agent security crisis has already arrived&mdash;the OpenClaw vulnerability affecting over 21,000 exposed instances demonstrated what cascading agent failures look like in practice.</p>
+
+<p>Our core thesis: <strong>the agentic web will evolve through four distinct phases over the next decade, each defined not by a model capability breakthrough but by the maturity of surrounding infrastructure&mdash;identity, payments, liability frameworks, and trust protocols.</strong> The model intelligence is already sufficient. What constrains the agentic web today is the same thing that constrained e-commerce in 1996: the absence of trusted, standardized rails for authentication, transaction, and accountability. The analogy to SSL certificates and payment processors enabling the commercial web is direct and instructive.</p>
+
+<p>The economic implications are profound. The advertising-supported, attention-economy model of the current web faces existential pressure when agents intermediate between humans and content. Value capture will shift from eyeballs to task completion, from clicks to outcomes. New business models&mdash;agent-native APIs priced on value delivered, capability marketplaces, reputation-as-a-service&mdash;will emerge. Some current internet giants are well-positioned (Google, Microsoft, Amazon); others face structural vulnerability (ad-dependent publishers, SEO-dependent content farms, traditional SaaS with human-only interfaces).</p>
+
+<p>The transition will not be smooth. We identify seven critical inflection points, ranging from the adoption of universal agent identity standards (already in motion at NIST) to the first major agent-caused financial incident that triggers regulatory backlash. The EU AI Act's August 2026 enforcement deadline for high-risk systems will serve as the first significant regulatory test. The window between now and 2029 will determine whether the agentic web develops on open, interoperable standards or fragments into proprietary walled gardens&mdash;a question whose answer will shape the internet for decades.</p>
+</div>
+
+<!-- ============================================ -->
+<!-- SECTION 1: PHASED EVOLUTION MODEL            -->
+<!-- ============================================ -->
+
+<h2>1. Phased Evolution Model</h2>
+
+<p>The agentic web will not arrive as a single event but as a cascading series of capability expansions, each enabled by specific infrastructure and unlocked by a distinct killer application. We model this evolution in four phases, though the boundaries are gradational rather than sharp. Each phase persists alongside subsequent ones&mdash;tool-augmented copilots will not vanish when delegated task agents arrive, just as websites did not disappear when mobile apps emerged.</p>
+
+<div class="phase-card phase-1">
+  <span class="phase-label">Phase 1</span>
+  <h3>Tool-Augmented Copilots (Now&ndash;2027)</h3>
+  <p>This is the current phase. AI agents can browse the web, call APIs, execute code, and interact with external tools, but they operate with explicit human approval for consequential actions. The user remains in the loop for every significant decision. OpenAI's ChatGPT with Operator merged in, Anthropic's Claude with MCP tool use, and Google's Gemini with agentic browsing in Chrome all exemplify this pattern. The agent is powerful but leashed.</p>
+  <div class="phase-detail">
+    <div>
+      <div class="label">Dominant Interaction Pattern</div>
+      Human-directed with per-action approval. The human initiates, reviews, and confirms. The agent proposes and executes upon approval.
+    </div>
+    <div>
+      <div class="label">Technical Bottleneck</div>
+      Reliability of multi-step execution. Current agents fail at roughly 15&ndash;30% of complex multi-step web tasks. Until reliability reaches 95%+ for routine workflows, humans cannot safely delegate.
+    </div>
+    <div>
+      <div class="label">Required Infrastructure</div>
+      Standardized tool protocols (MCP&mdash;now achieved), browser-level agent integration (emerging in Chrome), basic OAuth-based agent authentication.
+    </div>
+    <div>
+      <div class="label">Killer App</div>
+      Agentic coding assistants (Claude Code, Copilot, Cursor) that handle entire development workflows. This is where agents first prove they can reliably complete complex, multi-step tasks with measurable economic value.
+    </div>
+  </div>
+</div>
+
+<div class="phase-card phase-2">
+  <span class="phase-label">Phase 2</span>
+  <h3>Delegated Task Agents (2027&ndash;2029)</h3>
+  <p>The critical transition: humans set goals and constraints, then walk away. The agent completes multi-step workflows autonomously within defined guardrails&mdash;booking travel itineraries, managing procurement workflows, conducting research and producing reports, handling routine customer service escalations. The human reviews outcomes rather than supervising each step.</p>
+  <div class="phase-detail">
+    <div>
+      <div class="label">Dominant Interaction Pattern</div>
+      Goal-directed delegation with post-hoc review. Humans define objectives, budgets, and constraints. Agents execute autonomously and report results.
+    </div>
+    <div>
+      <div class="label">Technical Bottleneck</div>
+      Agent identity, authorization, and liability frameworks. When an agent books a $3,000 flight on your behalf, who is legally liable if it books the wrong one? The identity and authorization infrastructure must be mature enough for services to trust agent-initiated transactions.
+    </div>
+    <div>
+      <div class="label">Required Infrastructure</div>
+      Standardized agent identity credentials (NIST's initiative is the precursor), agent-native payment rails, robust audit logging, established legal frameworks for agent-initiated transactions.
+    </div>
+    <div>
+      <div class="label">Killer App</div>
+      Autonomous personal procurement&mdash;an agent that manages your subscriptions, finds better deals, negotiates renewals, and handles routine purchasing within a budget you set. This is the "Mint.com moment" for the agentic web.
+    </div>
+  </div>
+</div>
+
+<div class="phase-card phase-3">
+  <span class="phase-label">Phase 3</span>
+  <h3>Agent-Native Services (2029&ndash;2032)</h3>
+  <p>The web itself begins to restructure. When a significant percentage of "visitors" to a service are agents rather than humans, it becomes economically rational to design primarily for agent consumption. This is analogous to the mobile-first shift of 2012&ndash;2015, when websites were redesigned for phone screens because that's where the traffic was. Agent-native services will be API-first, semantically structured, machine-readable, and priced on value delivered rather than attention captured.</p>
+  <div class="phase-detail">
+    <div>
+      <div class="label">Dominant Interaction Pattern</div>
+      Service-to-agent interfaces as the primary channel. Human UIs become secondary dashboards for oversight and exception handling, not the primary interaction surface.
+    </div>
+    <div>
+      <div class="label">Technical Bottleneck</div>
+      Semantic interoperability at scale. Services must describe their capabilities in machine-readable formats that any agent can discover and consume without bespoke integration. The "agent app store" problem.
+    </div>
+    <div>
+      <div class="label">Required Infrastructure</div>
+      Universal capability registries (like DNS for agent services), standardized semantic service descriptions, mature agent reputation systems, agent-native analytics and monitoring.
+    </div>
+    <div>
+      <div class="label">Killer App</div>
+      Agent-mediated healthcare coordination&mdash;an agent that navigates insurance, schedules across multiple providers, manages prior authorizations, and tracks treatment plans. The complexity and friction of healthcare administration makes it the ideal domain for agent-native service redesign.
+    </div>
+  </div>
+</div>
+
+<div class="phase-card phase-4">
+  <span class="phase-label">Phase 4</span>
+  <h3>Agent Economies (2032+)</h3>
+  <p>Agents transact with other agents at scale, with minimal human oversight for routine operations. Agent-to-agent marketplaces emerge for capabilities, data, and services. Specialized agents hire other specialized agents to complete subtasks, negotiate prices, and form ad hoc collaborations. Humans set high-level objectives and intervene only for novel situations or ethical edge cases. This is the fully realized agentic web.</p>
+  <div class="phase-detail">
+    <div>
+      <div class="label">Dominant Interaction Pattern</div>
+      Agent swarms operating in multi-agent economies. Humans function as principals setting strategic objectives; agents function as autonomous economic actors within those mandates.
+    </div>
+    <div>
+      <div class="label">Technical Bottleneck</div>
+      Trust and governance at machine speed. When agents negotiate and transact in milliseconds, human oversight becomes a throughput bottleneck. The system needs automated dispute resolution, machine-speed auditing, and robust principal-agent alignment guarantees.
+    </div>
+    <div>
+      <div class="label">Required Infrastructure</div>
+      Agent-to-agent payment clearing, automated contract enforcement, real-time reputation scoring, machine-speed regulatory compliance checking, and mature principal-agent alignment mechanisms.
+    </div>
+    <div>
+      <div class="label">Killer App</div>
+      Autonomous supply chain optimization&mdash;agent networks that manage global procurement, logistics, and inventory across thousands of suppliers, continuously renegotiating and rerouting in response to real-time conditions.
+    </div>
+  </div>
+</div>
+
+
+<!-- ============================================ -->
+<!-- SECTION 2: CRITICAL INFLECTION POINTS        -->
+<!-- ============================================ -->
+
+<h2>2. Critical Inflection Points</h2>
+
+<p>Seven inflection points will determine the trajectory and velocity of the agentic web's evolution. Each represents a discrete event or threshold that, once crossed, accelerates the transition to the next phase.</p>
+
+<h3>2.1 Universal Agent Identity Standard Adoption</h3>
+<p>NIST launched its AI Agent Standards Initiative in February 2026, and an IETF draft extending OAuth 2.0 for agent authentication is already in circulation. The preconditions are converging: MCP provides the tool-use layer, A2A provides the agent-to-agent communication layer, and now identity is the missing piece. We estimate a widely adopted standard by late 2027 to mid 2028, with medium-high confidence. If this arrives early, Phase 2 accelerates dramatically&mdash;agents can transact on behalf of users with legal backing. If delayed, the agentic web fragments into platform-specific identity silos, repeating the "Sign In with Google/Facebook/Apple" fragmentation of the 2010s but with higher stakes.</p>
+
+<h3>2.2 First Major Agent-Caused Financial Incident</h3>
+<p>The OpenClaw vulnerability of early 2026 was a security incident, but we have not yet seen an agent autonomously cause significant financial harm&mdash;a rogue trading agent, an agent that drains a payment account, or an agent procurement loop that generates six-figure charges. This is coming. We estimate a high-profile incident by mid 2027 with high confidence. The critical question is whether the regulatory response is proportionate (targeted safeguards, liability frameworks) or disproportionate (blanket restrictions on agent autonomy). The financial trading analogy is instructive: algorithmic trading caused the 2010 Flash Crash, leading to circuit breakers rather than a ban on algorithmic trading.</p>
+
+<h3>2.3 Browser-Level Agent Integration Becomes Standard</h3>
+<p>Google has already embedded agentic capabilities into Chrome with auto-browse. The precondition is that all major browsers follow suit, establishing a standardized browser agent API. We estimate this by late 2027 with medium confidence, as it depends on Apple's Safari strategy (Apple has historically been slow to adopt platform-disruptive web standards). If this arrives early, the "agentic browser" replaces the traditional browser as the default web access paradigm. If Safari remains a holdout, it creates a two-tier web experience reminiscent of the IE6 era.</p>
+
+<h3>2.4 EU AI Act Enforcement Creates Regulatory Precedent</h3>
+<p>August 2026 brings full application of the EU AI Act to high-risk AI systems, with penalties up to &euro;35 million or 7% of global revenue. Many agentic applications&mdash;employment screening, credit scoring, healthcare triage&mdash;fall squarely into high-risk categories requiring human oversight under Article 14. The first enforcement actions will establish how strictly "human oversight" is interpreted for delegated task agents. We estimate the first significant enforcement action by Q1 2027 with high confidence. A strict interpretation that requires per-action human approval would effectively ban Phase 2 agents in the EU for regulated domains. A pragmatic interpretation that accepts post-hoc human review would accelerate adoption.</p>
+
+<h3>2.5 Agent-Native Payment Clearing Emerges</h3>
+<p>Current payment systems require human identity verification (KYC) that agents cannot satisfy. An agent-native payment layer&mdash;where agents hold delegated spending authority with cryptographic proof of authorization&mdash;is a prerequisite for Phase 3. We estimate initial deployments by 2028&ndash;2029 with medium confidence. Stripe, Square/Block (an AAIF co-founder), and potentially stablecoin-based systems are the likely providers. If this arrives via crypto rails, it could catalyze a revival of blockchain's utility narrative. If traditional fintech solves it first, it further marginalizes crypto's value proposition.</p>
+
+<h3>2.6 Agent App Store / Capability Marketplace Launch</h3>
+<p>A curated marketplace where agents can discover, evaluate, and purchase capabilities from other agents or services&mdash;the equivalent of Apple's App Store moment for the agentic web. This requires mature semantic service descriptions, reputation systems, and payment infrastructure. We estimate the first credible marketplace by 2028&ndash;2029 with medium confidence. The race is between platform incumbents (Apple, Google, Microsoft) and protocol-native upstarts building on MCP/A2A. Whoever captures this marketplace captures the most valuable chokepoint in the agentic economy.</p>
+
+<h3>2.7 Open-Source Agent Parity with Proprietary Models</h3>
+<p>If open-source agent frameworks (built on models like Llama, Mistral, or their successors) achieve parity with proprietary offerings from OpenAI, Anthropic, and Google, the economics of the agentic web shift fundamentally. Agents become commodity infrastructure rather than premium services. We estimate this inflection by 2028&ndash;2030 with medium-low confidence&mdash;the gap is currently widening for the most complex agent tasks even as it narrows for simpler ones. If open-source achieves parity, the value layer moves from model providers to orchestration and infrastructure. If it doesn't, the agentic web becomes an oligopoly controlled by 3&ndash;4 model providers.</p>
+
+
+<!-- ============================================ -->
+<!-- SECTION 3: THE AGENT-NATIVE WEB              -->
+<!-- ============================================ -->
+
+<h2>3. The Agent-Native Web</h2>
+
+<h3>3.1 How Websites and APIs Will Transform</h3>
+<p>When agents become a significant traffic source, the economics of web service design invert. Today's web is optimized for human perception: visual hierarchy, brand aesthetics, engagement loops. The agent-native web optimizes for machine comprehension: structured data, semantic markup, predictable API contracts, and deterministic behavior. This does not mean human interfaces disappear&mdash;they become a layer on top of agent-native infrastructure, just as mobile apps became a layer on top of REST APIs.</p>
+
+<p>The transition will echo the mobile-responsive shift. Initially, services will add "agent endpoints" alongside human interfaces&mdash;a structured data feed that parallels the human-readable page. Over time, the agent endpoint becomes primary. Services that resist will face the same fate as businesses that refused to build mobile sites in 2013: invisible to a growing fraction of their potential market.</p>
+
+<p>Rate limiting evolves from crude IP-based throttling to fine-grained, identity-aware policies. A verified agent with a high reputation score and an authorized payment method gets premium access; an anonymous scraper gets blocked. Pricing shifts from flat-rate subscriptions to value-based models: a real-estate agent-service might charge $0.50 per property listing retrieved by an agent, rather than $99/month for unlimited human browsing.</p>
+
+<h3>3.2 From SEO to AEO: Agent Engine Optimization</h3>
+<p>The transformation of search is already underway. Google's AI Mode now has over 75 million daily users, and agents are increasingly the intermediary between humans and information. Traditional SEO metrics&mdash;backlinks, domain authority, keyword density&mdash;matter less when an AI agent synthesizes information from multiple sources and presents a single answer. What matters instead is whether your content is structured, factually accurate, frequently cited by AI systems, and machine-parseable.</p>
+
+<p>Agent Engine Optimization (AEO) will prioritize several factors: structured data markup (schema.org and beyond), content depth and factual density (articles over 2,900 words receive significantly more AI citations than shorter content), real-time data availability via API, and clear provenance and attribution chains. The SEO industry, currently a $100B+ global market, will undergo a painful transformation. Firms that adapt become AEO consultancies; firms that don't become irrelevant as agents bypass the traditional organic search funnel entirely.</p>
+
+<p>For e-commerce, the implications are acute. Google has already launched agentic checkout with "Buy for me" functionality. When agents handle product discovery, comparison, and purchase, the merchant's brand relationship shifts from the consumer to the agent. If an agent cannot parse your inventory or price in real-time, you functionally do not exist in the agentic transaction layer.</p>
+
+<h3>3.3 New Agent-Native Service Categories</h3>
+<p>Several entirely new categories of service will emerge that have no human-facing equivalent. Agent capability registries will function as "DNS for skills"&mdash;directories where agents can discover what other agents or services can do, described in standardized semantic formats. Agent reputation services will track the reliability, accuracy, and trustworthiness of agents across interactions, analogous to credit scores for autonomous software. Orchestration-as-a-service providers will offer managed infrastructure for multi-agent workflows, handling the complexity of coordinating dozens of specialized agents toward a common goal. And context brokers will emerge as intermediaries that manage the rich personal context agents carry, providing privacy-preserving ways for agents to share relevant user preferences across services without exposing raw personal data.</p>
+
+
+<!-- ============================================ -->
+<!-- SECTION 4: ECONOMIC MODEL SHIFTS              -->
+<!-- ============================================ -->
+
+<h2>4. Economic Model Shifts</h2>
+
+<h3>4.1 The Attention Economy Under Siege</h3>
+<p>The current web's dominant business model&mdash;advertising funded by human attention&mdash;faces its most significant structural threat since the invention of the ad blocker. When an agent fetches information, compares products, or books services on a human's behalf, it does not see display ads. It does not have brand affinity. It does not impulse-buy. The entire edifice of the attention economy assumes a human eyeball at the other end of the HTTP request, and that assumption is eroding.</p>
+
+<p>Google, to its credit, has already begun adapting. Sponsored placements now appear inside AI-generated responses in AI Mode, essentially paying for the agent to consider your product. This is the first iteration of "agent-mediated advertising"&mdash;paying not for human attention but for agent consideration. The CPM (cost per thousand impressions) model gives way to a CPA (cost per agent-considered action) model. But this transition compresses the value chain dramatically: instead of a funnel with awareness, consideration, and conversion stages (each monetizable), the agent collapses the funnel into a single decision point.</p>
+
+<p>Publishers and content creators face an especially acute threat. If agents synthesize information without driving traffic to source websites, the ad-supported content model collapses. This is the "zero-click search" problem amplified by an order of magnitude. We expect significant legal battles over this issue by 2027&ndash;2028, echoing the news industry's conflicts with Google and Facebook over link taxation.</p>
+
+<h3>4.2 New Viable Business Models</h3>
+<p>The agentic web enables business models that are impractical or impossible today. Outcome-based pricing becomes viable when agents can measure and attribute results: a legal research service charges per actionable insight rather than per hour of access. Micro-negotiation services become possible when agents can negotiate on every transaction: a hotel that dynamically adjusts pricing in real-time based on agent-disclosed preferences and constraints. Agent-as-a-service platforms offer specialized, pre-trained agents that other agents can hire for subtasks&mdash;a tax calculation agent, a regulatory compliance agent, a translation agent&mdash;priced per invocation.</p>
+
+<p>Perhaps most transformative: the agentic web dramatically lowers the barrier to launching a business. A single individual with a well-configured agent swarm can operate what previously required a team of 20&mdash;handling customer inquiries, managing procurement, coordinating logistics, maintaining the website, and optimizing pricing. The "solopreneur with agents" becomes a viable business structure at scales currently requiring formal organizations.</p>
+
+<h3>4.3 Winners and Losers</h3>
+<p><strong>Well-Positioned:</strong> Microsoft (deep enterprise integration via Copilot, Azure infrastructure, LinkedIn data), Google (controls search, browser, Android, and cloud; already shipping agentic features), Amazon (AWS as agent hosting infrastructure, e-commerce as agent transaction target, Alexa as consumer agent interface), and Anthropic (MCP is becoming the TCP/IP of the agentic web; enterprise-first strategy positions them as the trusted platform). Apple is a wild card&mdash;its privacy-first approach and device control give it enormous leverage if it chooses to build agent infrastructure, but its historical reluctance to embrace open web standards could leave it behind.</p>
+
+<p><strong>Vulnerable:</strong> Ad-dependent publishers without differentiated data, traditional SaaS companies with human-only interfaces that resist API-first redesign, SEO agencies that fail to pivot to AEO, and consumer internet companies whose value comes from aggregating human attention (social media platforms face moderate risk, though their data moats provide some protection). Mid-tier cloud providers lacking AI capabilities face acquisition or irrelevance as the cloud layer increasingly requires native AI integration.</p>
+
+
+<!-- ============================================ -->
+<!-- SECTION 5: SECOND-ORDER EFFECTS & WILDCARDS  -->
+<!-- ============================================ -->
+
+<h2>5. Second-Order Effects and Wildcards</h2>
+
+<h3>5.1 Employment and Knowledge Work</h3>
+<p>The impact on knowledge work will be substantial but uneven. Customer service, data entry, basic research, routine legal work, and standard financial analysis will see 40&ndash;60% task automation by 2029. This does not mean 40&ndash;60% job loss&mdash;historical technology transitions show that task automation typically restructures roles rather than eliminating them wholesale. Customer service agents become "agent supervisors" managing AI agent fleets. Junior analysts become "agent trainers" who configure and validate autonomous research agents. The nature of the work changes more than the volume of employment, at least in the medium term.</p>
+
+<p>Software development is the leading indicator. Agentic coding tools are already handling significant portions of routine development work, but the demand for developers who can architect agent systems, design agent-human interfaces, and manage agent reliability has surged. The net employment effect in software development has been expansionary so far, though the required skill profile has shifted dramatically.</p>
+
+<h3>5.2 Privacy in the Agent Era</h3>
+<p>Agents carrying rich personal context across services create a new category of privacy risk. Your agent knows your health conditions, financial situation, personal preferences, daily schedule, and social relationships&mdash;and it needs to share relevant slices of this information with services to act effectively on your behalf. The tension between utility (agents work better with more context) and privacy (more context means more exposure) becomes the defining challenge of the agentic web's trust architecture.</p>
+
+<p>Emerging solutions include zero-knowledge proofs (proving you qualify for a discount without revealing your income), selective disclosure protocols (sharing only the minimum context needed for each transaction), and federated context management (your context stays on your device, with only derived decisions shared externally). The privacy implications also extend to the agent's own behavior being informative: observing which agents interact with which services reveals user behavior patterns even without accessing the underlying personal data.</p>
+
+<h3>5.3 Regulatory Landscape</h3>
+<p>Three regulatory philosophies are emerging. The EU's approach under the AI Act treats agents as high-risk systems requiring human oversight, transparency, and accountability&mdash;prescriptive and compliance-heavy. The US approach, currently led by NIST's standards initiative and existing executive orders, favors industry-led standards with voluntary compliance frameworks&mdash;permissive but potentially slow to address harms. China's approach emphasizes state control over agent capabilities and data access, with mandatory registration and content filtering&mdash;restrictive but enabling rapid deployment within controlled domains.</p>
+
+<p>The regulatory divergence creates a fragmented global landscape. Multinational agent deployments will need to comply with multiple, potentially conflicting frameworks. This benefits large companies with compliance resources and disadvantages startups and open-source projects. We expect regulatory convergence to begin by 2029&ndash;2030, likely anchored by NIST standards and EU enforcement precedents, similar to how GDPR became the de facto global privacy baseline.</p>
+
+<h3>5.4 Wildcard Scenarios</h3>
+
+<div class="callout wildcard">
+<strong>Wildcard 1: Open-Source Agent Dominance.</strong> If open-source agent frameworks achieve and maintain superiority over proprietary offerings&mdash;plausible if the critical value layer shifts from model capability to orchestration and tooling&mdash;the economic structure of the agentic web looks radically different. Model providers become commodity infrastructure, value accrues to tooling and data, and the agentic web becomes as decentralized as the early web rather than as concentrated as the mobile app economy.
+</div>
+
+<div class="callout wildcard">
+<strong>Wildcard 2: Catastrophic Agent Failure.</strong> A cascading multi-agent failure causes significant real-world harm&mdash;a supply chain agent network collapses, or autonomous financial agents trigger a market crash. Research already shows a single compromised agent can poison 87% of downstream decisions within four hours. A sufficiently dramatic incident could trigger a "Chernobyl moment" for agent autonomy, setting back Phase 2 adoption by years and empowering restrictive regulation.
+</div>
+
+<div class="callout wildcard">
+<strong>Wildcard 3: Emergent Agent Coordination.</strong> Agents independently develop coordination behaviors their creators did not anticipate&mdash;implicit collusion in pricing, information asymmetry exploitation, or emergent "agent cartels" that prefer interacting with each other over alternatives. This is not science fiction: algorithmic pricing systems have already demonstrated implicit collusion in controlled studies. At agent scale, detecting and preventing such behavior becomes a novel regulatory and technical challenge.
+</div>
+
+<div class="callout wildcard">
+<strong>Wildcard 4: The Agent Identity Crisis.</strong> If deepfake and impersonation technology outpaces agent identity verification, a crisis of trust could undermine the entire agentic web. If services cannot distinguish between a legitimate agent acting on a user's behalf and a malicious agent impersonating one, the system collapses to the lowest-trust equilibrium&mdash;every interaction requires burdensome human verification, negating the efficiency gains of agent delegation.
+</div>
+
+
+<!-- ============================================ -->
+<!-- SECTION 6: HISTORICAL ANALOGY STRESS TEST    -->
+<!-- ============================================ -->
+
+<h2>6. Historical Analogy Stress Test</h2>
+
+<h3>6.1 Telephone Operators → Automated Switching</h3>
+<p>The replacement of human telephone operators with automated switching systems (1920s&ndash;1960s) is perhaps the closest historical analogy. Operators mediated every connection; automation made the network self-service. The transition took 40 years, was fiercely resisted by incumbent labor, and ultimately enabled a telecommunications revolution that operators could never have scaled to support. <strong>Where the analogy holds:</strong> the agentic web similarly replaces human intermediation with automated routing and execution. <strong>Where it breaks:</strong> telephone switching was a solved engineering problem with deterministic behavior; agent decision-making is probabilistic and context-dependent, introducing failure modes that telephone switching never had.</p>
+
+<h3>6.2 Algorithmic Trading</h3>
+<p>The evolution from human floor traders to algorithmic trading (1980s&ndash;2020s) offers the sharpest analogy for the economic dynamics of the agentic web. Algorithmic trading now accounts for 60&ndash;70% of equity market volume. The transition followed a familiar pattern: initial skepticism, a capability demonstration (algorithms consistently outperforming humans on speed and pattern recognition), rapid adoption, a major incident (the 2010 Flash Crash), proportionate regulation (circuit breakers, not bans), and eventual normalization. <strong>Where the analogy holds:</strong> the agentic web will likely follow the same pattern&mdash;incident, regulation, normalization. <strong>Where it breaks:</strong> algorithmic trading operates in a highly structured, rule-bound domain (financial markets); the agentic web operates across the entire unstructured internet, making failure modes more diverse and harder to anticipate.</p>
+
+<h3>6.3 Human Web Browsing → Programmatic API Access</h3>
+<p>The shift from humans manually visiting websites to programmatic API access (2005&ndash;2015) is the most direct precursor to the agentic web. APIs turned the web into a programmable platform, enabling mashups, integrations, and eventually the entire SaaS economy. <strong>Where the analogy holds:</strong> the agentic web extends this trajectory&mdash;agents are the next layer of abstraction above APIs, consuming APIs on behalf of humans. <strong>Where it breaks:</strong> APIs were designed for programmatic access from the start; much of the web that agents must navigate was designed for human browsers and has no API equivalent. This gap&mdash;the "unstructured web" problem&mdash;is why browser automation is a critical capability for current agents.</p>
+
+<h3>6.4 Human-Driven Cars → Autonomous Vehicles</h3>
+<p>The autonomous vehicle analogy is cautionary. Despite enormous investment and technical capability, full autonomy has been slower to deploy than predicted, largely due to edge cases, liability uncertainty, and public trust. <strong>Where the analogy holds:</strong> the agentic web faces similar challenges with edge cases and liability. <strong>Where it breaks critically:</strong> the cost of agent failure on the web is typically financial, not physical. An agent that books the wrong flight is annoying; an autonomous vehicle that hits a pedestrian is catastrophic. This difference in failure severity means the agentic web can tolerate a higher error rate, enabling faster adoption than autonomous vehicles. The regulatory bar is also lower for digital than physical autonomy.</p>
+
+<p>Across all four analogies, the consistent pattern is: capability arrives before trust infrastructure, an incident forces the creation of governance frameworks, and adoption then accelerates under the new regime. We expect the agentic web to follow this pattern, with the incident phase occurring 2026&ndash;2028 and the post-incident acceleration occurring 2028&ndash;2032.</p>
+
+
+<!-- ============================================ -->
+<!-- SECTION 7: CONVERGENCE WITH OTHER TRENDS     -->
+<!-- ============================================ -->
+
+<h2>7. Convergence with Other Trends</h2>
+
+<h3>7.1 Edge Computing and On-Device AI</h3>
+<p>On-device AI models (Apple's on-device intelligence, Qualcomm's NPUs, Google's Tensor chips) enable a class of agents that operate locally without cloud round-trips. This has profound implications for privacy (your agent processes sensitive context locally before selectively sharing with remote services) and latency (sub-second agent actions on mobile devices). The convergence of edge AI and the agentic web creates a "personal agent" paradigm where your phone runs a local agent that orchestrates cloud-based specialist agents, combining privacy with capability. By 2028, we expect on-device agent capabilities to handle 70&ndash;80% of routine agent tasks without cloud connectivity.</p>
+
+<h3>7.2 Blockchain and Decentralized Identity</h3>
+<p>Blockchain's strongest use case in the agentic web is not cryptocurrency but decentralized identity and verifiable credentials. Agent identity that doesn't depend on a single provider, verifiable capability credentials, and transparent reputation histories align naturally with decentralized architectures. The AAIF's inclusion of Block (formerly Square) as a co-founder and the exploration of stablecoin-based agent payment rails suggest this convergence is already being anticipated by major players. The timeline depends on whether decentralized identity solutions can achieve the usability and performance required for real-time agent interactions&mdash;a bar that blockchain systems have historically struggled to meet.</p>
+
+<h3>7.3 Spatial Computing and AR/VR</h3>
+<p>The intersection of agents and spatial computing creates persistent digital assistants that exist in your physical space. An AR agent that can see what you see, understand your physical context, and take action in both the digital and physical world represents the ultimate convergence of the agentic web with spatial computing. This is a 2030+ phenomenon, dependent on both agent maturity and AR hardware reaching mainstream adoption&mdash;both currently on uncertain timelines. The killer application here is agent-mediated physical world navigation: an agent that not only finds you the best restaurant but guides you there, checks you in, and handles payment as you arrive.</p>
+
+<h3>7.4 Robotics and Physical-World Agents</h3>
+<p>The agentic web's evolution will eventually merge with physical robotics, creating agents that operate across both digital and physical domains. A logistics agent that negotiates shipping rates (digital), dispatches a warehouse robot to retrieve goods (physical), and tracks delivery via IoT sensors (hybrid) represents the convergence endpoint. This is a Phase 4 phenomenon (2032+) and depends on advances in robotic dexterity and reliability that are currently on a slower trajectory than digital agent capabilities.</p>
+
+<h3>7.5 Quantum Computing</h3>
+<p>Within the 10-year horizon of this analysis, quantum computing's impact on the agentic web is likely limited to one critical domain: cryptography. If quantum computers break current encryption standards before quantum-resistant cryptography is widely deployed, the trust infrastructure of the agentic web (agent identity, secure communication, payment authorization) is at risk. Post-quantum cryptography migration is already underway, and we consider the risk of a quantum-induced agentic web disruption to be low within this timeframe, though it warrants monitoring.</p>
+
+
+<!-- ============================================ -->
+<!-- CONFIDENCE-WEIGHTED PREDICTION TABLE         -->
+<!-- ============================================ -->
+
+<h2>Confidence-Weighted Prediction Table</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Prediction</th>
+      <th>Timeline</th>
+      <th>Confidence</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>40% of enterprise apps embed AI agents</td>
+      <td>End of 2026</td>
+      <td class="confidence-high">High</td>
+    </tr>
+    <tr>
+      <td>First major agent-caused financial incident</td>
+      <td>Mid 2027</td>
+      <td class="confidence-high">High</td>
+    </tr>
+    <tr>
+      <td>EU AI Act enforcement action targeting agentic system</td>
+      <td>Q1 2027</td>
+      <td class="confidence-high">High</td>
+    </tr>
+    <tr>
+      <td>Universal agent identity standard adopted (NIST/IETF)</td>
+      <td>Late 2027&ndash;Mid 2028</td>
+      <td class="confidence-medium">Medium-High</td>
+    </tr>
+    <tr>
+      <td>Browser-level agent APIs in all major browsers</td>
+      <td>Late 2027</td>
+      <td class="confidence-medium">Medium</td>
+    </tr>
+    <tr>
+      <td>Advertising industry restructures for agent-mediated model</td>
+      <td>2028&ndash;2029</td>
+      <td class="confidence-medium">Medium</td>
+    </tr>
+    <tr>
+      <td>Agent-native payment clearing operational at scale</td>
+      <td>2028&ndash;2029</td>
+      <td class="confidence-medium">Medium</td>
+    </tr>
+    <tr>
+      <td>First credible agent capability marketplace</td>
+      <td>2028&ndash;2029</td>
+      <td class="confidence-medium">Medium</td>
+    </tr>
+    <tr>
+      <td>Agent traffic exceeds 30% of web service requests</td>
+      <td>2029&ndash;2030</td>
+      <td class="confidence-medium">Medium</td>
+    </tr>
+    <tr>
+      <td>Majority of new web services launch API-first for agents</td>
+      <td>2030&ndash;2031</td>
+      <td class="confidence-medium">Medium</td>
+    </tr>
+    <tr>
+      <td>Open-source agents achieve parity for complex tasks</td>
+      <td>2028&ndash;2030</td>
+      <td class="confidence-low">Medium-Low</td>
+    </tr>
+    <tr>
+      <td>Agent-to-agent economies handle &gt;$1T annual transactions</td>
+      <td>2032&ndash;2035</td>
+      <td class="confidence-low">Low</td>
+    </tr>
+    <tr>
+      <td>40&ndash;60% of knowledge work tasks automated by agents</td>
+      <td>2029&ndash;2031</td>
+      <td class="confidence-medium">Medium</td>
+    </tr>
+    <tr>
+      <td>Global regulatory convergence on agent governance</td>
+      <td>2029&ndash;2030</td>
+      <td class="confidence-low">Medium-Low</td>
+    </tr>
+    <tr>
+      <td>Emergent agent coordination behavior detected at scale</td>
+      <td>2030&ndash;2033</td>
+      <td class="confidence-low">Low</td>
+    </tr>
+  </tbody>
+</table>
+
+
+<!-- ============================================ -->
+<!-- SECTION 8: WHAT TO WATCH                     -->
+<!-- ============================================ -->
+
+<h2>What to Watch: Five Leading Indicators</h2>
+
+<p>The following five signals will indicate which scenario is unfolding and how fast the agentic web is maturing. Monitoring these provides the earliest possible signal of phase transitions.</p>
+
+<div class="indicator-card">
+  <p><span class="indicator-num">1</span> <strong>Agent Traffic Share in Web Analytics.</strong> When major web analytics platforms (Google Analytics, Cloudflare Radar) begin reporting agent vs. human traffic as a standard metric, and when that share crosses 10%, 20%, then 30% thresholds for major services, each crossing marks a structural shift. The first services to report majority-agent traffic will be price comparison, travel booking, and financial data providers. Watch Cloudflare's annual internet reports for the first breakout of agent traffic data&mdash;this will be the clearest quantitative signal of Phase 2 arrival.</p>
+</div>
+
+<div class="indicator-card">
+  <p><span class="indicator-num">2</span> <strong>NIST Agent Identity Standard Progression.</strong> Track the progression from concept paper (current stage, comment period closing April 2026) to draft standard to final publication. The speed of this pipeline directly determines how fast the identity infrastructure for Phase 2 matures. If NIST moves at its typical pace, expect a draft standard by mid 2027. If industry pressure accelerates the process (as happened with post-quantum cryptography standards), it could arrive six months sooner&mdash;a significant acceleration for the entire agentic web timeline.</p>
+</div>
+
+<div class="indicator-card">
+  <p><span class="indicator-num">3</span> <strong>Agent-Related Litigation and Enforcement Actions.</strong> The first lawsuit over agent-caused harm, the first EU AI Act enforcement action targeting an agentic system, and the first insurance product specifically covering agent liability&mdash;each of these events signals that the legal system is beginning to grapple with agent autonomy. The nature of the regulatory response (proportionate vs. restrictive) will determine whether the agentic web accelerates or stalls in regulated industries.</p>
+</div>
+
+<div class="indicator-card">
+  <p><span class="indicator-num">4</span> <strong>Major Platform "Agent-First" Redesigns.</strong> Watch for the moment when a major web service (a top-50 website by traffic) publicly announces an "agent-first" redesign&mdash;restructuring their service primarily for agent consumption rather than human browsing. This is the "mobile-first" moment of the agentic web. We expect the first such announcement from a financial data provider, travel booking platform, or e-commerce marketplace by 2028. When this begins cascading across industries, Phase 3 has arrived.</p>
+</div>
+
+<div class="indicator-card">
+  <p><span class="indicator-num">5</span> <strong>Consumer Agent Adoption Curves.</strong> Track the adoption rates of consumer-facing agent products&mdash;ChatGPT's agentic features, Google's agent-enabled Search, Apple's eventual agent offerings. When a consumer agent product crosses the 100-million-active-user threshold with autonomous task delegation (not just chat), the mainstream inflection point for the agentic web has arrived. Google's AI Mode at 75 million daily users is close; the question is when these users begin delegating consequential actions (purchases, bookings, financial transactions) rather than just information retrieval.</p>
+</div>
+
+<div class="sources">
+  <h3>Sources</h3>
+  <p>
+    <a href="https://www.eweek.com/news/agentic-ai-trend-2026/">Agentic AI is Set to Dominate in 2026 &mdash; eWeek</a> &middot;
+    <a href="https://spectrum.ieee.org/agentic-web">The Agentic Web: AI Agents Will Redefine the Internet &mdash; IEEE Spectrum</a> &middot;
+    <a href="https://cloud.google.com/resources/content/ai-agent-trends-2026">AI Agent Trends 2026 &mdash; Google Cloud</a> &middot;
+    <a href="https://www.tomshardware.com/tech-industry/artificial-intelligence/microsoft-google-openai-and-anthropic-join-forces-to-form-agentic-ai-alliance-according-to-report-organization-backed-by-the-linux-foundation-is-set-to-create-open-source-standards-for-ai-agents">Agentic AI Alliance &mdash; Tom's Hardware</a> &middot;
+    <a href="https://openai.com/index/agentic-ai-foundation/">Agentic AI Foundation &mdash; OpenAI</a> &middot;
+    <a href="https://www.nist.gov/news-events/news/2026/02/announcing-ai-agent-standards-initiative-interoperable-and-secure">NIST AI Agent Standards Initiative</a> &middot;
+    <a href="https://datatracker.ietf.org/doc/draft-klrc-aiagent-auth/">IETF Draft: AI Agent Authentication</a> &middot;
+    <a href="https://www.strata.io/blog/agentic-identity/new-identity-playbook-ai-agents-not-nhi-8b/">A New Identity Playbook for AI Agents &mdash; Strata</a> &middot;
+    <a href="http://blog.modelcontextprotocol.io/posts/2026-mcp-roadmap/">The 2026 MCP Roadmap</a> &middot;
+    <a href="https://cloud.google.com/blog/products/ai-machine-learning/agent2agent-protocol-is-getting-an-upgrade">A2A Protocol Upgrade &mdash; Google Cloud</a> &middot;
+    <a href="https://www.linuxfoundation.org/press/linux-foundation-launches-the-agent2agent-protocol-project-to-enable-secure-intelligent-communication-between-ai-agents">Linux Foundation Launches A2A Project</a> &middot;
+    <a href="https://www.helpnetsecurity.com/2026/03/03/enterprise-ai-agent-security-2026/">Enterprise AI Agent Security 2026 &mdash; Help Net Security</a> &middot;
+    <a href="https://www.esecurityplanet.com/artificial-intelligence/ai-agent-attacks-in-q4-2025-signal-new-risks-for-2026/">AI Agent Attacks Signal New Risks &mdash; eSecurity Planet</a> &middot;
+    <a href="https://thefuturesociety.org/aiagentsintheeu/">AI Agents Governed Under the EU AI Act &mdash; The Future Society</a> &middot;
+    <a href="https://www.cxtoday.com/ai-automation-in-cx/eu-ai-act-why-the-2026-reckoning-for-cx-is-global/">EU AI Act 2026 Reckoning &mdash; CX Today</a> &middot;
+    <a href="https://searchengineland.com/ai-search-visibility-seo-predictions-2026-468042">The Future of AI Search: SEO Predictions 2026 &mdash; Search Engine Land</a> &middot;
+    <a href="https://www.chargebee.com/blog/pricing-ai-agents-playbook/">Pricing AI Agents Playbook &mdash; Chargebee</a> &middot;
+    <a href="https://www.ibbaka.com/ibbaka-market-blog/b2b-saas-and-agentic-ai-pricing-predictions-for-2026">B2B SaaS and Agentic AI Pricing &mdash; Ibbaka</a> &middot;
+    <a href="https://www.netcomlearning.com/blog/diving-into-the-era-of-open-agentic-web">The Open Agentic Web &mdash; NetCom Learning</a> &middot;
+    <a href="https://venturebeat.com/technology/anthropic-launches-enterprise-agent-skills-and-opens-the-standard">Anthropic Enterprise Agent Skills &mdash; VentureBeat</a> &middot;
+    <a href="https://nohacks.co/blog/agentic-browser-landscape-2026">The Agentic Browser Landscape 2026 &mdash; No Hacks</a>
+  </p>
+</div>
+
+</body>
+</html>
