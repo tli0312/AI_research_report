@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Agentic Web — Executive Brief</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+  :root {
+    --bg: #0f0f11;
+    --surface: #1a1a1f;
+    --text: #e4e4e7;
+    --text-secondary: #a1a1aa;
+    --accent: #2dd4bf;
+    --accent-light: #162726;
+    --border: #2e2e35;
+    --highlight: #2a2518;
+  }
+
+  @page { size: letter; margin: 0.6in 0.7in; }
+  @media print {
+    body { background: #0f0f11 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .page-break { break-before: page; }
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Source Serif 4', Georgia, serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    font-size: 14.5px;
+  }
+
+  .container { max-width: 780px; margin: 0 auto; padding: 0 28px; }
+
+  /* Header */
+  .report-header {
+    background: linear-gradient(135deg, #09090b 0%, #0c1929 50%, #083344 100%);
+    color: white;
+    padding: 36px 28px 28px;
+    text-align: center;
+  }
+  .report-header h1 {
+    font-family: 'Inter', sans-serif;
+    font-size: 2em;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+    margin-bottom: 6px;
+  }
+  .report-header .subtitle {
+    font-size: 0.95em;
+    opacity: 0.8;
+    max-width: 560px;
+    margin: 0 auto 12px;
+    font-weight: 300;
+  }
+  .report-header .report-meta {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.72em;
+    opacity: 0.6;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  /* Key findings box */
+  .key-findings {
+    background: var(--accent-light);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 16px 20px;
+    margin: 20px auto;
+    max-width: 780px;
+  }
+  .key-findings strong {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.75em;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--accent);
+    display: block;
+    margin-bottom: 8px;
+  }
+  .key-findings ul { list-style: none; padding: 0; }
+  .key-findings li {
+    padding: 3px 0 3px 16px;
+    position: relative;
+    font-size: 0.88em;
+    line-height: 1.5;
+    color: var(--text-secondary);
+  }
+  .key-findings li::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  /* Sections */
+  section { margin: 22px auto; max-width: 780px; padding: 0 28px; }
+  .section-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.7em;
+    font-weight: 600;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    display: block;
+    margin-bottom: 3px;
+  }
+  h2 {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.2em;
+    font-weight: 700;
+    margin-bottom: 6px;
+    color: var(--text);
+    letter-spacing: -0.02em;
+  }
+  p { margin-bottom: 10px; }
+
+  /* Table */
+  .landscape-map {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 14px 16px;
+    margin: 14px auto;
+    max-width: 780px;
+    overflow-x: auto;
+  }
+  .landscape-map h4 {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.72em;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--accent);
+    margin-bottom: 10px;
+  }
+  table { width: 100%; border-collapse: collapse; font-size: 0.8em; }
+  thead th {
+    font-family: 'Inter', sans-serif;
+    text-align: left;
+    padding: 6px 10px;
+    border-bottom: 2px solid var(--accent);
+    font-weight: 600;
+    font-size: 0.82em;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--accent);
+  }
+  tbody td {
+    padding: 6px 10px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+    line-height: 1.45;
+  }
+  tbody tr:last-child td { border-bottom: none; }
+
+  .badge {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.72em;
+    font-weight: 600;
+    padding: 1px 7px;
+    border-radius: 3px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+  .b-mature { background: #064e3b; color: #6ee7b7; }
+  .b-emerging { background: #451a03; color: #fbbf24; }
+  .b-nascent { background: #450a0a; color: #fca5a5; }
+
+  /* Two-column grid */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 14px 0;
+  }
+  .col-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 14px 16px;
+  }
+  .col-box h3 {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.82em;
+    font-weight: 600;
+    color: var(--accent);
+    margin-bottom: 6px;
+  }
+  .col-box p {
+    font-size: 0.88em;
+    margin-bottom: 6px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+  }
+
+  /* Callout */
+  .callout {
+    background: var(--highlight);
+    border-left: 3px solid #b45309;
+    padding: 12px 16px;
+    margin: 14px 0;
+    border-radius: 0 5px 5px 0;
+    font-size: 0.88em;
+    line-height: 1.5;
+  }
+  .callout strong {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.8em;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .footer {
+    text-align: center;
+    padding: 20px 28px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.72em;
+    color: var(--text-secondary);
+    border-top: 1px solid var(--border);
+    margin-top: 24px;
+  }
+
+  @media (max-width: 600px) {
+    .two-col { grid-template-columns: 1fr; }
+    .report-header { padding: 24px 16px 20px; }
+    .report-header h1 { font-size: 1.5em; }
+  }
+</style>
+</head>
+<body>
+
+<header class="report-header">
+  <h1>The Agentic Web</h1>
+  <p class="subtitle">Infrastructure, Protocols &amp; Competitive Dynamics for the Autonomous AI Internet</p>
+  <p class="report-meta">Executive Brief &middot; Q1 2026</p>
+</header>
+
+<!-- KEY FINDINGS -->
+<div class="key-findings container">
+  <strong>Key Findings</strong>
+  <ul>
+    <li>Two foundational protocols have consolidated in 18 months: Anthropic's <strong>MCP</strong> (10K+ servers, 97M monthly SDK downloads) for agent-tool use, and Google's <strong>A2A</strong> (150+ orgs, v0.3) for inter-agent communication. Both now governed by the Linux Foundation.</li>
+    <li>Agent payment infrastructure is live and bifurcated: Stripe MPP/Tempo for enterprise fiat; x402 (Coinbase/Base) for crypto micropayments (35M+ transactions). Visa targeting agent commerce by late 2026.</li>
+    <li>Agent identity remains the critical gap — Microsoft Entra Agent ID, OpenAgents DID, IETF AIMS, and NIST are all proposing incompatible approaches. No convergence yet.</li>
+    <li>Agentic AI has attracted <strong>$20.8B cumulatively</strong> across 530 companies. Seed valuations command a 40% premium over generic generative AI startups.</li>
+    <li>The governance-containment gap is systemic: 58% of enterprises monitor agents, but only 37–40% can actually stop them in real time.</li>
+  </ul>
+</div>
+
+<!-- INFRASTRUCTURE STACK -->
+<div class="landscape-map container">
+  <h4>Agentic Web Infrastructure Stack — Maturity Assessment</h4>
+  <table>
+    <thead>
+      <tr><th>Layer</th><th>Leading Projects</th><th>Status</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Agent Runtimes</strong></td>
+        <td>LangGraph (47M+ downloads), CrewAI, OpenAI Agents SDK, AutoGen/AG2, Google ADK</td>
+        <td><span class="badge b-mature">Mature</span></td>
+      </tr>
+      <tr>
+        <td><strong>Tool-Use Protocols</strong></td>
+        <td>MCP (Anthropic → Linux Foundation), OpenAI function calling, llms.txt, agent.json</td>
+        <td><span class="badge b-mature">Mature</span></td>
+      </tr>
+      <tr>
+        <td><strong>Agent-to-Agent Comms</strong></td>
+        <td>Google A2A (v0.3), Agent Protocol, OpenAI Swarm patterns</td>
+        <td><span class="badge b-emerging">Emerging</span></td>
+      </tr>
+      <tr>
+        <td><strong>Identity &amp; Auth</strong></td>
+        <td>Microsoft Entra Agent ID, OpenAgents AgentID (DID), IETF AIMS, NIST initiative</td>
+        <td><span class="badge b-nascent">Nascent</span></td>
+      </tr>
+      <tr>
+        <td><strong>Payment Rails</strong></td>
+        <td>Stripe MPP/Tempo, x402 (Coinbase), Google AP2, Coinbase Agentic Wallets, Visa</td>
+        <td><span class="badge b-emerging">Emerging</span></td>
+      </tr>
+      <tr>
+        <td><strong>Memory &amp; State</strong></td>
+        <td>LangGraph checkpointing, Mem0, Zep, ChromaDB/Pinecone, Redis</td>
+        <td><span class="badge b-emerging">Emerging</span></td>
+      </tr>
+      <tr>
+        <td><strong>Observability</strong></td>
+        <td>LangSmith, Arize Phoenix, W&B Weave, OpenTelemetry extensions</td>
+        <td><span class="badge b-nascent">Nascent</span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- PROTOCOL COMPARISON -->
+<section>
+  <span class="section-label">Core Protocols</span>
+  <h2>MCP + A2A: The Two-Protocol Foundation</h2>
+  <p><strong>MCP</strong> (Model Context Protocol) standardizes how agents invoke external tools via a JSON-RPC client-server model — the "USB-C of AI." Adopted by OpenAI, Google, and every major cloud provider. Donated to the Agentic AI Foundation (Linux Foundation) in December 2025. Limitations: no agent-to-agent communication, evolving security model, authentication delegated to transport layer.</p>
+  <p><strong>A2A</strong> (Agent-to-Agent) solves the complementary problem: cross-framework agent collaboration. Agents publish JSON "Agent Cards" declaring capabilities; others interact via a standardized task lifecycle. v0.3 adds gRPC, signed Agent Cards, and Google Cloud Marketplace integration. The two protocols are explicitly complementary — MCP for tools, A2A for agents — and a well-architected system uses both.</p>
+</section>
+
+<!-- PAGE 2 -->
+<div class="page-break"></div>
+
+<section>
+  <span class="section-label">Competitive Landscape</span>
+  <h2>Platform Positioning &amp; Capital Flows</h2>
+
+  <div class="two-col">
+    <div class="col-box">
+      <h3>Hyperscalers</h3>
+      <p><strong>AWS</strong> — model-agnostic Bedrock with Agents, Knowledge Bases, and Guardrails. <strong>Azure</strong> — OpenAI-integrated, Entra Agent ID, Copilot Studio. <strong>GCP</strong> — open-source ADK, A2A/MCP native, AI Agent Marketplace.</p>
+    </div>
+    <div class="col-box">
+      <h3>Platform Companies</h3>
+      <p><strong>Salesforce</strong> — Agentforce across the full CRM stack. <strong>Shopify</strong> — rebuilding commerce infra for non-human buyers. <strong>NVIDIA</strong> — enterprise agent platform (GTC 2026, 17 launch partners).</p>
+    </div>
+    <div class="col-box">
+      <h3>Middleware &amp; Frameworks</h3>
+      <p>LangChain/LangGraph dominates (600+ integrations). CrewAI fastest-growing for multi-agent. OpenAI Agents SDK lowest barrier to entry. Layer vulnerable to platform encroachment.</p>
+    </div>
+    <div class="col-box">
+      <h3>Funding Highlights</h3>
+      <p>$20.8B cumulative / $5.99B in 2025 (+30% YoY). Stripe $1.1B+ in agent payments (largest single-layer commitment). Exa $85M Series B. 40% seed valuation premium for "agentic" label.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <span class="section-label">Security &amp; Governance</span>
+  <h2>Critical Risks</h2>
+  <p><strong>Indirect prompt injection</strong> is the primary threat — malicious instructions in web content that agents ingest during normal operation. This is structural, not patchable: LLMs process instructions and data in the same context window. <strong>Agent impersonation</strong> exploits weak identity layers. <strong>Cascading multi-agent failures</strong> amplify single-point errors across delegation chains. <strong>Credential theft</strong> from agents holding OAuth tokens or wallet keys enables lateral movement across entire toolchains.</p>
+
+  <div class="callout">
+    <strong>Governance-Containment Gap:</strong> 58% of enterprises monitor agent behavior, but only 37–40% have kill switches or purpose-binding controls. The industry can watch agents misbehave but often cannot stop them. NIST, the Agentic AI Foundation, and Cisco's 2026 security report are all working to close this gap — but production deployments are outpacing governance infrastructure.
+  </div>
+</section>
+
+<section>
+  <span class="section-label">Looking Ahead</span>
+  <h2>Five Questions That Will Define the Next 12 Months</h2>
+  <p><strong>1. Will identity converge?</strong> Multiple incompatible standards risk replicating the federated-identity fragmentation of the human web. The IETF AIMS draft (composing existing standards) is the most promising convergence path.</p>
+  <p><strong>2. Can prompt injection be structurally solved?</strong> If not, the agentic web may need a fundamentally new architecture separating reasoning context from data context. This is the single largest technical risk.</p>
+  <p><strong>3. Who captures the economics?</strong> The value chain is shifting from human attention (ads) to agent capability (tool access, data quality). Websites optimizing for agent consumption may capture disproportionate value.</p>
+  <p><strong>4. Open web or platform lock-in?</strong> Proprietary agent marketplaces and paywalled tool access could balkanize the agentic web. Protocol governance decisions being made now will determine the outcome.</p>
+  <p><strong>5. How fast does regulation arrive?</strong> The EU AI Act will intersect with agentic infrastructure in ways not yet mapped. The gap between deployment speed and regulatory clarity creates both opportunity and systemic risk.</p>
+</section>
+
+<footer class="footer">
+  <p>The Agentic Web: Executive Brief &middot; Q1 2026 &middot; For informational purposes only. Not investment advice.</p>
+</footer>
+
+</body>
+</html>
