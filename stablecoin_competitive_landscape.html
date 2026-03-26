@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stablecoin Competitive Landscape Analysis — March 2026</title>
+    <style>
+        :root {
+            --primary: #1a1a2e;
+            --secondary: #16213e;
+            --accent: #0f3460;
+            --highlight: #e94560;
+            --bg: #f8f9fa;
+            --card: #ffffff;
+            --text: #2d3436;
+            --text-light: #636e72;
+            --border: #dfe6e9;
+            --green: #00b894;
+            --orange: #fdcb6e;
+            --red: #d63031;
+            --blue: #0984e3;
+            --purple: #6c5ce7;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            padding: 48px 0 40px;
+        }
+        header h1 { font-size: 2.2rem; font-weight: 700; margin-bottom: 8px; }
+        header .subtitle { font-size: 1.1rem; opacity: 0.85; margin-bottom: 20px; }
+        .meta-bar {
+            display: flex; gap: 24px; font-size: 0.9rem; opacity: 0.7;
+        }
+        .meta-bar span { display: flex; align-items: center; gap: 6px; }
+
+        /* Executive Summary */
+        .exec-summary {
+            background: var(--card);
+            border-left: 4px solid var(--highlight);
+            padding: 28px 32px;
+            margin: -24px 0 32px;
+            border-radius: 0 8px 8px 0;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+        }
+        .exec-summary h2 { font-size: 1.2rem; color: var(--highlight); margin-bottom: 12px; }
+        .exec-summary ul { padding-left: 20px; }
+        .exec-summary li { margin-bottom: 6px; color: var(--text); }
+
+        /* Section */
+        section { margin-bottom: 40px; }
+        section h2 {
+            font-size: 1.5rem;
+            color: var(--primary);
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 8px;
+            margin-bottom: 20px;
+        }
+        section h3 { font-size: 1.15rem; color: var(--accent); margin: 16px 0 10px; }
+
+        /* KPI Cards */
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
+            margin-bottom: 28px;
+        }
+        .kpi-card {
+            background: var(--card);
+            border-radius: 10px;
+            padding: 20px 24px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+        .kpi-card .value { font-size: 2rem; font-weight: 700; color: var(--primary); }
+        .kpi-card .label { font-size: 0.85rem; color: var(--text-light); margin-top: 4px; }
+        .kpi-card .delta { font-size: 0.8rem; margin-top: 4px; }
+        .delta.up { color: var(--green); }
+        .delta.down { color: var(--red); }
+
+        /* Tables */
+        .table-wrapper {
+            overflow-x: auto;
+            background: var(--card);
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            margin-bottom: 20px;
+        }
+        table { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
+        thead th {
+            background: var(--secondary);
+            color: white;
+            padding: 12px 16px;
+            text-align: left;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+        tbody td { padding: 11px 16px; border-bottom: 1px solid var(--border); }
+        tbody tr:hover { background: #f1f3f5; }
+        tbody tr:last-child td { border-bottom: none; }
+
+        /* Market share bar */
+        .share-bar {
+            display: flex; align-items: center; gap: 8px;
+        }
+        .share-bar .bar {
+            height: 8px; border-radius: 4px; min-width: 4px;
+        }
+        .share-bar .pct { font-weight: 600; font-size: 0.85rem; white-space: nowrap; }
+
+        /* SWOT */
+        .swot-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+        .swot-card {
+            background: var(--card);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        .swot-card h4 {
+            font-size: 0.95rem;
+            margin-bottom: 10px;
+            padding-bottom: 6px;
+            border-bottom: 2px solid;
+        }
+        .swot-card.s h4 { color: var(--green); border-color: var(--green); }
+        .swot-card.w h4 { color: var(--orange); border-color: var(--orange); }
+        .swot-card.o h4 { color: var(--blue); border-color: var(--blue); }
+        .swot-card.t h4 { color: var(--red); border-color: var(--red); }
+        .swot-card ul { padding-left: 18px; font-size: 0.88rem; }
+        .swot-card li { margin-bottom: 4px; }
+
+        /* Competitive matrix */
+        .matrix-cell { text-align: center; }
+        .badge {
+            display: inline-block; padding: 2px 10px; border-radius: 12px;
+            font-size: 0.78rem; font-weight: 600;
+        }
+        .badge.high { background: #d4edda; color: #155724; }
+        .badge.medium { background: #fff3cd; color: #856404; }
+        .badge.low { background: #f8d7da; color: #721c24; }
+
+        /* Donut chart (CSS-only) */
+        .donut-container {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 24px 0;
+        }
+        .donut {
+            width: 220px; height: 220px;
+            border-radius: 50%;
+            position: relative;
+            /* USDT 60.68%, USDC 23.81%, USDe 1.98%, DAI 1.67%, PYUSD 1.13%, Others 10.73% */
+            background: conic-gradient(
+                #e94560 0% 60.68%,
+                #0984e3 60.68% 84.49%,
+                #6c5ce7 84.49% 86.47%,
+                #fdcb6e 86.47% 88.14%,
+                #00b894 88.14% 89.27%,
+                #b2bec3 89.27% 100%
+            );
+        }
+        .donut::after {
+            content: '';
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 120px; height: 120px;
+            background: var(--bg);
+            border-radius: 50%;
+        }
+        .donut-center {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            z-index: 1;
+            font-size: 0.82rem;
+            color: var(--text-light);
+        }
+        .donut-center .big { display: block; font-size: 1.4rem; font-weight: 700; color: var(--primary); }
+        .legend { font-size: 0.88rem; }
+        .legend-item { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+        .legend-dot { width: 12px; height: 12px; border-radius: 3px; flex-shrink: 0; }
+
+        /* Cards grid */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        .info-card {
+            background: var(--card);
+            border-radius: 10px;
+            padding: 24px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        .info-card h3 {
+            font-size: 1.05rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+            padding-bottom: 6px;
+            border-bottom: 1px solid var(--border);
+        }
+        .info-card p, .info-card ul { font-size: 0.9rem; }
+        .info-card ul { padding-left: 18px; }
+        .info-card li { margin-bottom: 4px; }
+
+        /* Timeline */
+        .timeline { position: relative; padding-left: 28px; }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 8px; top: 0; bottom: 0;
+            width: 2px;
+            background: var(--border);
+        }
+        .timeline-item { position: relative; margin-bottom: 20px; }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -24px; top: 6px;
+            width: 12px; height: 12px;
+            border-radius: 50%;
+            background: var(--accent);
+            border: 2px solid white;
+            box-shadow: 0 0 0 2px var(--accent);
+        }
+        .timeline-item .date { font-size: 0.8rem; color: var(--text-light); font-weight: 600; }
+        .timeline-item .event { font-size: 0.9rem; }
+
+        /* Footer */
+        footer {
+            background: var(--primary);
+            color: rgba(255,255,255,0.6);
+            padding: 24px 0;
+            font-size: 0.82rem;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 { font-size: 1.6rem; }
+            .swot-grid { grid-template-columns: 1fr; }
+            .donut-container { flex-direction: column; }
+            .meta-bar { flex-direction: column; gap: 6px; }
+        }
+
+        /* Print styles */
+        @media print {
+            header { padding: 24px 0; }
+            .kpi-card, .info-card, .swot-card, .table-wrapper { break-inside: avoid; }
+            body { font-size: 11pt; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container">
+        <h1>Stablecoin Competitive Landscape Analysis</h1>
+        <div class="subtitle">Global Market Assessment — Q1 2026</div>
+        <div class="meta-bar">
+            <span>Report Date: March 25, 2026</span>
+            <span>|</span>
+            <span>Industry: Digital Assets / Payments</span>
+            <span>|</span>
+            <span>Classification: General</span>
+        </div>
+    </div>
+</header>
+
+<div class="container">
+
+    <!-- Executive Summary -->
+    <div class="exec-summary">
+        <h2>Executive Summary</h2>
+        <ul>
+            <li><strong>$318B total market capitalization</strong> — stablecoins now represent ~10% of the entire crypto market and processed $33T in on-chain transaction volume in 2025 (+72% YoY).</li>
+            <li><strong>Duopoly persists:</strong> Tether (USDT, 60.7%) and Circle (USDC, 23.8%) control ~85% of supply, though USDC surpassed USDT in transaction volume share (64%) for the first time in early 2026.</li>
+            <li><strong>GENIUS Act signed into law</strong> (July 2025) — first U.S. federal stablecoin framework, with OCC rulemaking underway and full implementation by January 2027. Tether responded by launching USAT, a U.S.-compliant variant.</li>
+            <li><strong>Yield-bearing stablecoins</strong> are the fastest-growing segment, projected to exceed $50B in supply during 2026, led by Ethena USDe (~$6.3B).</li>
+            <li><strong>New entrants accelerating:</strong> Bank-issued tokens, fintech stablecoins (PYUSD, RLUSD), and institutional-grade products (USDTB via BlackRock) are diversifying the market.</li>
+            <li><strong>232M+ stablecoin holders globally</strong>, with stablecoin-linked card spending up 673% YoY. Visa plans stablecoin cards in 100+ countries by end of 2026.</li>
+        </ul>
+    </div>
+
+    <!-- KPIs -->
+    <section>
+        <h2>Market Overview — Key Metrics</h2>
+        <div class="kpi-grid">
+            <div class="kpi-card">
+                <div class="value">$318B</div>
+                <div class="label">Total Market Cap</div>
+                <div class="delta up">+37% from Jan 2025</div>
+            </div>
+            <div class="kpi-card">
+                <div class="value">$33T</div>
+                <div class="label">2025 Transaction Volume</div>
+                <div class="delta up">+72% YoY</div>
+            </div>
+            <div class="kpi-card">
+                <div class="value">232M+</div>
+                <div class="label">Global Holders</div>
+                <div class="delta up">~10M daily active addresses</div>
+            </div>
+            <div class="kpi-card">
+                <div class="value">9.9%</div>
+                <div class="label">Crypto Market Share</div>
+                <div class="delta up">Infrastructure asset class</div>
+            </div>
+            <div class="kpi-card">
+                <div class="value">99%</div>
+                <div class="label">USD-Denominated</div>
+                <div class="delta">EUR stablecoins remain negligible</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Market Share -->
+    <section>
+        <h2>Market Share Distribution</h2>
+        <div class="donut-container">
+            <div style="position:relative;">
+                <div class="donut"></div>
+                <div class="donut-center">
+                    <span class="big">$318B</span>
+                    Total Supply
+                </div>
+            </div>
+            <div class="legend">
+                <div class="legend-item"><div class="legend-dot" style="background:#e94560"></div> USDT (Tether) — 60.7% · $187.0B</div>
+                <div class="legend-item"><div class="legend-dot" style="background:#0984e3"></div> USDC (Circle) — 23.8% · $75.7B</div>
+                <div class="legend-item"><div class="legend-dot" style="background:#6c5ce7"></div> USDe (Ethena) — 2.0% · $6.3B</div>
+                <div class="legend-item"><div class="legend-dot" style="background:#fdcb6e"></div> DAI (Sky/Maker) — 1.7% · $5.3B</div>
+                <div class="legend-item"><div class="legend-dot" style="background:#00b894"></div> PYUSD (PayPal) — 1.1% · $3.6B</div>
+                <div class="legend-item"><div class="legend-dot" style="background:#b2bec3"></div> Others — 10.7% · $40.1B</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Competitor Profiles -->
+    <section>
+        <h2>Competitor Profiles</h2>
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Stablecoin</th>
+                        <th>Issuer</th>
+                        <th>Market Cap</th>
+                        <th>Share</th>
+                        <th>Backing Model</th>
+                        <th>Chains</th>
+                        <th>Launched</th>
+                        <th>Regulatory Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>USDT</strong></td>
+                        <td>Tether Limited</td>
+                        <td>$187.0B</td>
+                        <td>
+                            <div class="share-bar">
+                                <div class="bar" style="width:182px;background:#e94560"></div>
+                                <span class="pct">60.7%</span>
+                            </div>
+                        </td>
+                        <td>Cash, T-Bills, repos</td>
+                        <td>Ethereum, Tron, Solana, +15</td>
+                        <td>2014</td>
+                        <td>Offshore; launched USAT for U.S. compliance</td>
+                    </tr>
+                    <tr>
+                        <td><strong>USDC</strong></td>
+                        <td>Circle Internet Financial</td>
+                        <td>$75.7B</td>
+                        <td>
+                            <div class="share-bar">
+                                <div class="bar" style="width:71px;background:#0984e3"></div>
+                                <span class="pct">23.8%</span>
+                            </div>
+                        </td>
+                        <td>Cash, short-term Treasuries</td>
+                        <td>29 chains (native)</td>
+                        <td>2018</td>
+                        <td>MiCA-compliant (EU EMI); U.S. state-regulated; IPO filed</td>
+                    </tr>
+                    <tr>
+                        <td><strong>USDe</strong></td>
+                        <td>Ethena Labs</td>
+                        <td>$6.3B</td>
+                        <td>
+                            <div class="share-bar">
+                                <div class="bar" style="width:6px;background:#6c5ce7"></div>
+                                <span class="pct">2.0%</span>
+                            </div>
+                        </td>
+                        <td>Delta-neutral (staked ETH + short futures)</td>
+                        <td>Ethereum, Arbitrum, +5</td>
+                        <td>2024</td>
+                        <td>Unregulated; "synthetic dollar" label</td>
+                    </tr>
+                    <tr>
+                        <td><strong>DAI / USDS</strong></td>
+                        <td>Sky (formerly MakerDAO)</td>
+                        <td>$5.3B</td>
+                        <td>
+                            <div class="share-bar">
+                                <div class="bar" style="width:5px;background:#fdcb6e"></div>
+                                <span class="pct">1.7%</span>
+                            </div>
+                        </td>
+                        <td>Over-collateralized (crypto + RWA)</td>
+                        <td>Ethereum, L2s</td>
+                        <td>2019</td>
+                        <td>Decentralized; regulatory classification uncertain</td>
+                    </tr>
+                    <tr>
+                        <td><strong>PYUSD</strong></td>
+                        <td>PayPal (via Paxos)</td>
+                        <td>$3.6B</td>
+                        <td>
+                            <div class="share-bar">
+                                <div class="bar" style="width:3px;background:#00b894"></div>
+                                <span class="pct">1.1%</span>
+                            </div>
+                        </td>
+                        <td>Cash, T-Bills</td>
+                        <td>Ethereum, Solana, +Arbitrum/Sei/Stellar via PYUSDx</td>
+                        <td>2023</td>
+                        <td>NY-regulated (Paxos Trust); OCC yield-program uncertainty</td>
+                    </tr>
+                    <tr>
+                        <td><strong>FDUSD</strong></td>
+                        <td>First Digital Trust (HK)</td>
+                        <td>~$2.5B</td>
+                        <td>
+                            <div class="share-bar">
+                                <div class="bar" style="width:2px;background:#636e72"></div>
+                                <span class="pct">0.8%</span>
+                            </div>
+                        </td>
+                        <td>Cash, T-Bills</td>
+                        <td>Ethereum, BNB Chain</td>
+                        <td>2023</td>
+                        <td>Hong Kong-regulated</td>
+                    </tr>
+                    <tr>
+                        <td><strong>USAT</strong></td>
+                        <td>Tether (via Anchorage Digital Bank)</td>
+                        <td>New (Jan 2026)</td>
+                        <td>
+                            <div class="share-bar">
+                                <div class="bar" style="width:1px;background:#e94560"></div>
+                                <span class="pct">New</span>
+                            </div>
+                        </td>
+                        <td>Cash, T-Bills (Cantor Fitzgerald custodian)</td>
+                        <td>TBD</td>
+                        <td>2026</td>
+                        <td>GENIUS Act-compliant; U.S.-domiciled via federally chartered bank</td>
+                    </tr>
+                    <tr>
+                        <td><strong>RLUSD</strong></td>
+                        <td>Ripple</td>
+                        <td>~$1-2B</td>
+                        <td>
+                            <div class="share-bar">
+                                <div class="bar" style="width:1px;background:#636e72"></div>
+                                <span class="pct">&lt;1%</span>
+                            </div>
+                        </td>
+                        <td>Cash, T-Bills</td>
+                        <td>XRPL, Ethereum</td>
+                        <td>2024</td>
+                        <td>NY-regulated (NYDFS)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>USD1</strong></td>
+                        <td>World Liberty Financial</td>
+                        <td>Emerging</td>
+                        <td>
+                            <div class="share-bar">
+                                <div class="bar" style="width:1px;background:#636e72"></div>
+                                <span class="pct">New</span>
+                            </div>
+                        </td>
+                        <td>Cash, T-Bills</td>
+                        <td>Ethereum, BNB Chain</td>
+                        <td>2025</td>
+                        <td>U.S.-focused; politically connected</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Competitive Matrix -->
+    <section>
+        <h2>Competitive Positioning Matrix</h2>
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Dimension</th>
+                        <th class="matrix-cell">USDT</th>
+                        <th class="matrix-cell">USDC</th>
+                        <th class="matrix-cell">USDe</th>
+                        <th class="matrix-cell">DAI/USDS</th>
+                        <th class="matrix-cell">PYUSD</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Liquidity Depth</strong></td>
+                        <td class="matrix-cell"><span class="badge high">Very High</span></td>
+                        <td class="matrix-cell"><span class="badge high">High</span></td>
+                        <td class="matrix-cell"><span class="badge medium">Medium</span></td>
+                        <td class="matrix-cell"><span class="badge medium">Medium</span></td>
+                        <td class="matrix-cell"><span class="badge low">Low</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Regulatory Compliance</strong></td>
+                        <td class="matrix-cell"><span class="badge low">Low</span></td>
+                        <td class="matrix-cell"><span class="badge high">High</span></td>
+                        <td class="matrix-cell"><span class="badge low">Low</span></td>
+                        <td class="matrix-cell"><span class="badge low">Low</span></td>
+                        <td class="matrix-cell"><span class="badge high">High</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Transparency</strong></td>
+                        <td class="matrix-cell"><span class="badge medium">Medium</span></td>
+                        <td class="matrix-cell"><span class="badge high">High</span></td>
+                        <td class="matrix-cell"><span class="badge medium">Medium</span></td>
+                        <td class="matrix-cell"><span class="badge high">High</span></td>
+                        <td class="matrix-cell"><span class="badge high">High</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Yield to Holders</strong></td>
+                        <td class="matrix-cell"><span class="badge low">None</span></td>
+                        <td class="matrix-cell"><span class="badge low">None</span></td>
+                        <td class="matrix-cell"><span class="badge high">High</span></td>
+                        <td class="matrix-cell"><span class="badge medium">Via DSR</span></td>
+                        <td class="matrix-cell"><span class="badge medium">Rewards*</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Decentralization</strong></td>
+                        <td class="matrix-cell"><span class="badge low">Low</span></td>
+                        <td class="matrix-cell"><span class="badge low">Low</span></td>
+                        <td class="matrix-cell"><span class="badge medium">Medium</span></td>
+                        <td class="matrix-cell"><span class="badge high">High</span></td>
+                        <td class="matrix-cell"><span class="badge low">Low</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Chain Coverage</strong></td>
+                        <td class="matrix-cell"><span class="badge high">18+ chains</span></td>
+                        <td class="matrix-cell"><span class="badge high">29 chains</span></td>
+                        <td class="matrix-cell"><span class="badge medium">7 chains</span></td>
+                        <td class="matrix-cell"><span class="badge medium">Ethereum + L2s</span></td>
+                        <td class="matrix-cell"><span class="badge medium">6+ chains</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Institutional Adoption</strong></td>
+                        <td class="matrix-cell"><span class="badge high">Very High</span></td>
+                        <td class="matrix-cell"><span class="badge high">Very High</span></td>
+                        <td class="matrix-cell"><span class="badge low">Low</span></td>
+                        <td class="matrix-cell"><span class="badge medium">Medium</span></td>
+                        <td class="matrix-cell"><span class="badge medium">Medium</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Consumer Distribution</strong></td>
+                        <td class="matrix-cell"><span class="badge high">Global exchanges</span></td>
+                        <td class="matrix-cell"><span class="badge high">Coinbase + global</span></td>
+                        <td class="matrix-cell"><span class="badge low">DeFi-native</span></td>
+                        <td class="matrix-cell"><span class="badge low">DeFi-native</span></td>
+                        <td class="matrix-cell"><span class="badge high">400M+ PayPal users</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <p style="font-size:0.82rem;color:var(--text-light);">*PYUSD rewards program subject to OCC regulatory review per March 2026 proposed rulemaking.</p>
+    </section>
+
+    <!-- Revenue Model -->
+    <section>
+        <h2>Revenue Models & Profitability</h2>
+        <div class="cards-grid">
+            <div class="info-card">
+                <h3>Tether (USDT) — Revenue Leader</h3>
+                <ul>
+                    <li><strong>~$10-13B net profit (2024 est.)</strong> — one of the most profitable financial companies per employee globally</li>
+                    <li>Primary revenue: interest on $140B+ reserves (U.S. Treasuries at ~4-5% yields)</li>
+                    <li>Minimal operating costs; small team relative to AUM</li>
+                    <li>No yield sharing with holders — 100% of reserve income retained</li>
+                    <li>Additional revenue from Tether Gold (XAUT) and other ventures</li>
+                </ul>
+            </div>
+            <div class="info-card">
+                <h3>Circle (USDC) — Compliance Premium</h3>
+                <ul>
+                    <li><strong>~$1.5-1.7B revenue (2024)</strong> — primarily reserve interest</li>
+                    <li>Revenue-sharing agreement with Coinbase reduces margins</li>
+                    <li>Higher cost structure: compliance, licensing, 29-chain infrastructure</li>
+                    <li>IPO filed early 2025 — seeking public market valuation</li>
+                    <li>EU MiCA license provides moat in regulated markets</li>
+                </ul>
+            </div>
+            <div class="info-card">
+                <h3>Ethena (USDe) — Yield Sharing</h3>
+                <ul>
+                    <li>Revenue from spread between staking yields and funding rates</li>
+                    <li>Shares yield with sUSDe stakers (4-8% historically)</li>
+                    <li>Revenue model depends on positive futures funding rates</li>
+                    <li>Risk: negative funding rates compress or eliminate revenue</li>
+                </ul>
+            </div>
+            <div class="info-card">
+                <h3>Industry Revenue Drivers</h3>
+                <ul>
+                    <li><strong>Reserve yield</strong> — dominant source; ~$12-16B annual industry revenue at current rates</li>
+                    <li><strong>Minting/redemption fees</strong> — institutional mint/burn transactions</li>
+                    <li><strong>Partnerships</strong> — revenue sharing with exchanges and DeFi platforms</li>
+                    <li><strong>Risk:</strong> Rate cuts would compress margins across the sector</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- SWOT: USDT -->
+    <section>
+        <h2>SWOT Analysis — Key Competitors</h2>
+
+        <h3>Tether (USDT)</h3>
+        <div class="swot-grid">
+            <div class="swot-card s">
+                <h4>Strengths</h4>
+                <ul>
+                    <li>Dominant 60.7% market share with $187B supply</li>
+                    <li>Deepest liquidity on virtually all exchanges globally</li>
+                    <li>$100B+ daily trading volume — de facto settlement layer</li>
+                    <li>Extremely profitable ($10B+ annual net income)</li>
+                    <li>Strong emerging market adoption (remittances, dollarization)</li>
+                </ul>
+            </div>
+            <div class="swot-card w">
+                <h4>Weaknesses</h4>
+                <ul>
+                    <li>Persistent transparency concerns — attestations only, no full audit</li>
+                    <li>Offshore corporate structure (BVI) limits regulated market access</li>
+                    <li>EU MiCA non-compliant — facing exchange delistings</li>
+                    <li>Counterparty & reserve concentration risk</li>
+                </ul>
+            </div>
+            <div class="swot-card o">
+                <h4>Opportunities</h4>
+                <ul>
+                    <li>USAT launch (Jan 2026) targets U.S. compliance under GENIUS Act</li>
+                    <li>Emerging market expansion: cross-border payments, savings</li>
+                    <li>Diversification into commodities (Tether Gold) and AI/data</li>
+                    <li>Network effects create high switching costs</li>
+                </ul>
+            </div>
+            <div class="swot-card t">
+                <h4>Threats</h4>
+                <ul>
+                    <li>EU MiCA enforcement could erode European market share</li>
+                    <li>GENIUS Act may favor U.S.-domiciled issuers for domestic use</li>
+                    <li>"Bank run" scenario if confidence shaken</li>
+                    <li>USDC gaining transaction volume share (now 64%)</li>
+                </ul>
+            </div>
+        </div>
+
+        <h3>Circle (USDC)</h3>
+        <div class="swot-grid">
+            <div class="swot-card s">
+                <h4>Strengths</h4>
+                <ul>
+                    <li>Regulatory-first approach: MiCA EMI license, U.S. state-regulated</li>
+                    <li>Full transparency — monthly Deloitte attestations, primarily Treasuries</li>
+                    <li>Native support on 29 chains — broadest multi-chain coverage</li>
+                    <li>64% transaction volume share — surpassed USDT in early 2026</li>
+                    <li>Strong institutional & enterprise partnerships</li>
+                </ul>
+            </div>
+            <div class="swot-card w">
+                <h4>Weaknesses</h4>
+                <ul>
+                    <li>~24% market cap share vs. 61% USDT — significant supply gap</li>
+                    <li>Coinbase revenue-sharing reduces margins</li>
+                    <li>Higher cost structure (compliance, infrastructure, staffing)</li>
+                    <li>March 2023 SVB de-peg dented confidence (briefly traded $0.87)</li>
+                </ul>
+            </div>
+            <div class="swot-card o">
+                <h4>Opportunities</h4>
+                <ul>
+                    <li>IPO could provide capital and institutional credibility</li>
+                    <li>Preferred status under GENIUS Act as U.S.-domiciled issuer</li>
+                    <li>EU market leadership under MiCA as Tether faces restrictions</li>
+                    <li>Visa partnership: stablecoin cards in 100+ countries</li>
+                </ul>
+            </div>
+            <div class="swot-card t">
+                <h4>Threats</h4>
+                <ul>
+                    <li>Tether's USAT directly challenges USDC for U.S. institutional share</li>
+                    <li>Interest rate cuts would compress reserve yield revenue</li>
+                    <li>Banking competitors (PYUSD) with existing consumer distribution</li>
+                    <li>Yield-bearing alternatives (USDe) attract yield-seeking capital</li>
+                </ul>
+            </div>
+        </div>
+
+        <h3>Ethena (USDe)</h3>
+        <div class="swot-grid">
+            <div class="swot-card s">
+                <h4>Strengths</h4>
+                <ul>
+                    <li>Attractive yield for holders (sUSDe: 4-8% historically)</li>
+                    <li>Rapid growth: $6.3B supply, ~5% market share target</li>
+                    <li>Novel delta-neutral mechanism appeals to DeFi-native users</li>
+                    <li>Strong DeFi integrations and composability</li>
+                </ul>
+            </div>
+            <div class="swot-card w">
+                <h4>Weaknesses</h4>
+                <ul>
+                    <li>Not technically a stablecoin — "synthetic dollar" with different risk profile</li>
+                    <li>Relies on perpetual futures funding rates remaining positive</li>
+                    <li>Centralized custody on exchanges — counterparty risk (FTX lessons)</li>
+                    <li>Relatively untested through severe market stress</li>
+                </ul>
+            </div>
+            <div class="swot-card o">
+                <h4>Opportunities</h4>
+                <ul>
+                    <li>Yield-bearing stablecoin segment projected to reach $50B+ in 2026</li>
+                    <li>Could capture share from DeFi lending protocols</li>
+                    <li>Institutional interest in yield-bearing stable assets growing</li>
+                </ul>
+            </div>
+            <div class="swot-card t">
+                <h4>Threats</h4>
+                <ul>
+                    <li>Negative funding rate periods could cause losses and de-peg</li>
+                    <li>Regulatory classification as security or derivative</li>
+                    <li>Exchange counterparty risk concentration</li>
+                    <li>Competition from regulated yield products (PYUSD rewards, T-bill tokens)</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Regulatory Landscape -->
+    <section>
+        <h2>Regulatory Landscape</h2>
+        <div class="cards-grid">
+            <div class="info-card">
+                <h3>United States — GENIUS Act</h3>
+                <ul>
+                    <li><strong>Signed into law July 18, 2025</strong> — first federal stablecoin framework</li>
+                    <li>Passed Senate 68-30, House 308-122 (bipartisan)</li>
+                    <li>Payment stablecoins expressly <strong>not securities or commodities</strong></li>
+                    <li>Requires 1:1 reserves in cash, Treasuries, or equivalent</li>
+                    <li>Federal oversight for issuers with >$10B outstanding</li>
+                    <li>BSA/AML/KYC requirements comparable to banks</li>
+                    <li>OCC issued 376-page proposed rulemaking (Feb 2026); comment deadline May 1, 2026</li>
+                    <li><strong>Full implementation by January 18, 2027</strong></li>
+                </ul>
+            </div>
+            <div class="info-card">
+                <h3>European Union — MiCA</h3>
+                <ul>
+                    <li>Stablecoin provisions effective since June 2024; full MiCA since Dec 30, 2024</li>
+                    <li>Issuers must be authorized as credit or e-money institutions in an EU member state</li>
+                    <li>Reserve custody, redemption rights, and disclosure requirements</li>
+                    <li>Transaction volume caps for non-EUR stablecoins</li>
+                    <li><strong>USDC: compliant</strong> — Circle holds French EMI license</li>
+                    <li><strong>USDT: non-compliant</strong> — facing delistings on EU exchanges</li>
+                </ul>
+            </div>
+            <div class="info-card">
+                <h3>Asia-Pacific</h3>
+                <ul>
+                    <li><strong>Hong Kong:</strong> HKMA stablecoin licensing bill introduced late 2024; sandbox active</li>
+                    <li><strong>Singapore:</strong> MAS framework finalized (Aug 2023); Paxos approved for USD stablecoins</li>
+                    <li><strong>Japan:</strong> Revised Payment Services Act allows banks to issue stablecoins; MUFG, SMBC exploring yen tokens</li>
+                </ul>
+            </div>
+            <div class="info-card">
+                <h3>CBDC Competitive Threat</h3>
+                <ul>
+                    <li><strong>Digital yuan (e-CNY):</strong> Most advanced; limited international impact</li>
+                    <li><strong>Digital euro:</strong> ECB preparation phase; potential launch ~2027-2028</li>
+                    <li><strong>U.S. digital dollar:</strong> Politically opposed under current administration</li>
+                    <li>Near-term CBDC threat to stablecoins remains <strong>low</strong></li>
+                    <li>Wholesale CBDCs could affect institutional settlement longer-term</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Key Trends -->
+    <section>
+        <h2>Strategic Trends Shaping 2026</h2>
+        <div class="cards-grid">
+            <div class="info-card">
+                <h3>1. Yield-Bearing Stablecoins</h3>
+                <p>The fastest-growing segment, projected to exceed <strong>$50B supply</strong> in 2026 (3x growth). Combines price stability with returns from Treasuries, repos, or synthetic strategies. Key players: Ethena USDe, Mountain Protocol, Ondo USDY. Regulatory treatment under GENIUS Act remains uncertain — OCC reviewing whether interest-bearing stablecoins require different classification.</p>
+            </div>
+            <div class="info-card">
+                <h3>2. Payments Mainstream Adoption</h3>
+                <p>Stablecoin-linked card spending hit <strong>$4.5B in 2025 (+673% YoY)</strong>. Visa & Bridge expanding stablecoin cards to <strong>100+ countries by end of 2026</strong> covering 175M+ merchant locations. McKinsey estimates ~$390B in actual payment volume annualized. <strong>81% of crypto-aware SMBs</strong> express interest in stablecoin payments.</p>
+            </div>
+            <div class="info-card">
+                <h3>3. Bank & Fintech Entry</h3>
+                <p>Traditional finance is entering aggressively: PayPal (PYUSD via PYUSDx framework), Ripple (RLUSD), BlackRock (USDTB), JPMorgan (Kinexys). GENIUS Act creates a clear on-ramp for federally chartered banks. Japanese megabanks (MUFG, SMBC) exploring yen stablecoins. <strong>Fortune 500 executive interest up 3x YoY.</strong></p>
+            </div>
+            <div class="info-card">
+                <h3>4. Multi-Chain & Interoperability</h3>
+                <p>USDC now native on <strong>29 chains</strong>. Cross-chain bridging and native issuance becoming table stakes. PayPal's PYUSDx framework enables developer-issued application-specific stablecoins across chains. Chain-agnostic stablecoins gain competitive advantage through broader DeFi composability.</p>
+            </div>
+            <div class="info-card">
+                <h3>5. Regulatory Convergence</h3>
+                <p>U.S. (GENIUS Act), EU (MiCA), and APAC frameworks converging on similar principles: 1:1 reserves, licensed issuers, redemption rights. Creates a <strong>regulatory moat for compliant issuers</strong> and raises barriers to entry. Tether's USAT launch signals even the largest offshore player recognizes compliance is inevitable.</p>
+            </div>
+            <div class="info-card">
+                <h3>6. Transaction Volume vs. Market Cap Divergence</h3>
+                <p>USDC captured <strong>64% of transaction volume</strong> in early 2026 despite only ~24% market cap share — indicating higher velocity and institutional settlement usage. USDT's larger cap reflects passive holdings and emerging market store-of-value use. This divergence may reshape competitive dynamics as volume-based metrics gain importance.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Risk Matrix -->
+    <section>
+        <h2>Industry Risk Assessment</h2>
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Risk Factor</th>
+                        <th>Severity</th>
+                        <th>Probability</th>
+                        <th>Most Exposed</th>
+                        <th>Mitigation</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Interest rate cuts</strong></td>
+                        <td><span class="badge high">High</span></td>
+                        <td><span class="badge medium">Medium</span></td>
+                        <td>Tether, Circle (reserve yield dependent)</td>
+                        <td>Diversify revenue; yield-bearing models pass risk to holders</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Regulatory crackdown</strong></td>
+                        <td><span class="badge high">High</span></td>
+                        <td><span class="badge low">Low</span></td>
+                        <td>USDT (offshore), USDe (unregulated)</td>
+                        <td>GENIUS Act provides clarity; USAT hedges Tether exposure</td>
+                    </tr>
+                    <tr>
+                        <td><strong>De-peg event</strong></td>
+                        <td><span class="badge high">High</span></td>
+                        <td><span class="badge low">Low</span></td>
+                        <td>USDe (novel mechanism), smaller issuers</td>
+                        <td>Reserve transparency, overcollateralization, circuit breakers</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Exchange counterparty failure</strong></td>
+                        <td><span class="badge high">High</span></td>
+                        <td><span class="badge low">Low</span></td>
+                        <td>USDe (exchange-custodied collateral)</td>
+                        <td>Multi-exchange distribution, proof-of-reserves</td>
+                    </tr>
+                    <tr>
+                        <td><strong>MiCA enforcement tightening</strong></td>
+                        <td><span class="badge medium">Medium</span></td>
+                        <td><span class="badge high">High</span></td>
+                        <td>USDT (EU delistings accelerating)</td>
+                        <td>EU EMI licensing (USDC model)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>CBDC competition</strong></td>
+                        <td><span class="badge medium">Medium</span></td>
+                        <td><span class="badge low">Low (near-term)</span></td>
+                        <td>All stablecoins (long-term settlement use cases)</td>
+                        <td>Innovation speed; DeFi composability; global reach vs. national CBDCs</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Negative funding rates (crypto)</strong></td>
+                        <td><span class="badge medium">Medium</span></td>
+                        <td><span class="badge medium">Medium</span></td>
+                        <td>USDe (delta-neutral model)</td>
+                        <td>Reserve fund buffers; dynamic yield adjustment</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Key Events Timeline -->
+    <section>
+        <h2>Key Events Timeline</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="date">May 2022</div>
+                <div class="event"><strong>UST/Luna collapse</strong> — $40B wiped out; algorithmic stablecoins discredited. Industry-defining cautionary event.</div>
+            </div>
+            <div class="timeline-item">
+                <div class="date">March 2023</div>
+                <div class="event"><strong>USDC de-peg</strong> — briefly traded at $0.87 due to $3.3B exposure to collapsed Silicon Valley Bank. Peg restored after FDIC intervention.</div>
+            </div>
+            <div class="timeline-item">
+                <div class="date">June 2024</div>
+                <div class="event"><strong>MiCA stablecoin provisions effective</strong> — EU regulatory framework forces compliance or delistings. Circle obtains French EMI license.</div>
+            </div>
+            <div class="timeline-item">
+                <div class="date">2024</div>
+                <div class="event"><strong>Ethena USDe launched</strong> — yield-bearing synthetic dollar reaches $5B+ supply within months. PayPal's PYUSD and Ripple's RLUSD enter market.</div>
+            </div>
+            <div class="timeline-item">
+                <div class="date">Early 2025</div>
+                <div class="event"><strong>Circle files for IPO</strong> — signals maturation of stablecoin sector into traditional capital markets.</div>
+            </div>
+            <div class="timeline-item">
+                <div class="date">July 18, 2025</div>
+                <div class="event"><strong>GENIUS Act signed into law</strong> — first U.S. federal stablecoin framework. Bipartisan passage (Senate 68-30, House 308-122).</div>
+            </div>
+            <div class="timeline-item">
+                <div class="date">December 2024</div>
+                <div class="event"><strong>Full MiCA implementation</strong> — all crypto-asset service provider provisions take effect across the EU.</div>
+            </div>
+            <div class="timeline-item">
+                <div class="date">January 2026</div>
+                <div class="event"><strong>Stablecoin market cap surpasses $300B</strong>. Tether launches USAT — U.S.-compliant variant via Anchorage Digital Bank with Cantor Fitzgerald as custodian.</div>
+            </div>
+            <div class="timeline-item">
+                <div class="date">February 2026</div>
+                <div class="event"><strong>OCC issues 376-page proposed rulemaking</strong> for GENIUS Act implementation. PayPal launches PYUSDx framework for multi-chain stablecoins.</div>
+            </div>
+            <div class="timeline-item">
+                <div class="date">January 18, 2027</div>
+                <div class="event"><strong>GENIUS Act full implementation deadline</strong> — all federal regulations must be finalized and enforceable.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Outlook -->
+    <section>
+        <h2>Competitive Outlook & Implications</h2>
+        <div class="cards-grid">
+            <div class="info-card">
+                <h3>Near-Term (2026)</h3>
+                <ul>
+                    <li>USDT/USDC duopoly persists but market diversifies at the margin</li>
+                    <li>GENIUS Act rulemaking (comment deadline May 2026) shapes U.S. competitive dynamics</li>
+                    <li>Yield-bearing segment grows to $50B+ as yield tokens attract capital from traditional stablecoins</li>
+                    <li>USAT vs. USDC competition intensifies for U.S. institutional settlement</li>
+                    <li>EU exchanges continue reducing USDT exposure; USDC gains European share</li>
+                    <li>Stablecoin-linked payments expand to 100+ countries via Visa partnership</li>
+                </ul>
+            </div>
+            <div class="info-card">
+                <h3>Medium-Term (2027-2028)</h3>
+                <ul>
+                    <li>GENIUS Act fully enforceable — non-compliant issuers face U.S. market exclusion</li>
+                    <li>Bank-issued stablecoins (PYUSD, JPM Kinexys, megabank tokens) gain share</li>
+                    <li>Digital euro launch could reshape European stablecoin demand</li>
+                    <li>Interest rate trajectory critical: cuts compress issuer margins, benefit yield-sharing models</li>
+                    <li>Potential market consolidation as compliance costs favor large-scale issuers</li>
+                    <li>Total market may approach $500B-$1T driven by payments adoption</li>
+                </ul>
+            </div>
+            <div class="info-card" style="grid-column: 1 / -1;">
+                <h3>Strategic Implications</h3>
+                <ul>
+                    <li><strong>Regulation is the new moat:</strong> Compliance capability (MiCA, GENIUS Act) is becoming the primary competitive differentiator, favoring USDC and bank-backed entrants over offshore issuers.</li>
+                    <li><strong>Volume > Market cap:</strong> USDC's transaction volume leadership (64%) despite smaller market cap suggests velocity and institutional usage are reshaping competitive positioning.</li>
+                    <li><strong>Yield compression ahead:</strong> As more issuers share yield with holders (USDe, PYUSD rewards, T-bill tokens), the traditional model of retaining 100% of reserve income faces pressure.</li>
+                    <li><strong>Payments is the prize:</strong> The $33T on-chain volume and $390B actual payments volume demonstrate stablecoins are transitioning from crypto-native infrastructure to mainstream payment rails.</li>
+                    <li><strong>Tether's dual-track strategy:</strong> USDT (global, offshore, maximum liquidity) + USAT (U.S.-compliant) hedges regulatory risk — but success depends on USAT gaining independent traction.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+</div>
+
+<footer>
+    <div class="container">
+        <p>Stablecoin Competitive Landscape Analysis — March 2026 | Sources: DefiLlama, CoinMarketCap, OCC, Congress.gov, Kavout, MEXC Research, StablecoinInsider</p>
+        <p style="margin-top:6px;">This report is for informational purposes only and does not constitute financial or investment advice.</p>
+    </div>
+</footer>
+
+</body>
+</html>
