@@ -1,0 +1,1198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Investment Proposal — Berkshire Hathaway (BRK-B)</title>
+<style>
+  :root {
+    --bg: #0d1117;
+    --bg2: #161b22;
+    --bg3: #1c2128;
+    --border: #30363d;
+    --text: #e6edf3;
+    --text-muted: #8b949e;
+    --accent: #58a6ff;
+    --accent2: #3fb950;
+    --accent3: #d2a8ff;
+    --accent4: #f0883e;
+    --red: #f85149;
+    --gold: #e3b341;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    line-height: 1.7;
+    padding: 0;
+  }
+
+  .hero {
+    background: linear-gradient(135deg, #0d1117 0%, #1a1f36 50%, #0d1117 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 80px 40px 60px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: radial-gradient(ellipse at 50% 0%, rgba(88,166,255,0.08) 0%, transparent 70%);
+  }
+
+  .hero-label {
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 16px;
+    position: relative;
+  }
+
+  .hero h1 {
+    font-size: 48px;
+    font-weight: 700;
+    letter-spacing: -1px;
+    margin-bottom: 8px;
+    position: relative;
+    background: linear-gradient(135deg, #e6edf3 0%, #58a6ff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .hero .ticker {
+    font-size: 20px;
+    color: var(--text-muted);
+    margin-bottom: 24px;
+    position: relative;
+  }
+
+  .hero-meta {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    position: relative;
+    flex-wrap: wrap;
+  }
+
+  .hero-meta .stat {
+    text-align: center;
+  }
+
+  .hero-meta .stat-value {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  .hero-meta .stat-label {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--text-muted);
+    margin-top: 4px;
+  }
+
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 40px 24px;
+  }
+
+  .section {
+    margin-bottom: 56px;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section-num {
+    background: var(--accent);
+    color: var(--bg);
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+
+  .section-header h2 {
+    font-size: 24px;
+    font-weight: 600;
+  }
+
+  p, li { color: var(--text); margin-bottom: 12px; font-size: 15px; }
+
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 16px;
+    margin: 20px 0;
+  }
+
+  .card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+  }
+
+  .card h3 {
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+  }
+
+  .card .big-num {
+    font-size: 32px;
+    font-weight: 700;
+  }
+
+  .card .sub {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-top: 4px;
+  }
+
+  .blue { color: var(--accent); }
+  .green { color: var(--accent2); }
+  .purple { color: var(--accent3); }
+  .orange { color: var(--accent4); }
+  .red { color: var(--red); }
+  .gold { color: var(--gold); }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0;
+    font-size: 14px;
+  }
+
+  thead th {
+    background: var(--bg3);
+    color: var(--text-muted);
+    text-transform: uppercase;
+    font-size: 11px;
+    letter-spacing: 1px;
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+
+  tbody td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  tbody tr:hover { background: var(--bg2); }
+
+  .bar-chart {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 20px 0;
+  }
+
+  .bar-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .bar-label {
+    width: 160px;
+    font-size: 13px;
+    color: var(--text-muted);
+    text-align: right;
+    flex-shrink: 0;
+  }
+
+  .bar-track {
+    flex: 1;
+    background: var(--bg3);
+    border-radius: 6px;
+    height: 28px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .bar-fill {
+    height: 100%;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--bg);
+    transition: width 0.6s ease;
+  }
+
+  .bar-value {
+    width: 50px;
+    font-size: 13px;
+    font-weight: 600;
+    text-align: right;
+    flex-shrink: 0;
+  }
+
+  .callout {
+    background: var(--bg2);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 8px 8px 0;
+    padding: 20px 24px;
+    margin: 20px 0;
+  }
+
+  .callout.green-callout { border-left-color: var(--accent2); }
+  .callout.orange-callout { border-left-color: var(--accent4); }
+  .callout.red-callout { border-left-color: var(--red); }
+
+  .callout h4 {
+    font-size: 14px;
+    margin-bottom: 8px;
+    color: var(--accent);
+  }
+  .callout.green-callout h4 { color: var(--accent2); }
+  .callout.orange-callout h4 { color: var(--accent4); }
+  .callout.red-callout h4 { color: var(--red); }
+
+  .callout p { margin-bottom: 0; font-size: 14px; color: var(--text-muted); }
+
+  .pill {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .pill-green { background: rgba(63,185,80,0.15); color: var(--accent2); }
+  .pill-blue { background: rgba(88,166,255,0.15); color: var(--accent); }
+  .pill-orange { background: rgba(240,136,62,0.15); color: var(--accent4); }
+  .pill-red { background: rgba(248,81,73,0.15); color: var(--red); }
+
+  .scenario-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin: 20px 0;
+  }
+
+  .scenario {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    text-align: center;
+  }
+
+  .scenario h4 {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+  }
+
+  .scenario .target {
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+
+  .scenario .return {
+    font-size: 14px;
+    margin-bottom: 12px;
+  }
+
+  .scenario .detail {
+    font-size: 12px;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  .holdings-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+    margin: 20px 0;
+  }
+
+  .holding {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px;
+    text-align: center;
+  }
+
+  .holding .ticker-name {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+
+  .holding .pct {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--accent);
+  }
+
+  .holding .val {
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-top: 2px;
+  }
+
+  .risk-item {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 16px;
+    padding: 16px;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+  }
+
+  .risk-icon {
+    font-size: 20px;
+    flex-shrink: 0;
+    width: 32px;
+    text-align: center;
+  }
+
+  .risk-item h4 { font-size: 15px; margin-bottom: 4px; }
+  .risk-item p { font-size: 13px; color: var(--text-muted); margin-bottom: 0; }
+
+  .timeline {
+    border-left: 2px solid var(--border);
+    margin: 20px 0 20px 16px;
+    padding-left: 24px;
+  }
+
+  .timeline-item {
+    position: relative;
+    margin-bottom: 24px;
+  }
+
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -31px;
+    top: 6px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--accent);
+    border: 2px solid var(--bg);
+  }
+
+  .timeline-item h4 {
+    font-size: 14px;
+    color: var(--accent);
+    margin-bottom: 4px;
+  }
+
+  .timeline-item p { font-size: 13px; color: var(--text-muted); margin-bottom: 0; }
+
+  .footer {
+    border-top: 1px solid var(--border);
+    padding: 40px 24px;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 11px;
+    line-height: 1.8;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  ul { padding-left: 20px; }
+  ul li { list-style: disc; }
+
+  .divider {
+    height: 1px;
+    background: var(--border);
+    margin: 32px 0;
+  }
+
+  @media (max-width: 768px) {
+    .hero h1 { font-size: 32px; }
+    .hero-meta { gap: 20px; }
+    .scenario-grid { grid-template-columns: 1fr; }
+    .holdings-grid { grid-template-columns: repeat(2, 1fr); }
+    .two-col { grid-template-columns: 1fr; }
+    .bar-label { width: 100px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== HERO ===== -->
+<div class="hero">
+  <div class="hero-label">Investment Proposal</div>
+  <h1>Berkshire Hathaway Inc.</h1>
+  <div class="ticker">NYSE: BRK-B &nbsp;&bull;&nbsp; Class B Shares</div>
+  <div class="hero-meta">
+    <div class="stat">
+      <div class="stat-value">$476.19</div>
+      <div class="stat-label">Share Price</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value">$1.04T</div>
+      <div class="stat-label">Market Cap</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value">15.4x</div>
+      <div class="stat-label">P/E Ratio</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value">1.53x</div>
+      <div class="stat-label">Price / Book</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value">$373B</div>
+      <div class="stat-label">Cash &amp; Treasuries</div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+<!-- ===== I. INVESTMENT THESIS ===== -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">I</div>
+    <h2>Investment Thesis</h2>
+  </div>
+
+  <div class="callout green-callout">
+    <h4>Core Thesis</h4>
+    <p>Berkshire Hathaway is a diversified conglomerate trading at a modest valuation near the low end of analyst price targets, with a record $373 billion cash war chest providing extraordinary downside protection and optionality. The smooth CEO transition to Greg Abel — who has already resumed share buybacks and executed two strategic deals — signals disciplined continuity of the Buffett playbook. BRK-B offers compelling risk-adjusted returns for investors seeking quality, capital preservation, and long-term compounding.</p>
+  </div>
+
+  <div class="card-grid">
+    <div class="card">
+      <h3>Valuation</h3>
+      <div class="big-num blue">25% Below</div>
+      <div class="sub">Historical average P/E. Trading at the low end of all analyst price targets ($479–$597 range).</div>
+    </div>
+    <div class="card">
+      <h3>Cash Optionality</h3>
+      <div class="big-num green">36% of Mkt Cap</div>
+      <div class="sub">$373B in cash & T-bills — more than the Federal Reserve holds. Provides enormous acquisition firepower or downturn buffer.</div>
+    </div>
+    <div class="card">
+      <h3>Operating Platform</h3>
+      <div class="big-num purple">$44.5B</div>
+      <div class="sub">FY2025 operating earnings from diversified insurance, rail, energy, and industrial businesses. No single-sector dependence.</div>
+    </div>
+    <div class="card">
+      <h3>Leadership Continuity</h3>
+      <div class="big-num orange">Smooth</div>
+      <div class="sub">Greg Abel's first 90 days: OxyChem acquisition, Tokio Marine partnership, buybacks resumed. Market confidence intact.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== II. COMPANY OVERVIEW ===== -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">II</div>
+    <h2>Company Overview</h2>
+  </div>
+
+  <p>Berkshire Hathaway is the world's largest diversified conglomerate, built over six decades by Warren Buffett into a trillion-dollar enterprise. Effective January 1, 2026, Greg Abel assumed the role of President & CEO, with Buffett remaining as Chairman. The company operates through four major pillars — insurance, BNSF Railway, Berkshire Hathaway Energy, and a vast portfolio of manufacturing, service, and retail businesses — while maintaining one of the largest public equity portfolios in the world.</p>
+
+  <div class="card-grid">
+    <div class="card">
+      <h3>Revenue (FY2025)</h3>
+      <div class="big-num">$371.4B</div>
+    </div>
+    <div class="card">
+      <h3>Operating Earnings</h3>
+      <div class="big-num">$44.5B</div>
+    </div>
+    <div class="card">
+      <h3>Book Value / Share</h3>
+      <div class="big-num">~$340</div>
+      <div class="sub">Class B equivalent (Q3 2025)</div>
+    </div>
+    <div class="card">
+      <h3>Insurance Float</h3>
+      <div class="big-num">$176B</div>
+      <div class="sub">Zero-cost leverage for investments</div>
+    </div>
+  </div>
+
+  <h3 style="margin: 24px 0 12px; font-size: 16px; color: var(--text-muted);">Business Segment Breakdown</h3>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Segment</th>
+        <th>FY2025 Earnings</th>
+        <th>Key Details</th>
+        <th>Outlook</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Insurance</strong><br><span style="font-size:12px;color:var(--text-muted)">GEICO, Gen Re, NICO, BH Re</span></td>
+        <td>~$32B cumulative underwriting</td>
+        <td>Float: $176B. GEICO turnaround complete. Reinsurance dominant.</td>
+        <td><span class="pill pill-orange">Mixed</span></td>
+      </tr>
+      <tr>
+        <td><strong>BNSF Railway</strong></td>
+        <td>$5.5B (+8.8% YoY)</td>
+        <td>Operating margin improved to 34.5%. Closing gap with UNP.</td>
+        <td><span class="pill pill-green">Improving</span></td>
+      </tr>
+      <tr>
+        <td><strong>BH Energy</strong><br><span style="font-size:12px;color:var(--text-muted)">Utilities, Renewables, Pipelines</span></td>
+        <td>~$3.8B</td>
+        <td>Revenue $39.8B. Wildfire liability & regulatory headwinds.</td>
+        <td><span class="pill pill-orange">Cautious</span></td>
+      </tr>
+      <tr>
+        <td><strong>Manufacturing / Service / Retail</strong><br><span style="font-size:12px;color:var(--text-muted)">Precision Castparts, Lubrizol, Dairy Queen, etc.</span></td>
+        <td>Significant contributor</td>
+        <td>Dozens of market-leading brands. Decentralized management.</td>
+        <td><span class="pill pill-green">Stable</span></td>
+      </tr>
+      <tr>
+        <td><strong>OxyChem</strong> <span class="pill pill-blue">New</span><br><span style="font-size:12px;color:var(--text-muted)">Acquired Jan 2, 2026 for $9.7B</span></td>
+        <td>First contribution in 2026</td>
+        <td>Top-3 U.S. producer of PVC, chlor-alkali. Dallas HQ.</td>
+        <td><span class="pill pill-blue">Developing</span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ===== III. TOP EQUITY HOLDINGS ===== -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">III</div>
+    <h2>Public Equity Portfolio — $274B</h2>
+  </div>
+
+  <p>Berkshire's public equity portfolio totals $274.2 billion across approximately 40 positions. The top five holdings account for 71% of the portfolio, reflecting a concentrated, high-conviction approach. The Japanese trading house positions (~$31.5B) are held through foreign subsidiaries and not reflected in the 13F.</p>
+
+  <div class="holdings-grid">
+    <div class="holding">
+      <div class="ticker-name">AAPL</div>
+      <div class="pct">22.6%</div>
+      <div class="val">~$66.6B &bull; 300M shares</div>
+    </div>
+    <div class="holding">
+      <div class="ticker-name">AXP</div>
+      <div class="pct">20.5%</div>
+      <div class="val">~$56.1B</div>
+    </div>
+    <div class="holding">
+      <div class="ticker-name">BAC</div>
+      <div class="pct">10.4%</div>
+      <div class="val">~$28.5B</div>
+    </div>
+    <div class="holding">
+      <div class="ticker-name">KO</div>
+      <div class="pct">10.2%</div>
+      <div class="val">~$28.0B</div>
+    </div>
+    <div class="holding">
+      <div class="ticker-name">CVX</div>
+      <div class="pct">7.2%</div>
+      <div class="val">~$19.8B</div>
+    </div>
+  </div>
+
+  <p style="font-size:13px; color:var(--text-muted);">Other notable positions: Chubb (CB, ~8.5% ownership), Domino's (DPZ, ~9.9% ownership), Occidental Petroleum (OXY), Japanese trading houses (Mitsubishi, Itochu, Mitsui, Marubeni, Sumitomo). New position: New York Times (NYT).</p>
+</div>
+
+<!-- ===== IV. FINANCIAL PROFILE ===== -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">IV</div>
+    <h2>Financial Profile</h2>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Metric</th>
+        <th>FY2025</th>
+        <th>FY2024</th>
+        <th>Change</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Revenue</td>
+        <td>$371.4B</td>
+        <td>$371.4B</td>
+        <td>Flat</td>
+      </tr>
+      <tr>
+        <td>Operating Earnings</td>
+        <td>$44.5B</td>
+        <td>$47.4B</td>
+        <td class="red">-6.2%</td>
+      </tr>
+      <tr>
+        <td>Net Income</td>
+        <td>$67.0B</td>
+        <td>$89.0B</td>
+        <td class="red">-24.7%</td>
+      </tr>
+      <tr>
+        <td>Free Cash Flow</td>
+        <td>~$25.0B</td>
+        <td>~$11.6B</td>
+        <td class="green">+116%</td>
+      </tr>
+      <tr>
+        <td>Cash & T-Bills</td>
+        <td>$373.3B</td>
+        <td>$321.4B</td>
+        <td class="green">+16.1%</td>
+      </tr>
+      <tr>
+        <td>Debt/Equity</td>
+        <td>0.19x</td>
+        <td>—</td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td>ROE</td>
+        <td>9.8%</td>
+        <td>—</td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td>Current Ratio</td>
+        <td>7.07x</td>
+        <td>—</td>
+        <td>—</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="callout">
+    <h4>Note on Net Income Decline</h4>
+    <p>The -24.7% net income decline is driven entirely by lower investment/derivative gains (mark-to-market), not operational deterioration. Operating earnings — a cleaner measure — declined a more modest 6.2%, primarily due to Q4 insurance underwriting volatility. Free cash flow surged 116% as Berkshire monetized equity positions throughout the year.</p>
+  </div>
+</div>
+
+<!-- ===== V. VALUATION & PERFORMANCE ===== -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">V</div>
+    <h2>Valuation & Historical Performance</h2>
+  </div>
+
+  <div class="two-col">
+    <div>
+      <h3 style="font-size:16px; margin-bottom:16px; color:var(--text-muted);">Valuation Snapshot</h3>
+      <table>
+        <thead>
+          <tr><th>Metric</th><th>Current</th><th>10Y Avg</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>P/E (TTM)</td><td><strong>15.4x</strong></td><td>~20.5x</td></tr>
+          <tr><td>P/B</td><td><strong>1.53x</strong></td><td>1.47x</td></tr>
+          <tr><td>EV/Revenue</td><td>2.2x</td><td>—</td></tr>
+          <tr><td>P/B Range (10Y)</td><td colspan="2">0.98x — 1.78x</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <h3 style="font-size:16px; margin-bottom:16px; color:var(--text-muted);">Analyst Price Targets</h3>
+      <table>
+        <thead>
+          <tr><th>Source</th><th>Target</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Consensus Low</td><td>$479</td></tr>
+          <tr><td>MarketBeat (4 analysts)</td><td>$550</td></tr>
+          <tr><td>Benzinga (38 analysts)</td><td>$568</td></tr>
+          <tr><td>Consensus High</td><td>$597</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <h3 style="font-size:16px; margin: 32px 0 16px; color:var(--text-muted);">BRK-B vs S&P 500 Total Return</h3>
+
+  <div class="bar-chart">
+    <div class="bar-row">
+      <div class="bar-label">1-Year</div>
+      <div class="bar-track">
+        <div class="bar-fill" style="width: 2%; background: var(--red);">—</div>
+      </div>
+      <div class="bar-value red">~0%</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">S&P 500 1Y</div>
+      <div class="bar-track">
+        <div class="bar-fill" style="width: 38%; background: var(--accent2);">18.8%</div>
+      </div>
+      <div class="bar-value green">18.8%</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label" style="height:8px;"></div>
+      <div style="flex:1;height:1px;background:var(--border);"></div>
+      <div style="width:50px;"></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">3-Year Ann.</div>
+      <div class="bar-track">
+        <div class="bar-fill" style="width: 35%; background: var(--accent);">17.6%</div>
+      </div>
+      <div class="bar-value blue">17.6%</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">S&P 500 3Y</div>
+      <div class="bar-track">
+        <div class="bar-fill" style="width: 26%; background: var(--accent2);">12.5%</div>
+      </div>
+      <div class="bar-value green">12.5%</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label" style="height:8px;"></div>
+      <div style="flex:1;height:1px;background:var(--border);"></div>
+      <div style="width:50px;"></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">5-Year Cum.</div>
+      <div class="bar-track">
+        <div class="bar-fill" style="width: 46%; background: var(--accent);">92%</div>
+      </div>
+      <div class="bar-value blue">92%</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">S&P 500 5Y</div>
+      <div class="bar-track">
+        <div class="bar-fill" style="width: 42%; background: var(--accent2);">85%</div>
+      </div>
+      <div class="bar-value green">85%</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label" style="height:8px;"></div>
+      <div style="flex:1;height:1px;background:var(--border);"></div>
+      <div style="width:50px;"></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">10-Year Ann.</div>
+      <div class="bar-track">
+        <div class="bar-fill" style="width: 26%; background: var(--accent);">13.0%</div>
+      </div>
+      <div class="bar-value blue">13.0%</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">S&P 500 10Y</div>
+      <div class="bar-track">
+        <div class="bar-fill" style="width: 28%; background: var(--accent2);">14.2%</div>
+      </div>
+      <div class="bar-value green">14.2%</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label" style="height:8px;"></div>
+      <div style="flex:1;height:1px;background:var(--border);"></div>
+      <div style="width:50px;"></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">20-Year Cum.</div>
+      <div class="bar-track">
+        <div class="bar-fill" style="width: 76%; background: var(--accent);">757%</div>
+      </div>
+      <div class="bar-value blue">757%</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">S&P 500 20Y</div>
+      <div class="bar-track">
+        <div class="bar-fill" style="width: 67%; background: var(--accent2);">668%</div>
+      </div>
+      <div class="bar-value green">668%</div>
+    </div>
+  </div>
+
+  <div class="callout orange-callout">
+    <h4>Recent Underperformance Context</h4>
+    <p>BRK-B's flat 1-year return vs. the S&P 500's 18.8% is attributable to the leadership transition period and Buffett's deliberate de-risking (massive equity sales building the $373B cash pile). This is a feature, not a bug — Berkshire is now positioned with more dry powder than any company in history. The 3-year and longer-term track records demonstrate consistent outperformance through full market cycles.</p>
+  </div>
+</div>
+
+<!-- ===== VI. PROPOSED ALLOCATION ===== -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">VI</div>
+    <h2>Proposed Allocation Strategy</h2>
+  </div>
+
+  <p>BRK-B is recommended as a <strong>core holding</strong> within a diversified portfolio. Its unique characteristics — conglomerate diversification, no dividend drag, tax-efficient compounding, and massive cash buffer — make it suitable for multiple portfolio roles:</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Portfolio Role</th>
+        <th>Suggested Allocation</th>
+        <th>Rationale</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Core Equity Replacement</strong></td>
+        <td>10–20% of equity sleeve</td>
+        <td>Substitutes for broad equity exposure with built-in diversification across sectors, plus embedded cash/bond allocation via the $373B treasury position.</td>
+      </tr>
+      <tr>
+        <td><strong>Defensive Growth</strong></td>
+        <td>5–10% of total portfolio</td>
+        <td>Low-beta compounder with downside protection. No dividend tax drag. Historically lower drawdowns than the S&P 500.</td>
+      </tr>
+      <tr>
+        <td><strong>Cash Alternative</strong></td>
+        <td>Tactical position</td>
+        <td>36% of market cap is in T-bills. Buying BRK-B at 1.5x book effectively buys Treasury yields plus equity upside on the operating businesses.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="callout green-callout">
+    <h4>Tax Efficiency Advantage</h4>
+    <p>Berkshire has never paid a dividend, meaning investors compound returns without annual tax drag. The company returns capital through buybacks (resumed March 2026) which are more tax-efficient. For taxable accounts, this structure can produce significantly better after-tax returns compared to dividend-paying alternatives.</p>
+  </div>
+</div>
+
+<!-- ===== VII. PRICE SCENARIOS ===== -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">VII</div>
+    <h2>12-Month Price Scenarios</h2>
+  </div>
+
+  <p>Based on current fundamentals, analyst consensus, historical valuation ranges, and the cash position providing a valuation floor.</p>
+
+  <div class="scenario-grid">
+    <div class="scenario">
+      <h4 class="red">Conservative</h4>
+      <div class="target" style="color:var(--red);">$490</div>
+      <div class="return" style="color:var(--text-muted);">+2.9% upside</div>
+      <div class="detail">
+        Operating earnings flat. Insurance underwriting remains pressured. No major acquisitions. Market multiple compression. P/B stays ~1.4x.
+      </div>
+    </div>
+    <div class="scenario">
+      <h4 class="blue">Base Case</h4>
+      <div class="target" style="color:var(--accent);">$555</div>
+      <div class="return" style="color:var(--accent);">+16.6% upside</div>
+      <div class="detail">
+        Operating earnings recover to $48B. Abel deploys $30-50B of cash in acquisitions. Buybacks continue. P/B re-rates to 1.5-1.6x. Aligned with analyst consensus.
+      </div>
+    </div>
+    <div class="scenario">
+      <h4 class="green">Optimistic</h4>
+      <div class="target" style="color:var(--accent2);">$620</div>
+      <div class="return" style="color:var(--accent2);">+30.2% upside</div>
+      <div class="detail">
+        Major "elephant" acquisition deploys $50B+. Insurance hardening cycle. Market downturn allows Berkshire to buy equities at distressed prices. P/B re-rates to 1.7x.
+      </div>
+    </div>
+  </div>
+
+  <div class="callout">
+    <h4>Downside Floor Analysis</h4>
+    <p>Cash and T-bills alone ($373B) represent ~$173/share in Class B terms. Adding the equity portfolio ($274B = ~$127/share) and insurance float value, the sum-of-the-parts floor is estimated at ~$400-420/share — implying only 12-16% downside from current levels in an extreme scenario. This asymmetric risk/reward profile is a key attraction.</p>
+  </div>
+</div>
+
+<!-- ===== VIII. RISK FACTORS ===== -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">VIII</div>
+    <h2>Risk Factors</h2>
+  </div>
+
+  <div class="risk-item">
+    <div class="risk-icon">
+      <span class="pill pill-orange">Med</span>
+    </div>
+    <div>
+      <h4>Succession & Key-Man Risk</h4>
+      <p>Buffett (94) remains Chairman but is no longer CEO. Greg Abel's track record is strong but unproven at the CEO level for a $1T conglomerate. Todd Combs' departure to JPMorgan leaves Ted Weschler as the sole investment manager. CFO Marc Hamburg retires June 2027.</p>
+    </div>
+  </div>
+
+  <div class="risk-item">
+    <div class="risk-icon">
+      <span class="pill pill-orange">Med</span>
+    </div>
+    <div>
+      <h4>Equity Portfolio Concentration</h4>
+      <p>Top 5 holdings represent 71% of the $274B equity portfolio. Apple alone is 22.6%. A material decline in Apple or American Express would significantly impact book value and sentiment.</p>
+    </div>
+  </div>
+
+  <div class="risk-item">
+    <div class="risk-icon">
+      <span class="pill pill-orange">Med</span>
+    </div>
+    <div>
+      <h4>Cash Drag & Rate Sensitivity</h4>
+      <p>$373B in T-bills generates attractive yield today, but rate cuts would reduce this income stream. If cash is not deployed into higher-return assets, it becomes a drag on overall ROE.</p>
+    </div>
+  </div>
+
+  <div class="risk-item">
+    <div class="risk-icon">
+      <span class="pill pill-red">High</span>
+    </div>
+    <div>
+      <h4>Insurance Catastrophe Exposure</h4>
+      <p>Q4 2025 underwriting profits fell 54% YoY due to elevated catastrophe losses. Management indicated they will write less P&C business near-term. A major catastrophe event could produce significant losses.</p>
+    </div>
+  </div>
+
+  <div class="risk-item">
+    <div class="risk-icon">
+      <span class="pill pill-orange">Med</span>
+    </div>
+    <div>
+      <h4>BHE Regulatory & Legal</h4>
+      <p>PacifiCorp (BHE subsidiary) faces ongoing wildfire liability lawsuits. Clean energy tax credit phase-out under the "One Big Beautiful Bill Act" threatens renewable energy returns.</p>
+    </div>
+  </div>
+
+  <div class="risk-item">
+    <div class="risk-icon">
+      <span class="pill pill-blue">Low</span>
+    </div>
+    <div>
+      <h4>Size Constraints</h4>
+      <p>At $1T+ market cap, the universe of needle-moving acquisitions is extremely limited. Berkshire needs larger and larger deals to meaningfully impact growth, narrowing the opportunity set.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ===== IX. COMPETITIVE POSITIONING ===== -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">IX</div>
+    <h2>Competitive Positioning</h2>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Metric</th>
+        <th>BRK-B</th>
+        <th>SPY (S&P 500)</th>
+        <th>MKL (Markel)</th>
+        <th>FFH (Fairfax)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Market Cap</td>
+        <td><strong>$1.04T</strong></td>
+        <td>N/A (Index)</td>
+        <td>$22B</td>
+        <td>$30B</td>
+      </tr>
+      <tr>
+        <td>P/B Ratio</td>
+        <td><strong>1.53x</strong></td>
+        <td>—</td>
+        <td>~1.3x</td>
+        <td>Lower</td>
+      </tr>
+      <tr>
+        <td>Dividend</td>
+        <td><strong>None</strong></td>
+        <td>~1.3%</td>
+        <td>None</td>
+        <td>Small</td>
+      </tr>
+      <tr>
+        <td>Insurance Float</td>
+        <td><strong>$176B</strong></td>
+        <td>—</td>
+        <td>~$15B</td>
+        <td>~$30B</td>
+      </tr>
+      <tr>
+        <td>10Y Ann. Return</td>
+        <td><strong>13.0%</strong></td>
+        <td>14.2%</td>
+        <td>Lower</td>
+        <td>Strong recently</td>
+      </tr>
+      <tr>
+        <td>Cash Position</td>
+        <td><strong>$373B</strong></td>
+        <td>—</td>
+        <td>Modest</td>
+        <td>Modest</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>Berkshire's competitive moats are structural: unmatched scale in reinsurance, $176B of zero-cost float, permanent capital structure with no redemption risk, and a decentralized management model that attracts high-quality acquisition targets. No peer replicates this combination at anywhere near this scale.</p>
+</div>
+
+<!-- ===== X. RECENT STRATEGIC ACTIONS ===== -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">X</div>
+    <h2>Recent Strategic Actions Under Abel</h2>
+  </div>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <h4>January 1, 2026</h4>
+      <p><strong>Greg Abel becomes CEO.</strong> Buffett remains Chairman. Board unanimously approved the transition after Buffett's May 2025 announcement. Bylaws amended to formally separate Chairman and CEO roles for the first time.</p>
+    </div>
+    <div class="timeline-item">
+      <h4>January 2, 2026</h4>
+      <p><strong>OxyChem acquisition completed.</strong> $9.7B cash purchase of Occidental Petroleum's chemicals division. Top-3 U.S. producer of PVC and chlor-alkali. Largest deal in several years — signals continued appetite for industrial assets.</p>
+    </div>
+    <div class="timeline-item">
+      <h4>February 28, 2026</h4>
+      <p><strong>Abel's first shareholder letter.</strong> Emphasized continuity — disciplined investing, decentralized management, focus on "easily understandable, high-barrier, strong management" acquisition targets. Stated he will personally oversee the equity portfolio.</p>
+    </div>
+    <div class="timeline-item">
+      <h4>March 2026</h4>
+      <p><strong>Tokio Marine partnership.</strong> NICO investing $1.8B for 2.49% stake in Tokio Marine Holdings. Collaboration on reinsurance and global M&A — extending Berkshire's international insurance footprint.</p>
+    </div>
+    <div class="timeline-item">
+      <h4>March 2026</h4>
+      <p><strong>Share buybacks resumed.</strong> ~$200M repurchased — the first buyback since 2024. Abel signaled that Berkshire sees value in its own shares at current prices. A bullish signal from new management.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ===== XI. INSTITUTIONAL SENTIMENT ===== -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">XI</div>
+    <h2>Institutional Sentiment</h2>
+  </div>
+
+  <div class="card-grid">
+    <div class="card">
+      <h3>Hedge Fund Holders</h3>
+      <div class="big-num blue">133</div>
+      <div class="sub">Up from 128 in Q3 2025. Ranked #19 among the 40 most popular hedge fund stocks.</div>
+    </div>
+    <div class="card">
+      <h3>Analyst Rating</h3>
+      <div class="big-num green">Neutral-Buy</div>
+      <div class="sub">2 Buy, 2 Hold (MarketBeat). Average target: $550-$568. Under-covered relative to size.</div>
+    </div>
+    <div class="card">
+      <h3>Index Ownership</h3>
+      <div class="big-num purple">12%+</div>
+      <div class="sub">Vanguard and BlackRock together hold >12% through index funds (VTI, IVV).</div>
+    </div>
+  </div>
+
+  <p style="font-size:14px; color:var(--text-muted); margin-top:16px;">Berkshire is systematically under-covered by sell-side analysts because the company does not hold earnings calls and provides limited guidance. This creates an informational inefficiency that benefits fundamental investors willing to do their own research.</p>
+</div>
+
+<!-- ===== XII. GETTING STARTED ===== -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">XII</div>
+    <h2>Implementation & Next Steps</h2>
+  </div>
+
+  <div class="two-col">
+    <div>
+      <h3 style="font-size:16px; margin-bottom:16px;">Recommended Entry Strategy</h3>
+      <ul>
+        <li><strong>Dollar-cost average</strong> over 2-3 months to mitigate timing risk during the leadership transition period</li>
+        <li><strong>Target allocation:</strong> 5-15% of equity sleeve depending on risk tolerance and existing exposure to financials/insurance</li>
+        <li><strong>Tax placement:</strong> Ideal for taxable accounts due to zero dividend income. Can also complement tax-advantaged accounts as a low-turnover core holding</li>
+        <li><strong>Rebalancing trigger:</strong> Review at 1.7x book (trim) or below 1.3x book (add)</li>
+      </ul>
+    </div>
+    <div>
+      <h3 style="font-size:16px; margin-bottom:16px;">Key Monitoring Points</h3>
+      <ul>
+        <li><strong>Quarterly operating earnings</strong> — the single best measure of Berkshire's business health (ignore GAAP net income volatility)</li>
+        <li><strong>Cash deployment</strong> — major acquisitions or equity purchases signal Abel's strategic direction</li>
+        <li><strong>Buyback pace</strong> — accelerating repurchases indicate management sees shares as undervalued</li>
+        <li><strong>Insurance combined ratio</strong> — watch for catastrophe loss trends and float growth</li>
+        <li><strong>May 2026 Annual Meeting</strong> — Abel's first as CEO. Key sentiment event</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <h3 style="font-size:16px; margin-bottom:16px;">First 90 Days — What to Expect</h3>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <h4>Week 1-2: Account Setup & Transfer</h4>
+      <p>Open brokerage account (if needed), initiate ACAT transfer of existing positions. BRK-B is highly liquid with ~4M shares traded daily — no execution concerns.</p>
+    </div>
+    <div class="timeline-item">
+      <h4>Month 1: Initial Position</h4>
+      <p>Establish 40% of target allocation. Monitor for any market dislocations that would accelerate the timeline.</p>
+    </div>
+    <div class="timeline-item">
+      <h4>Month 2: Build Position</h4>
+      <p>Add second tranche (30% of target). Berkshire Q1 2026 results expected late April/early May — may provide a catalyst.</p>
+    </div>
+    <div class="timeline-item">
+      <h4>Month 3: Complete & Review</h4>
+      <p>Final tranche (30% of target). Full position established ahead of the May 2026 annual meeting. Initial portfolio review and rebalancing assessment.</p>
+    </div>
+  </div>
+</div>
+
+</div> <!-- /container -->
+
+<!-- ===== FOOTER / DISCLAIMERS ===== -->
+<div class="footer">
+  <p><strong>IMPORTANT DISCLAIMERS</strong></p>
+  <p>
+    This investment proposal is provided for informational purposes only and does not constitute investment advice, a solicitation, or an offer to buy or sell any securities. All projections, scenarios, and price targets are hypothetical and based on assumptions that may not materialize. Past performance is not indicative of future results. Investing in securities involves risk, including the possible loss of principal. The information contained herein has been compiled from sources believed to be reliable but is not guaranteed as to accuracy or completeness.
+  </p>
+  <p>
+    Berkshire Hathaway Class B shares (BRK-B) are subject to market risk, concentration risk, succession risk, and other factors described in the company's SEC filings. Investors should carefully consider their investment objectives, risk tolerance, and financial situation before investing. Consult with a qualified financial advisor before making investment decisions.
+  </p>
+  <p style="margin-top: 16px; color: var(--border);">
+    Prepared March 25, 2026 &nbsp;|&nbsp; Data as of market close March 24, 2026
+  </p>
+</div>
+
+</body>
+</html>
