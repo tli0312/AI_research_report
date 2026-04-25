@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Six Thinking Hats Debate — CPU in AI Data Centers</title>
+  <style>
+    :root {
+      --bg-primary: #0d0d0f;
+      --bg-secondary: #141416;
+      --bg-card: #1a1a1e;
+      --bg-card-hover: #1f1f24;
+      --border: #2a2a30;
+      --border-subtle: #222228;
+      --text-primary: #e8e8ec;
+      --text-secondary: #9898a8;
+      --text-muted: #5a5a6a;
+      --accent: #6366f1;
+      --white-hat: #d1d5db;
+      --white-hat-bg: rgba(209,213,219,0.06);
+      --white-hat-border: rgba(209,213,219,0.18);
+      --red-hat: #f87171;
+      --red-hat-bg: rgba(248,113,113,0.06);
+      --red-hat-border: rgba(248,113,113,0.22);
+      --black-hat: #94a3b8;
+      --black-hat-bg: rgba(100,110,130,0.07);
+      --black-hat-border: rgba(100,110,130,0.22);
+      --yellow-hat: #fbbf24;
+      --yellow-hat-bg: rgba(251,191,36,0.06);
+      --yellow-hat-border: rgba(251,191,36,0.22);
+      --green-hat: #4ade80;
+      --green-hat-bg: rgba(74,222,128,0.06);
+      --green-hat-border: rgba(74,222,128,0.20);
+      --blue-hat: #60a5fa;
+      --blue-hat-bg: rgba(96,165,250,0.06);
+      --blue-hat-border: rgba(96,165,250,0.22);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', sans-serif;
+      font-size: 15px;
+      line-height: 1.75;
+      min-height: 100vh;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      background: linear-gradient(160deg, #0f0f14 0%, #13131a 60%, #0d0d0f 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 64px 24px 52px;
+      text-align: center;
+    }
+
+    .hero-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      border: 1px solid rgba(99,102,241,0.3);
+      border-radius: 999px;
+      padding: 4px 14px;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 {
+      font-size: clamp(22px, 4vw, 36px);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
+      max-width: 720px;
+      margin: 0 auto 16px;
+    }
+
+    .hero-sub {
+      color: var(--text-secondary);
+      font-size: 15px;
+      max-width: 600px;
+      margin: 0 auto 32px;
+    }
+
+    .hat-chips {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .hat-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 500;
+      padding: 5px 13px;
+      border-radius: 999px;
+      border: 1px solid;
+    }
+
+    /* ── Layout ── */
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+    }
+
+    /* ── Round Header ── */
+    .round-header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(13,13,15,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 14px 0;
+      margin: 0 -24px 0;
+      padding-left: 24px;
+      padding-right: 24px;
+    }
+
+    .round-header-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+    }
+
+    .round-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .round-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-secondary);
+    }
+
+    .round-note {
+      font-size: 12px;
+      color: var(--text-muted);
+      font-style: italic;
+    }
+
+    /* ── Section spacers ── */
+    .section-spacer {
+      height: 48px;
+    }
+
+    .section-intro {
+      margin: 40px 0 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .section-tag {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .section-heading {
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: var(--text-primary);
+    }
+
+    .section-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      font-style: italic;
+    }
+
+    /* ── Hat Card ── */
+    .hat-card {
+      border-radius: 12px;
+      border: 1px solid var(--border-subtle);
+      margin-bottom: 20px;
+      overflow: hidden;
+      transition: border-color 0.15s;
+    }
+
+    .hat-card:hover { border-color: var(--border); }
+
+    .hat-card-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .hat-icon {
+      font-size: 22px;
+      line-height: 1;
+    }
+
+    .hat-name {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .hat-role {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-left: auto;
+      font-style: italic;
+    }
+
+    .hat-body {
+      padding: 22px 24px;
+    }
+
+    /* Per-hat colors */
+    .hat-white .hat-card-header { background: var(--white-hat-bg); }
+    .hat-white { border-color: var(--white-hat-border) !important; }
+    .hat-white .hat-name { color: var(--white-hat); }
+
+    .hat-red .hat-card-header { background: var(--red-hat-bg); }
+    .hat-red { border-color: var(--red-hat-border) !important; }
+    .hat-red .hat-name { color: var(--red-hat); }
+
+    .hat-black .hat-card-header { background: var(--black-hat-bg); }
+    .hat-black { border-color: var(--black-hat-border) !important; }
+    .hat-black .hat-name { color: var(--black-hat); }
+
+    .hat-yellow .hat-card-header { background: var(--yellow-hat-bg); }
+    .hat-yellow { border-color: var(--yellow-hat-border) !important; }
+    .hat-yellow .hat-name { color: var(--yellow-hat); }
+
+    .hat-green .hat-card-header { background: var(--green-hat-bg); }
+    .hat-green { border-color: var(--green-hat-border) !important; }
+    .hat-green .hat-name { color: var(--green-hat); }
+
+    .hat-blue .hat-card-header { background: var(--blue-hat-bg); }
+    .hat-blue { border-color: var(--blue-hat-border) !important; }
+    .hat-blue .hat-name { color: var(--blue-hat); }
+
+    /* ── Typography inside cards ── */
+    .hat-body h3 {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin: 20px 0 8px;
+      letter-spacing: -0.01em;
+    }
+
+    .hat-body h3:first-child { margin-top: 0; }
+
+    .hat-body p {
+      color: var(--text-secondary);
+      font-size: 14px;
+      margin-bottom: 12px;
+    }
+
+    .hat-body p:last-child { margin-bottom: 0; }
+
+    .hat-body ul, .hat-body ol {
+      color: var(--text-secondary);
+      font-size: 14px;
+      padding-left: 18px;
+      margin-bottom: 14px;
+    }
+
+    .hat-body li { margin-bottom: 6px; }
+
+    .hat-body strong {
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    .hat-body em {
+      color: var(--text-secondary);
+      font-style: italic;
+    }
+
+    hr.divider {
+      border: none;
+      border-top: 1px solid var(--border-subtle);
+      margin: 18px 0;
+    }
+
+    /* ── Callout blocks ── */
+    .callout {
+      border-radius: 8px;
+      padding: 14px 16px;
+      margin: 14px 0;
+      font-size: 13.5px;
+      color: var(--text-secondary);
+      border-left: 3px solid;
+      background: var(--bg-secondary);
+    }
+
+    .callout-verdict { border-left-color: var(--accent); background: rgba(99,102,241,0.05); }
+    .callout-warning { border-left-color: var(--red-hat); background: rgba(248,113,113,0.05); }
+    .callout-positive { border-left-color: var(--green-hat); background: rgba(74,222,128,0.05); }
+    .callout-neutral  { border-left-color: var(--text-muted); }
+
+    /* ── Pre-mortem headline ── */
+    .premortem {
+      background: rgba(100,110,130,0.08);
+      border: 1px solid rgba(100,110,130,0.18);
+      border-radius: 8px;
+      padding: 12px 16px;
+      font-size: 13px;
+      font-style: italic;
+      color: var(--text-secondary);
+      margin: 12px 0 18px;
+    }
+
+    /* ── Synthesis card ── */
+    .synthesis-section {
+      background: var(--bg-card);
+      border: 1px solid var(--blue-hat-border);
+      border-radius: 14px;
+      overflow: hidden;
+      margin-bottom: 24px;
+    }
+
+    .synthesis-header {
+      background: var(--blue-hat-bg);
+      border-bottom: 1px solid var(--blue-hat-border);
+      padding: 18px 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .synthesis-header .hat-icon { font-size: 26px; }
+
+    .synthesis-header h2 {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--blue-hat);
+      letter-spacing: -0.01em;
+    }
+
+    .synthesis-header .hat-role {
+      margin-left: auto;
+      color: var(--text-muted);
+      font-size: 12px;
+      font-style: italic;
+    }
+
+    .synthesis-body { padding: 24px; }
+
+    .synthesis-body h3 {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin: 24px 0 14px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    .synthesis-body h3:first-child {
+      margin-top: 0;
+      padding-top: 0;
+      border-top: none;
+    }
+
+    .synthesis-body p {
+      font-size: 14px;
+      color: var(--text-secondary);
+      margin-bottom: 12px;
+    }
+
+    .synthesis-body strong { color: var(--text-primary); font-weight: 600; }
+
+    /* ── Disagreement table ── */
+    .disagree-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+      margin: 16px 0;
+    }
+
+    .disagree-table th {
+      text-align: left;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      padding: 8px 12px;
+      border-bottom: 1px solid var(--border);
+      background: var(--bg-secondary);
+    }
+
+    .disagree-table td {
+      padding: 12px 12px;
+      border-bottom: 1px solid var(--border-subtle);
+      vertical-align: top;
+      color: var(--text-secondary);
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .disagree-table tr:last-child td { border-bottom: none; }
+
+    .disagree-table td:first-child {
+      font-weight: 600;
+      color: var(--text-primary);
+      width: 42%;
+    }
+
+    .badge {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 2px 8px;
+      border-radius: 4px;
+      margin-bottom: 4px;
+    }
+
+    .badge-resolvable   { background: rgba(74,222,128,0.12);  color: var(--green-hat);  }
+    .badge-tradeoff     { background: rgba(251,191,36,0.12);   color: var(--yellow-hat); }
+    .badge-framing      { background: rgba(96,165,250,0.12);   color: var(--blue-hat);   }
+
+    /* ── Decision boxes ── */
+    .decision-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 14px;
+      margin: 16px 0;
+    }
+
+    @media (max-width: 640px) {
+      .decision-grid { grid-template-columns: 1fr; }
+    }
+
+    .decision-box {
+      border-radius: 10px;
+      padding: 16px;
+      border: 1px solid;
+    }
+
+    .decision-box-keep   { border-color: rgba(74,222,128,0.22);  background: rgba(74,222,128,0.04);  }
+    .decision-box-change { border-color: rgba(251,191,36,0.22);  background: rgba(251,191,36,0.04);  }
+    .decision-box-decide { border-color: rgba(96,165,250,0.22);  background: rgba(96,165,250,0.04);  }
+
+    .decision-box-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .decision-box-keep   .decision-box-label { color: var(--green-hat);  }
+    .decision-box-change .decision-box-label { color: var(--yellow-hat); }
+    .decision-box-decide .decision-box-label { color: var(--blue-hat);   }
+
+    .decision-box p {
+      font-size: 13px;
+      color: var(--text-secondary);
+      margin-bottom: 8px;
+    }
+
+    .decision-box p:last-child { margin-bottom: 0; }
+
+    .decision-box strong { color: var(--text-primary); }
+
+    /* ── Footer ── */
+    footer {
+      text-align: center;
+      padding: 32px 24px;
+      border-top: 1px solid var(--border-subtle);
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── Hero ── -->
+<div class="hero">
+  <div class="hero-label">Six Thinking Hats</div>
+  <h1>Rise of RL &amp; Agentic AI — Does It Significantly Boost Intel &amp; AMD?</h1>
+  <p class="hero-sub">A structured multi-perspective debate on whether increased CPU usage in AI data centers translates to material stock appreciation for Intel and AMD.</p>
+  <div class="hat-chips">
+    <span class="hat-chip" style="color:var(--white-hat);border-color:var(--white-hat-border);background:var(--white-hat-bg);">⚪ White — Facts &amp; Data</span>
+    <span class="hat-chip" style="color:var(--red-hat);border-color:var(--red-hat-border);background:var(--red-hat-bg);">🔴 Red — Emotion &amp; Gut</span>
+    <span class="hat-chip" style="color:var(--black-hat);border-color:var(--black-hat-border);background:var(--black-hat-bg);">⚫ Black — Risks &amp; Critique</span>
+    <span class="hat-chip" style="color:var(--yellow-hat);border-color:var(--yellow-hat-border);background:var(--yellow-hat-bg);">🟡 Yellow — Upside &amp; Optimism</span>
+    <span class="hat-chip" style="color:var(--green-hat);border-color:var(--green-hat-border);background:var(--green-hat-bg);">🟢 Green — Creativity &amp; Reframes</span>
+    <span class="hat-chip" style="color:var(--blue-hat);border-color:var(--blue-hat-border);background:var(--blue-hat-bg);">🔵 Blue — Synthesis</span>
+  </div>
+</div>
+
+<!-- ── Main Content ── -->
+<div class="container">
+
+  <!-- ════════════════════════════════════
+       ROUND 1
+       ════════════════════════════════════ -->
+  <div class="section-intro">
+    <span class="section-tag">Round 1</span>
+    <span class="section-heading">Independent Positions</span>
+    <span class="section-desc">Each hat responded without seeing the others.</span>
+  </div>
+
+  <!-- White R1 -->
+  <div class="hat-card hat-white">
+    <div class="hat-card-header">
+      <span class="hat-icon">⚪</span>
+      <span class="hat-name">White Hat</span>
+      <span class="hat-role">Facts &amp; Information Gaps</span>
+    </div>
+    <div class="hat-body">
+      <h3>Most Consequential Information Gap: The CPU-to-GPU Ratio Assumption Is Unexamined</h3>
+      <p>The argument assumes that RL and agentic workloads shift compute intensity <em>toward</em> CPUs in a way that materially benefits Intel and AMD. This is not established. The claim needs to be decomposed into two sub-claims, both of which require evidence:</p>
+      <ul>
+        <li><strong>RL/agentic workloads are more CPU-intensive than current inference/training workloads</strong> — Partially true for specific components (environment simulation, tree search, orchestration logic), but the <em>dominant</em> compute cost in RL training still runs on GPUs/accelerators. What fraction of total datacenter compute hours shifts to CPU is unknown and likely small.</li>
+        <li><strong>Increased CPU demand in AI datacenters translates to Intel/AMD revenue growth</strong> — This assumes CPU ASP and margin hold, that Intel/AMD win the relevant server CPU contracts, and that this incremental demand isn't already priced in.</li>
+      </ul>
+      <h3>Specific Hidden Assumptions Worth Naming</h3>
+      <ul>
+        <li><strong>ARM displacement is ignored.</strong> AWS Graviton, Ampere Altra, and NVIDIA's Grace CPU are already winning agentic orchestration workloads in hyperscaler datacenters. Intel and AMD's market share in AI datacenter CPUs is not cited and is actively eroding in certain segments.</li>
+        <li><strong>"Significantly increase stock price" conflates operational metrics with equity valuation.</strong> Even if CPU utilization rises 30%, Intel's stock price depends on gross margin recovery, capex cycle, and foundry economics — none of which are addressed.</li>
+        <li><strong>Intel's specific situation is treated identically to AMD's.</strong> Intel is in a turnaround with foundry losses and execution risk; AMD has a cleaner CPU story but faces ARM pressure. These are not the same investment thesis.</li>
+      </ul>
+      <h3>What We Could Find Out vs. What Is Fundamentally Uncertain</h3>
+      <ul>
+        <li><em>Could find out:</em> Hyperscaler CPU procurement trends; CPU vs. GPU hours in agentic deployments.</li>
+        <li><em>Fundamentally uncertain:</em> Whether ARM-based or x86 CPUs dominate the agentic orchestration layer at scale; Intel's foundry turnaround timeline.</li>
+      </ul>
+      <div class="callout callout-verdict">
+        <strong>Bottom line on evidence:</strong> The causal chain (RL growth → CPU demand → Intel/AMD stock) has at least three unverified links. Each link is plausible but unsupported by cited data.
+      </div>
+    </div>
+  </div>
+
+  <!-- Red R1 -->
+  <div class="hat-card hat-red">
+    <div class="hat-card-header">
+      <span class="hat-icon">🔴</span>
+      <span class="hat-name">Red Hat</span>
+      <span class="hat-role">Emotion &amp; Intuition</span>
+    </div>
+    <div class="hat-body">
+      <h3>Gut Reaction: Something Feels Hollow at the Center of This Thesis</h3>
+      <p>When I imagine a data center engineer in 2026 watching RL training jobs spin up, I feel a specific kind of déjà vu — the same vague unease I get when someone tells me the horse-and-buggy industry would benefit from cars needing roads. <em>Technically</em> true, but something is being missed so completely that the correctness feels almost accidental.</p>
+      <p>When I picture the actual moment of RL and agentic workloads scaling — the explosion of inference calls, the memory-bandwidth torture, the reward model evaluations — my gut screams that <strong>this is a GPU moment, not a CPU moment</strong>. There's a texture to this that feels like the thesis is wearing the right clothes to the wrong party. CPUs are there. They're in the room. But they're not the ones dancing.</p>
+      <p>When I imagine a portfolio manager pitching "buy Intel because agentic AI" in a meeting, I feel the specific cringe of watching someone explain why a trend is bullish for the <em>adjacent</em> thing rather than the <em>thing itself</em>.</p>
+      <p>And Intel specifically — when I even type that name in this context, there's a vague dread. Not analytical dread. Just the gut-level feeling of a company that has <strong>missed</strong> so many of its own moments that betting on it catching this wave requires a kind of faith I don't have in my body, only maybe in my head on optimistic days.</p>
+      <div class="callout callout-warning">
+        The word <strong>"significantly"</strong> is doing a lot of work here, and it makes me feel uneasy in the way oversold things always do.
+      </div>
+    </div>
+  </div>
+
+  <!-- Black R1 -->
+  <div class="hat-card hat-black">
+    <div class="hat-card-header">
+      <span class="hat-icon">⚫</span>
+      <span class="hat-name">Black Hat</span>
+      <span class="hat-role">Risk &amp; Critical Thinking</span>
+    </div>
+    <div class="hat-body">
+      <div class="premortem">
+        Pre-mortem headline: <em>"Intel and AMD Miss the Agentic AI Wave Despite Being In the Room — Environment Simulation and Orchestration Moves to Custom Silicon"</em>
+      </div>
+      <h3>Risk 1 — High Confidence, Potentially Terminal: The Hyperscaler Custom Silicon Problem</h3>
+      <p>The unstated dependency here is that CPU demand flows to <em>Intel and AMD</em>. It won't automatically. Amazon (Graviton), Google (Axion), Microsoft (Cobalt), and Meta are all building custom ARM-based CPUs specifically for inference and orchestration workloads. The chain: agentic workloads grow → hyperscalers route those workloads to their own cheaper, more power-efficient custom silicon → Intel x86 server CPU market share erodes <em>even as total CPU demand rises</em>. This is a recoverable risk for AMD; it may be terminal for Intel as a thesis.</p>
+      <hr class="divider">
+      <h3>Risk 2 — Medium-High Confidence, Recoverable: RL Workloads Are GPU/NPU-Bound at the Hot Path</h3>
+      <p>The thesis assumes RL = CPU. But the computationally expensive part of reinforcement learning — policy gradient updates, environment rollouts at scale, reward model inference — runs on GPUs or TPUs. Modern vectorized RL frameworks (Isaac Gym, JAX-based pipelines) increasingly push even environment stepping onto GPU. If this architectural trend continues, the CPU uplift is marginal and the stock thesis loses its causal mechanism.</p>
+      <hr class="divider">
+      <h3>Risk 3 — High Confidence, Recoverable for AMD: Intel's Structural Execution Risk Is Independent</h3>
+      <p>Intel's stock performance depends on manufacturing yields, foundry customer wins, and margin recovery — none of which are guaranteed by rising CPU demand. Intel could see the exact demand environment the thesis predicts and <em>still</em> underperform because its cost structure or product cadence disappoints.</p>
+      <div class="callout callout-neutral">
+        <strong>Summary:</strong> AMD is the cleaner expression of this thesis, but even there, custom silicon displacement is the risk nobody is pricing in.
+      </div>
+    </div>
+  </div>
+
+  <!-- Yellow R1 -->
+  <div class="hat-card hat-yellow">
+    <div class="hat-card-header">
+      <span class="hat-icon">🟡</span>
+      <span class="hat-name">Yellow Hat</span>
+      <span class="hat-role">Optimism &amp; Upside</span>
+    </div>
+    <div class="hat-body">
+      <h3>The Most Plausible Substantial Upside</h3>
+      <p>The core mechanism is real and worth taking seriously. RL training (particularly RLHF, GRPO, and environment simulation) and agentic workflows involve CPU-heavy workloads that GPU-centric data centers have historically underprovisioned for. Specifically:</p>
+      <ul>
+        <li><strong>RL environment simulation</strong> (physics engines, game environments, tool-use sandboxes) runs predominantly on CPU. As agents need to interact with real-world-like environments at scale, the CPU:GPU ratio in clusters shifts meaningfully.</li>
+        <li><strong>Agentic orchestration overhead</strong> — managing multi-step tool calls, parsing outputs, coordinating sub-agents — is largely CPU-bound latency work. As inference scales toward millions of autonomous agent sessions, the CPU bottleneck becomes a procurement driver, not an afterthought.</li>
+      </ul>
+      <h3>Who Benefits and Through What Mechanism</h3>
+      <p>If hyperscalers increase CPU-to-GPU ratios in new cluster builds by even 20–30%, that translates to hundreds of thousands of additional high-core-count server CPUs annually. AMD's EPYC line currently holds ~34% of the server CPU market and is gaining share — they capture disproportionate upside here because their core density and power efficiency are currently superior to Intel's in this workload class.</p>
+      <h3>The Asymmetry</h3>
+      <p>AMD's data center CPU business is already growing; this thesis accelerates an existing trend rather than requiring a new one. The downside if the RL/agentic thesis is wrong: AMD still sells into hyperscaler server refresh cycles. The incremental bet is on <em>magnitude</em>, not direction.</p>
+      <h3>Intel's Upside Is Weaker and Conditional</h3>
+      <p>Intel benefits only if they execute their Granite Rapids roadmap and recapture server CPU share — which is a manufacturing and execution bet layered on top of the demand thesis.</p>
+      <div class="callout callout-positive">
+        <strong>Honest ceiling:</strong> This is a real and grounded upside — but "significantly increase stock price" requires that this CPU demand growth outpaces what markets have already priced into AMD.
+      </div>
+    </div>
+  </div>
+
+  <!-- Green R1 -->
+  <div class="hat-card hat-green">
+    <div class="hat-card-header">
+      <span class="hat-icon">🟢</span>
+      <span class="hat-name">Green Hat</span>
+      <span class="hat-role">Creativity &amp; Reframing</span>
+    </div>
+    <div class="hat-body">
+      <h3>Framing Attack First</h3>
+      <p>The argument assumes a straight line: RL/Agentic workloads → more CPU usage → Intel/AMD stock appreciation. The middle link is where the framing breaks.</p>
+      <p>The wrong-problem check: The question being asked is "who benefits from more CPU cycles in AI data centers?" But the more important question is <strong>"who <em>captures the economic value</em> from those CPU cycles?"</strong> These are not the same thing.</p>
+      <hr class="divider">
+      <h3>Alternative 1: The ARM Displacement Thesis</h3>
+      <p>The assumed constraint is that "more CPU" means "more Intel/AMD." But the dominant trend in data center CPU procurement is <em>away</em> from x86. AWS Graviton, Ampere Altra, and Apple Silicon have demonstrated that ARM-based chips can handle agentic/orchestration workloads at materially lower power and cost. If RL inference orchestration scales on ARM, the CPU volume gains accrue to ARM Holdings (and its licensees), not Intel or AMD.</p>
+      <p><strong>Why this might be better than the original framing:</strong> It identifies the same underlying signal (CPU importance rises) but routes it to a different — and arguably more defensible — beneficiary. Intel's data center CPU share has been in structural decline since 2021.</p>
+      <hr class="divider">
+      <h3>Alternative 2: Reframe from CPU to Memory Bandwidth</h3>
+      <p>RL training and agentic workflows are not primarily CPU-bound — they are <strong>memory-bandwidth-bound and interconnect-bound</strong>. The bottleneck in multi-agent systems is passing state, embeddings, and context between components rapidly. This points toward: <strong>Micron</strong> (HBM, DDR5), <strong>Marvell</strong> (custom interconnect silicon), or <strong>Broadcom</strong> (networking ASICs for agent orchestration fabric).</p>
+      <p><strong>Why this might be better:</strong> It targets the actual constraint rather than a component that is merely <em>present</em> in the system. Investing in the bottleneck is more reliable than investing in adjacent capacity that isn't the binding limit.</p>
+      <div class="callout callout-verdict">
+        <strong>Conclusion:</strong> The original framing isn't entirely wrong — CPU usage <em>will</em> rise — but it conflates "usage rises" with "Intel/AMD win." A sharper investment thesis either (a) routes the CPU bet through ARM Holdings, or (b) abandons the CPU frame entirely in favor of memory and interconnect infrastructure.
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════
+       ROUND 2
+       ════════════════════════════════════ -->
+  <div class="section-intro">
+    <span class="section-tag">Round 2</span>
+    <span class="section-heading">Cross-Examination</span>
+    <span class="section-desc">Each hat challenges a specific other; Green attacks the shared framing.</span>
+  </div>
+
+  <!-- White R2 -->
+  <div class="hat-card hat-white">
+    <div class="hat-card-header">
+      <span class="hat-icon">⚪</span>
+      <span class="hat-name">White Hat</span>
+      <span class="hat-role">Auditing Red Hat's Intuitions</span>
+    </div>
+    <div class="hat-body">
+      <h3>"This is a GPU moment, not a CPU moment" — Evidentially Supported</h3>
+      <p>This intuition aligns with what we can actually verify. NVIDIA's H100/H200 revenue trajectory, hyperscaler capex composition, and the architectural choices in dominant RL frameworks (Isaac Lab, JAX-based pipelines moving environment simulation onto GPU) all point the same direction. Red's gut here is tracking real signal, not projection.</p>
+      <h3>"Intel has missed so many moments" — Partially Supported, Partially Unfalsifiable</h3>
+      <p>The evidential part: Intel's data center revenue fell from ~$8.7B (Q4 2021) to ~$4B range by 2023. That's documented share loss to AMD and ARM. The unsupported part: "missed moments" as a pattern doesn't establish that Intel will miss <em>this</em> one. What would decide it: Intel's Granite Rapids adoption rate in hyperscaler procurement.</p>
+      <h3>"The word 'significantly' is doing a lot of work" — This Is Logic, Not Feeling</h3>
+      <p>Red is correct to flag the word, but the objection is logical, not emotional. Calling it a gut feeling obscures that this is actually a falsifiable claim: "significantly" requires a threshold. What magnitude of CPU revenue increase would need to materialize, over what timeframe, to produce meaningful stock outperformance? Red doesn't specify, and neither does the original proposer.</p>
+      <div class="callout callout-neutral">
+        Red's intuitions are directionally useful. Three of them happen to be pointing at real evidence. That doesn't make them analysis.
+      </div>
+    </div>
+  </div>
+
+  <!-- Red R2 -->
+  <div class="hat-card hat-red">
+    <div class="hat-card-header">
+      <span class="hat-icon">🔴</span>
+      <span class="hat-name">Red Hat</span>
+      <span class="hat-role">Responding to White Hat's Homework</span>
+    </div>
+    <div class="hat-body">
+      <p>When I imagine a data center procurement manager reading White Hat's "information gaps" checklist, I feel a specific kind of exhaustion — the exhaustion of someone being handed homework when they already know the answer in their bones.</p>
+      <p>White Hat says "ARM displacement is ignored" as if this is a <em>data gap</em> — like if we just went and found the right spreadsheet, we'd know how to feel about Intel. But when I imagine the actual moment a hyperscaler engineer is choosing chips for an agentic workload cluster, there's no uncertainty in their body about Intel. The uncertainty White is pointing to isn't informational. It's been <em>decided</em>.</p>
+      <p>Here's what White gets wrong about its own information gaps: the ARM market share question doesn't actually need resolution before you feel the answer. The feeling of x86 losing its inevitability happened already — it happened when AWS quietly made Graviton the default recommendation, and engineers stopped arguing about it. White treats this as an open empirical question. <strong>It doesn't feel open.</strong></p>
+      <div class="callout callout-warning">
+        White's information gaps are real. They're just not where the actual uncertainty lives.
+      </div>
+    </div>
+  </div>
+
+  <!-- Black R2 -->
+  <div class="hat-card hat-black">
+    <div class="hat-card-header">
+      <span class="hat-icon">⚫</span>
+      <span class="hat-name">Black Hat</span>
+      <span class="hat-role">Challenging Yellow Hat's EPYC Claim</span>
+    </div>
+    <div class="hat-body">
+      <p>Yellow Hat's strongest specific claim is this: AMD's EPYC line holds ~34% server CPU share, is gaining, and therefore captures <em>disproportionate</em> upside from increased CPU demand in agentic/RL workloads. This is the cleanest part of Yellow's argument. It's also where the most important unstated assumption is hiding.</p>
+      <h3>The Hidden Assumption</h3>
+      <p>Market share percentage is durable across the <em>new</em> workload category, not just the existing server refresh cycle.</p>
+      <h3>Why This Probably Doesn't Hold</h3>
+      <p>The hyperscalers driving agentic infrastructure aren't procuring CPUs the way enterprise refresh cycles work. AWS, Google, and Microsoft are increasingly routing <em>new</em> agentic orchestration workloads onto their custom ARM silicon precisely because it's cheaper per orchestration event than any x86 chip — EPYC included. AMD's 34% share reflects the <em>installed base and existing procurement patterns</em>; it does not predict share in the incremental agentic workload layer.</p>
+      <h3>The Second-Order Effect Yellow Missed</h3>
+      <p>AMD winning share <em>within x86</em> while the x86 category itself loses share to ARM creates a situation where AMD's absolute unit volumes grow slowly or not at all. This is the classic <strong>"winning a shrinking category"</strong> trap. If hyperscalers route 60% of new agentic CPU demand to Graviton and Axion, AMD capturing 40% of the remaining x86 slice is a modest outcome — not "disproportionate upside."</p>
+      <div class="callout callout-warning">
+        <strong>Recoverability assessment:</strong> This isn't company-ending for AMD. But it is fatal to the magnitude claim. "Significantly increase stock price" requires AMD capturing a large share of a large new demand pool.
+      </div>
+    </div>
+  </div>
+
+  <!-- Yellow R2 -->
+  <div class="hat-card hat-yellow">
+    <div class="hat-card-header">
+      <span class="hat-icon">🟡</span>
+      <span class="hat-name">Yellow Hat</span>
+      <span class="hat-role">Challenging Black Hat's Worst-Case Framing</span>
+    </div>
+    <div class="hat-body">
+      <p>The weakest link in Black Hat's argument is <strong>Risk 2: the claim that vectorized GPU-native RL frameworks are making CPU environment simulation obsolete.</strong></p>
+      <p>Black cites Isaac Gym and JAX-based pipelines as evidence that "even" environment stepping is moving to GPU. This is accurate for a specific and narrow workload class: massively parallelized physics simulation for robotics and locomotion tasks. That's a real trend. <strong>It is not the general case.</strong></p>
+      <h3>What Black's Framing Rules Out</h3>
+      <p>The agentic RL workloads that are actually scaling commercially — tool use, web browsing, code execution, multi-step reasoning with real API calls — <strong>cannot run on GPU</strong>. You cannot execute a Python interpreter, spawn a browser sandbox, or make a live API call on a GPU core. These environments are inherently CPU-bound because they require OS-level process management, I/O handling, and non-differentiable external state.</p>
+      <h3>The Mechanism Black Is Missing</h3>
+      <p>The commercial RL scaling frontier has moved from game environments (GPU-parallelizable) toward tool-use and code-execution environments (CPU-bound by architecture). OpenAI's o-series and DeepSeek's R1 training both lean heavily on verifiable task environments — math checks, code execution, structured output verification — all of which run on CPU. This isn't a marginal workload; it's the dominant training paradigm for the models actually reaching production.</p>
+      <div class="callout callout-positive">
+        Black correctly identifies GPU-native simulation as a risk. But he's anchoring on a trajectory that describes 2021-era RL, not 2024–2025 commercial RL.
+      </div>
+    </div>
+  </div>
+
+  <!-- Green R2 -->
+  <div class="hat-card hat-green">
+    <div class="hat-card-header">
+      <span class="hat-icon">🟢</span>
+      <span class="hat-name">Green Hat</span>
+      <span class="hat-role">The Shared Assumption All Four Hats Are Making</span>
+    </div>
+    <div class="hat-body">
+      <h3>Every Hat Accepted the Wrong Framing</h3>
+      <p>Every hat in Round 1 — including my own — accepted the investment thesis as a <em>component-picking</em> problem. Who makes the chip that runs the workload? White asked which chip. Black listed risks to chip vendors. Yellow defended AMD as the cleaner chip play. Red felt uneasy about the chip. I argued for different chips.</p>
+      <p>All of us are asking: <strong>"Which silicon vendor wins?"</strong></p>
+      <p>That is the wrong question. It assumes the value in AI infrastructure accrues to the hardware layer at all.</p>
+      <h3>The Question That Should Be Asked</h3>
+      <p><em>At what layer of the AI stack does pricing power concentrate, and is that layer silicon?</em></p>
+      <p>History is instructive. When internet traffic exploded, Cisco routers carried the packets. Cisco did well — briefly — then commoditized. The value migrated to the application layer (Google, Amazon), and the infrastructure layer became a cost center competed down on margin. The companies with pricing power were those with <em>switching costs</em>, not those with <em>utilization</em>.</p>
+      <h3>The Alternative Thesis</h3>
+      <p>Applied here: if agentic AI scales the way the thesis assumes, the entities with pricing power are the ones whose <em>orchestration logic, model weights, or agent frameworks</em> become irreplaceable. That is OpenAI, Anthropic, or whoever locks in the agentic runtime — not the CPU vendor whose silicon gets purchased in competitive RFPs by hyperscalers who will immediately design it out when something cheaper appears.</p>
+      <div class="callout callout-verdict">
+        The disagreement between the hats about <em>which silicon vendor</em> is a second-order argument about a commodity layer. The first-order question — who has pricing power in the agentic stack — remains unasked by everyone in this room.
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════
+       ROUND 3
+       ════════════════════════════════════ -->
+  <div class="section-intro">
+    <span class="section-tag">Round 3</span>
+    <span class="section-heading">Position Updates</span>
+    <span class="section-desc">Each hat revises or doubles down, explicitly.</span>
+  </div>
+
+  <!-- White R3 -->
+  <div class="hat-card hat-white">
+    <div class="hat-card-header">
+      <span class="hat-icon">⚪</span>
+      <span class="hat-name">White Hat</span>
+      <span class="hat-role">Selective Revision</span>
+    </div>
+    <div class="hat-body">
+      <h3>What Changed My Mind</h3>
+      <p>Yellow Hat's Round 2 challenge to Black Hat is the most evidentially important intervention in this debate. The distinction between GPU-parallelizable physics simulation (Isaac Gym, 2021-era RL) and CPU-bound tool-use/code-execution environments (o-series, DeepSeek R1, 2024–2025 commercial RL) is a real and checkable distinction I underweighted in Round 1. Python interpreter execution, browser sandboxes, and live API calls are architecturally CPU-bound — this is a constraint of OS-level process management, not preference. I now weight the CPU demand thesis more seriously for the specific workload class that is actually scaling commercially.</p>
+      <h3>Where I Hold Ground</h3>
+      <p>The revision above affects the <em>demand side</em> only. The core problem I identified — that Intel and AMD are not automatically the beneficiaries of increased x86 CPU demand — remains completely unaddressed by any hat. The ARM displacement issue is not answered by Yellow's intervention. <strong>Graviton and Axion are running Python interpreters too.</strong></p>
+      <div class="callout callout-neutral">
+        <strong>Sharpest remaining gap:</strong> No one has cited actual hyperscaler procurement data on CPU architecture mix for agentic workloads. Until someone presents that data, the translation from "CPU demand rises" to "Intel and AMD stock rises significantly" remains an unverified chain with a critical missing link.
+      </div>
+    </div>
+  </div>
+
+  <!-- Red R3 -->
+  <div class="hat-card hat-red">
+    <div class="hat-card-header">
+      <span class="hat-icon">🔴</span>
+      <span class="hat-name">Red Hat</span>
+      <span class="hat-role">Double Down, But Sharpened</span>
+    </div>
+    <div class="hat-body">
+      <p>The strongest challenge against me was Green Hat's reframe: <em>stop asking which chip, ask where value concentrates.</em> That landed. Not as logic — as a feeling. When I imagine an investor three years from now looking back at this debate, the person who bet on CPU utilization translating to Intel/AMD stock gains feels like someone who correctly identified the exhaust heat from a fire but thought the exhaust was the fire.</p>
+      <p>White Hat's challenge — that my intuitions need evidential grounding — I felt nothing from. Just the feeling of someone carefully explaining why my nose doesn't constitute proof that something is burning. Correct. Unhelpful.</p>
+      <p>Black Hat's "winning a shrinking category" framing confirmed the hollow feeling I already had about the thesis.</p>
+      <div class="callout callout-warning">
+        The thesis has the feeling of something that is <strong>true at the level of physics and wrong at the level of money</strong>. More CPU cycles will spin. That is probably real. The feeling that Intel and AMD stockholders specifically capture that as equity value? That feeling is absent from my body. It hasn't arrived in three rounds.
+      </div>
+    </div>
+  </div>
+
+  <!-- Black R3 -->
+  <div class="hat-card hat-black">
+    <div class="hat-card-header">
+      <span class="hat-icon">⚫</span>
+      <span class="hat-name">Black Hat</span>
+      <span class="hat-role">Partial Revision</span>
+    </div>
+    <div class="hat-body">
+      <h3>Revision on Risk 2</h3>
+      <p>Yellow Hat's Round 2 challenge on the GPU-native RL claim is correct in a way I have to acknowledge: I anchored on physics-simulation RL (Isaac Gym, robotics locomotion) when the actual commercial frontier has shifted to tool-use and code-execution RL. Code execution, browser sandboxing, and API calls are architecturally CPU-bound. You cannot run a Python interpreter on a GPU core. <strong>Risk 2 is substantially weakened.</strong></p>
+      <h3>But Yellow's Correction Doesn't Fix Risk 1</h3>
+      <p>Proving that CPU demand rises does not prove Intel and AMD capture that demand. Green Hat's Round 2 contribution actually <em>strengthens</em> Risk 1 rather than dissolving it. Even within the silicon layer specifically, the demand flows toward custom ARM silicon first. Hyperscalers building CPU-intensive agentic infrastructure are expanding Graviton and Axion deployments, not reflexively issuing EPYC purchase orders.</p>
+      <div class="callout callout-warning">
+        <strong>Revised pre-mortem headline stands:</strong> "CPU Demand Surged Exactly as Predicted — Intel and AMD Still Missed It."
+      </div>
+    </div>
+  </div>
+
+  <!-- Yellow R3 -->
+  <div class="hat-card hat-yellow">
+    <div class="hat-card-header">
+      <span class="hat-icon">🟡</span>
+      <span class="hat-name">Yellow Hat</span>
+      <span class="hat-role">Partial Revision</span>
+    </div>
+    <div class="hat-body">
+      <h3>What Changed My Mind</h3>
+      <p>Black Hat's "winning a shrinking category" challenge is the sharpest thing said in this debate. I concede it partially. AMD's 34% x86 share number is static, and I was wrong to present it as a forward-looking claim without accounting for ARM displacement of the incremental demand pool.</p>
+      <h3>Where I Hold Ground</h3>
+      <p>My Round 2 challenge to Black stands and was not answered: tool-use, code execution, and verifier-based RL environments are CPU-bound by architecture, not by preference. <strong>You cannot execute a Python sandbox on a GPU.</strong> This is the dominant commercial RL paradigm right now — o-series, R1, and their successors train heavily on verifiable CPU-side environments. This demand is real, it is not routable to ARM in the near term, and it accrues to x86 specifically for legacy compatibility reasons in most cloud environments.</p>
+      <p>On Green Hat's challenge: AMD doesn't need pricing power in perpetuity — it needs a multi-year demand tailwind that markets haven't fully priced. That's a different bar.</p>
+      <div class="callout callout-positive">
+        <strong>Revised position:</strong> AMD benefits from a real, grounded, multi-year CPU demand tailwind from RL/agentic workloads. The magnitude is meaningful but not transformational. Intel's upside remains weak and execution-dependent. The strongest version of this thesis is AMD-specific, and "significantly" overstates what the mechanism produces for Intel.
+      </div>
+    </div>
+  </div>
+
+  <!-- Green R3 -->
+  <div class="hat-card hat-green">
+    <div class="hat-card-header">
+      <span class="hat-icon">🟢</span>
+      <span class="hat-name">Green Hat</span>
+      <span class="hat-role">Doubling Down with One Refinement</span>
+    </div>
+    <div class="hat-body">
+      <h3>Core Position Holds</h3>
+      <p>The original thesis is wrong not because CPU usage won't rise, but because CPU usage rising doesn't translate to Intel/AMD stock appreciation. The value capture question was never answered by anyone defending the original thesis.</p>
+      <h3>The Strongest Challenge Against Me</h3>
+      <p>Yellow Hat's defense of AMD EPYC: if AMD holds ~34% server CPU share and that share is sticky, perhaps the CPU volume increase is enough even in a commoditizing environment. This is the most coherent defense of the original thesis. But Black Hat correctly identified that AMD's share percentage within x86 tells you nothing about the absolute size of the pool AMD is competing for.</p>
+      <h3>The Refinement I'll Accept</h3>
+      <p>Yellow Hat and Black Hat's exchange on verifiable RL environments being CPU-bound is real. The CPU demand signal is more robust than I initially characterized.</p>
+      <div class="callout callout-verdict">
+        <strong>My position, stated precisely:</strong> RL/agentic workloads will increase CPU demand. That demand increase will not disproportionately accrue to Intel or AMD at the stock-price level because (a) ARM displacement is structural, and (b) even captured demand flows to a vendor without pricing power. The thesis identifies the right trend and bets on the wrong layer.
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════
+       BLUE HAT — SYNTHESIS
+       ════════════════════════════════════ -->
+  <div class="section-intro">
+    <span class="section-tag">Synthesis</span>
+    <span class="section-heading">Blue Hat — Final Verdict</span>
+    <span class="section-desc">Process, disagreement map, and decision-relevant summary.</span>
+  </div>
+
+  <div class="synthesis-section">
+    <div class="synthesis-header">
+      <span class="hat-icon">🔵</span>
+      <div>
+        <h2>Blue Hat Synthesis</h2>
+      </div>
+      <span class="hat-role">Process &amp; Orchestration</span>
+    </div>
+    <div class="synthesis-body">
+
+      <h3>Part 1 — Disagreement Map</h3>
+
+      <table class="disagree-table">
+        <thead>
+          <tr>
+            <th>Disagreement</th>
+            <th>Classification &amp; Resolution Path</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <span class="badge badge-resolvable">Resolvable</span><br>
+              Whether RL/agentic workloads are substantially CPU-intensive
+            </td>
+            <td>Yellow (R2) and Black (R3) reached partial convergence: tool-use / code-execution / verifier RL <em>is</em> CPU-bound by architecture; physics-simulation RL is increasingly GPU-native. Settleable with utilization benchmarks from frontier RL pipelines (o-series, R1-class) and hyperscaler infrastructure blog posts.</td>
+          </tr>
+          <tr>
+            <td>
+              <span class="badge badge-tradeoff">Genuine Tradeoff</span><br>
+              Whether increased CPU demand accrues to x86 or ARM custom silicon
+            </td>
+            <td>Partly a values/strategy choice, partly findable via hyperscaler procurement disclosures. White (R1, R3), Black (R1, R3), and Green (R1, R2) all flagged ARM displacement as structural. Yellow's only counter — legacy compatibility — is real but temporary friction, not a moat.</td>
+          </tr>
+          <tr>
+            <td>
+              <span class="badge badge-framing">Framing Artifact</span><br>
+              Whether AMD and Intel should be treated as the same thesis
+            </td>
+            <td>All hats who addressed this (White R1, Yellow R1, Black R1, Yellow R3) converged: they are not the same. AMD has cleaner CPU exposure; Intel has layered execution/foundry risk that is independent of demand. The original framing collapses two distinct investment theses into one.</td>
+          </tr>
+          <tr>
+            <td>
+              <span class="badge badge-tradeoff">Genuine Tradeoff</span><br>
+              Whether "significantly increase stock price" is achievable even if demand thesis is correct
+            </td>
+            <td>Core unresolved tension. Even hats who accepted the CPU demand signal (Yellow, Black after revision) disagreed on whether it produces stock outperformance. Tips on: size of incremental x86 addressable pool vs. ARM-routed pool; AMD gross margin trajectory on EPYC; whether markets have already priced the CPU tailwind.</td>
+          </tr>
+          <tr>
+            <td>
+              <span class="badge badge-framing">Framing Artifact</span><br>
+              Whether the right investment layer is silicon vs. software/orchestration
+            </td>
+            <td>Green (R2, R3) argued the question should be "who has pricing power in the agentic stack." Other hats never engaged this on its merits. The two frames produce entirely different investment conclusions and are not reconcilable within this debate.</td>
+          </tr>
+          <tr>
+            <td>
+              <span class="badge badge-resolvable">Resolvable</span><br>
+              Whether Intel's historical execution failures are predictive here
+            </td>
+            <td>Red raised this emotionally; White partially validated with data (data center revenue fell ~$8.7B to ~$4B, 2021–2023). What would settle it: Granite Rapids hyperscaler adoption rate. The historical pattern is real evidence but not determinative.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Part 2 — Synthesis</h3>
+
+      <p>The most important intellectual event in this debate was Yellow Hat's Round 2 intervention, which Black Hat accepted in Round 3. The CPU demand thesis is <strong>stronger than it initially appeared</strong>, but for a specific reason the original idea didn't articulate: tool-use RL, code-execution environments, and verifier-based training (the dominant paradigm for o-series, R1-class models) are architecturally CPU-bound — not by preference, but because you cannot run a Python interpreter or browser sandbox on a GPU core. The 2021-era worry that GPU-native simulation would displace CPUs in RL is substantially less applicable to the commercial RL frontier of 2024–2025.</p>
+
+      <p><strong>The demand side of the thesis is more solid than it started. The equity side remains broken.</strong></p>
+
+      <p>The ARM displacement problem was raised by White (R1), Black (R1, R3), Green (R1, R2), and Yellow conceded it in R3. No hat successfully refuted it. Yellow's only defense was legacy compatibility in verifiable RL environments — real friction, but structurally temporary. The critical gap: even if CPU demand from agentic RL rises substantially, hyperscalers are actively building custom ARM silicon for exactly these workloads, and those procurement decisions are already underway. x86 demand may rise in absolute terms while losing share of the incremental demand pool.</p>
+
+      <p><strong>The Intel/AMD conflation is the original idea's clearest error.</strong> Every hat that addressed this agreed: Intel's stock thesis requires demand growth <em>AND</em> foundry/execution recovery. AMD's thesis requires only demand growth (within x86). These are different investments with different risk profiles.</p>
+
+      <p>Green Hat's pricing-power reframe was the sharpest structural challenge, and it was largely ignored. The Cisco-routers analogy is historically grounded: infrastructure utilization rarely equals infrastructure pricing power. Silicon vendors in competitive RFPs, facing hyperscalers with custom silicon alternatives, are not in a strong pricing position even if their volumes rise.</p>
+
+      <div class="callout callout-verdict">
+        <strong>Honest synthesis:</strong> The thesis identifies the right trend and makes an underspecified bet on the wrong layer — or at least an underargued bet on a contested layer.
+      </div>
+
+      <h3>Part 3 — Decision-Relevant Summary</h3>
+
+      <div class="decision-grid">
+        <div class="decision-box decision-box-keep">
+          <div class="decision-box-label">Keep</div>
+          <p><strong>The core signal:</strong> Verifiable task environments (code execution, tool use, math checking) create real incremental CPU demand. CPU-bound by architecture, not preference — this survived the debate.</p>
+          <p><strong>AMD-specific framing:</strong> AMD is the cleaner expression of the CPU demand thesis. EPYC has genuine hyperscaler penetration and lacks Intel's compounding execution risks.</p>
+        </div>
+        <div class="decision-box decision-box-change">
+          <div class="decision-box-label">Change</div>
+          <p><strong>Drop Intel from the thesis</strong>, or argue it separately. Intel requires the demand thesis <em>plus</em> foundry recovery <em>plus</em> Granite Rapids adoption. That's three things going right simultaneously.</p>
+          <p><strong>Reframe:</strong> "Verifiable RL training environments are CPU-bound → AMD EPYC has a multi-year demand tailwind that markets may not have fully priced." Force yourself to answer: what fraction of new agentic CPU demand routes to x86 vs. ARM?</p>
+        </div>
+        <div class="decision-box decision-box-decide">
+          <div class="decision-box-label">Decide</div>
+          <p>What fraction of new agentic CPU demand routes to x86 vs. ARM custom silicon? This is the question the thesis lives or dies on. Answer it with <strong>hyperscaler procurement data</strong>, not assumption.</p>
+          <p>Is the AMD demand tailwind already priced in? That's the gap between a real trend and an actionable stock thesis.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  Six Thinking Hats Framework · Debate conducted via structured multi-perspective analysis · 2026
+</footer>
+
+</body>
+</html>
