@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hyperliquid &amp; HYPE — Deep Research Report</title>
+<style>
+  :root {
+    --bg: #0d1117;
+    --bg-soft: #161b22;
+    --bg-card: #11161d;
+    --border: #283039;
+    --text: #c9d1d9;
+    --text-soft: #8b949e;
+    --heading: #f0f6fc;
+    --accent: #4cc9f0;
+    --accent2: #7c9cff;
+    --green: #3fb950;
+    --amber: #d29922;
+    --red: #f85149;
+    --link: #58a6ff;
+    --quote-bg: #1a2029;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.65;
+    font-size: 16px;
+  }
+  .wrap { max-width: 860px; margin: 0 auto; padding: 56px 24px 96px; }
+  h1 {
+    font-size: 2.1rem; line-height: 1.2; color: var(--heading);
+    margin: 0 0 .4em; letter-spacing: -.02em;
+    border-bottom: 1px solid var(--border); padding-bottom: .4em;
+  }
+  h2 {
+    font-size: 1.5rem; color: var(--heading); margin: 2.4em 0 .7em;
+    padding-top: .3em; letter-spacing: -.01em;
+    border-bottom: 1px solid var(--border); padding-bottom: .35em;
+  }
+  h3 { font-size: 1.18rem; color: var(--accent2); margin: 1.8em 0 .5em; }
+  p { margin: .8em 0; }
+  a { color: var(--link); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  strong { color: var(--heading); font-weight: 650; }
+  hr { border: none; border-top: 1px solid var(--border); margin: 2.4em 0; }
+  ul, ol { padding-left: 1.4em; }
+  li { margin: .35em 0; }
+  code {
+    background: var(--bg-soft); padding: .15em .4em; border-radius: 5px;
+    font-size: .88em; color: var(--accent);
+    font-family: "SF Mono", ui-monospace, Menlo, Consolas, monospace;
+  }
+  blockquote {
+    background: var(--quote-bg); border-left: 3px solid var(--accent);
+    margin: 1.4em 0; padding: .8em 1.2em; border-radius: 0 8px 8px 0;
+    color: var(--text-soft); font-size: .96em;
+  }
+  blockquote strong { color: var(--accent); }
+  table {
+    width: 100%; border-collapse: collapse; margin: 1.4em 0;
+    font-size: .9rem; background: var(--bg-card);
+    border-radius: 10px; overflow: hidden;
+    display: block; overflow-x: auto;
+  }
+  thead th {
+    background: var(--bg-soft); color: var(--heading); font-weight: 650;
+    text-align: left; padding: 11px 14px; border-bottom: 2px solid var(--border);
+    white-space: nowrap;
+  }
+  tbody td { padding: 10px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tbody tr:last-child td { border-bottom: none; }
+  tbody tr:hover { background: #1a212b; }
+  .wrap > p:first-of-type { color: var(--text-soft); }
+  ::selection { background: rgba(76,201,240,.3); }
+  /* scrollbar */
+  ::-webkit-scrollbar { height: 10px; width: 10px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 5px; }
+  ::-webkit-scrollbar-thumb:hover { background: #3a444f; }
+</style>
+</head>
+<body>
+  <div class="wrap">
+<h1 id="hyperliquid-hype-deep-research-report">Hyperliquid &amp; HYPE — Deep Research Report</h1>
+<p><strong>Prepared for:</strong> Tong (personal investment decision)
+<strong>Date:</strong> June 5, 2026
+<strong>Horizon:</strong> 3–5 year hold · <strong>Holding method assumed:</strong> self-custody, US-based
+<strong>Existing portfolio assumed:</strong> equal-weight 25% each BTC / ETH / COIN / CRCL</p>
+<blockquote>
+<p><strong>Disclaimer.</strong> This is research to inform your own decision, not financial advice. Claude is not a financial advisor. Crypto figures move fast and several inputs below come from secondary aggregators that conflict with one another — wherever that's true, the report gives a range and flags it. Prices/metrics are as of early June 2026 unless noted.</p>
+</blockquote>
+<hr />
+<h2 id="executive-summary">Executive Summary</h2>
+<p>Hyperliquid is the runaway leader in <strong>on-chain perpetual-futures trading</strong> — a purpose-built Layer-1 that runs a fully on-chain order book with centralized-exchange speed but self-custody. It captures roughly <strong>44–70% of on-chain perp-DEX volume</strong> (depending on source/denominator) and generates an estimated <strong>$0.7B–$1.3B annualized in fees</strong>, almost all of which is recycled into buying back its token, HYPE.</p>
+<p>The token is genuinely differentiated: <strong>no VC allocation</strong>, ~70% community-oriented supply, and an <strong>Assistance Fund that routes ~97% of protocol fees into automated open-market HYPE buybacks</strong> (&gt;$1.3B cumulative by May 2026). That gives HYPE something most tokens lack — a real, cash-flow-backed bid. On <em>market-cap</em> fee multiples it trades around <strong>~15–22x P/F</strong>, cheaper than you'd expect for its growth; on <em>fully-diluted</em> multiples it's far richer (<strong>~58–84x</strong>) because ~75% of supply isn't yet in free float.</p>
+<p><strong>Net view for a 3–5 year, self-custody, US-based holder:</strong> HYPE is a high-conviction-but-high-risk <em>venture-style</em> position, not a blue chip. It is the single best fundamental story in the comparison set on a cash-flow basis, and it is genuinely <strong>complementary</strong> to a BTC/ETH/COIN/CRCL book in <em>theme</em> (it's the on-chain trading-venue bet none of those four give you) — but it <strong>overlaps directly with COIN</strong> as an exchange business and carries the highest idiosyncratic risk of the five. The two dominant risks are <strong>US regulatory exposure</strong> (it offers perps US retail can't legally access; geofenced today; CME/ICE lobbying the CFTC as of May 2026) and <strong>centralization</strong> (a Foundation-controlled validator supermajority that has overridden its own markets — the March 2025 JELLY episode).</p>
+<p>A defensible stance is a <strong>small, satellite-sized position</strong> (illustratively low-single-digit % of the crypto sleeve), entered with eyes open on the unlock schedule (core-team tokens vesting through 2027–28) and the regulatory overhang, and explicitly sized to survive a total loss. The conditions that would flip the thesis are spelled out at the end.</p>
+<hr />
+<h2 id="q1-what-is-hyperliquid-and-why-has-it-become-popular">Q1 — What is Hyperliquid and why has it become popular?</h2>
+<p><strong>What it is.</strong> Hyperliquid is a Layer-1 blockchain purpose-built for trading. Its architecture has two parts. <strong>HyperCore</strong> runs a fully on-chain central limit order book (CLOB) — handling matching, margin, and liquidations for perpetual futures and spot markets with price-time priority, like a CEX, but with self-custody and gasless order placement. <strong>HyperEVM</strong> (mainnet ~Feb 18, 2025) is a Solidity-compatible smart-contract layer that can read and trade against the same native order book without bridging, enabling an on-chain DeFi ecosystem (lending, liquid staking, the USDH stablecoin, RWA perps) to form around the exchange. Consensus uses a custom delegated-proof-of-stake protocol, <strong>HyperBFT</strong>. Vendor/secondary performance claims include sub-second finality, gas under ~$0.001, and ~200,000 orders/sec — impressive but not independently audited.</p>
+<p><strong>How it makes money.</strong> Trading fees (≈0.015% maker / 0.045% taker on perps, slightly undercutting Binance). The defining mechanic is the <strong>Assistance Fund</strong>, which routes ~97% of protocol fees into continuous automated open-market HYPE buybacks — funded by real fees, not token issuance. More volume → more fees → more buybacks → tighter float. That's the "flywheel."</p>
+<p><strong>Why it took off.</strong>
+1. <strong>CEX-grade execution on-chain.</strong> It closed the speed/UX gap with Binance while keeping self-custody — the core post-FTX pitch ("not your keys, not your coins," without giving up performance).
+2. <strong>The airdrop + points flywheel.</strong> A points program rewarding real trading seeded a loyal base ahead of the <strong>Nov 29, 2024 HYPE airdrop</strong> — ~310M tokens (31% of supply) to ~94,000 users, one of the largest airdrops ever (~$12B at distribution). It bought enormous goodwill and word-of-mouth.
+3. <strong>Real token value accrual.</strong> The fee-funded buyback gives HYPE a cash-flow-backed bid, unusual versus inflation-funded peers.
+4. <strong>A credible-neutrality narrative.</strong> Built by ~11 people (founder <strong>Jeff Yan</strong>, ex-Hudson River Trading quant), no VC money, no paid market makers — reportedly turning down billion-dollar funding offers. This "community-owned" story built unusual trust.
+5. <strong>Composability.</strong> HyperEVM let a sticky ecosystem grow around the order book.</p>
+<p><strong>Adoption (dated, with source conflicts flagged).</strong> Perp-DEX market share rose from ~36% (Jan 2026) to ~44% of on-chain perp volume by late March 2026, with some sources citing 60–70% of the on-chain derivatives market — but note one figure of ~13% that measures share of <em>all</em> perps including CEXs (different denominator). Trailing-30-day perp volume ~$172B (2026); Q1 2026 perp volume cited ~$619B; the #2 DEX (dYdX) runs at only ~10–12% of Hyperliquid's volume. L1 TVL ~$1.5B (DefiLlama; some write-ups cite higher "$4B across vaults/bridges"). HYPE traded ~$58–61 with a ~$15.5B market cap and an all-time high of $75.51 (June 2, 2026). 2026 also brought a native stablecoin (USDH), permissionless markets (HIP-3), and spot HYPE ETFs (Bitwise; a Grayscale low-fee product launched June 3, 2026).</p>
+<hr />
+<h2 id="q2-as-a-venture-investment-target-how-does-hype-compare-with-btc-eth-coin-crcl">Q2 — As a venture investment target, how does HYPE compare with BTC, ETH, COIN, CRCL?</h2>
+<p>These are four different <em>asset types</em>, so a single multiple doesn't capture them. The honest comparison is across what you're buying, how value accrues, and what you're paying for the cash flows.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th><strong>HYPE</strong></th>
+<th><strong>BTC</strong></th>
+<th><strong>ETH</strong></th>
+<th><strong>COIN (Coinbase)</strong></th>
+<th><strong>CRCL (Circle)</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>What you own</td>
+<td>Protocol token of a perp DEX</td>
+<td>Scarce digital commodity</td>
+<td>Smart-contract platform asset</td>
+<td>Regulated exchange <strong>equity</strong></td>
+<td>Stablecoin-issuer <strong>equity</strong></td>
+</tr>
+<tr>
+<td>Value accrual</td>
+<td>Fees → buyback (≈97% of fees)</td>
+<td>None (store of value)</td>
+<td>Fee burn + staking yield</td>
+<td>Corporate profit (when profitable)</td>
+<td>Net interest on USDC reserves</td>
+</tr>
+<tr>
+<td>~Mkt cap (Jun '26)</td>
+<td>~$15.5B (FDV ~$57–59B)</td>
+<td>~$1.2T</td>
+<td>~$210B</td>
+<td>~$39B</td>
+<td>~$22B</td>
+</tr>
+<tr>
+<td>Annualized fees/rev</td>
+<td>~$0.7–1.3B fees</td>
+<td>n/a</td>
+<td>network fees (weak in '26)</td>
+<td>~$5.5–6B TTM rev</td>
+<td>~$2.7B TTM rev</td>
+</tr>
+<tr>
+<td>Valuation multiple</td>
+<td>~15–22x P/F (mkt cap); ~58–84x on FDV</td>
+<td>NVT / stock-to-flow</td>
+<td>P/F, burn, yield</td>
+<td>~6–7x P/S; P/E ~40–68x</td>
+<td>~8x P/S; P/E negative (TTM loss)</td>
+</tr>
+<tr>
+<td>Profitability</td>
+<td>Fees → token (no equity P&amp;L)</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>Net <strong>loss</strong> in Q1'26 (–$394M)</td>
+<td>Thin/negative TTM net income</td>
+</tr>
+<tr>
+<td>Maturity / risk</td>
+<td><strong>Venture-stage, highest risk</strong></td>
+<td>Blue chip</td>
+<td>Blue chip</td>
+<td>Mid-cap equity</td>
+<td>Newly public, volatile</td>
+</tr>
+<tr>
+<td>Regulatory wrapper</td>
+<td>Unregistered token, perps</td>
+<td>Commodity (clearest)</td>
+<td>Commodity-ish</td>
+<td>SEC-registered company</td>
+<td>SEC-registered company</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Reading the table.</strong> On a pure cash-flow basis, <strong>HYPE screens as the cheapest high-growth name in the set on market-cap fee multiples</strong> (~15–22x P/F for a business compounding fast and returning ~all fees to holders), and meaningfully <em>richer</em> than COIN/CRCL once you switch to FDV (~58–84x) — because the float is small and ~75% of supply is still locked. COIN and CRCL are "cheaper" on P/S (~6–8x) but are an exchange currently posting losses and a rate-sensitive stablecoin issuer with thin net income, respectively. BTC and ETH aren't valued on fees at all — BTC is a non-cash-flow store of value, ETH a yield/burn asset whose 2026 fee generation is weak.</p>
+<p><strong>As a venture target specifically:</strong> HYPE is the only one of the five that still has a <em>venture</em> return profile — small relative size, dominant share of a fast-growing niche, real and growing fundamentals, but binary-ish risk. BTC/ETH are large-cap "beta," COIN/CRCL are public equities with bounded upside and regulatory cover. If the question is "where is the asymmetric, venture-style upside," HYPE is the clear candidate; if the question is "where is the safety," it is the clear laggard.</p>
+<hr />
+<h2 id="q3-is-hype-worth-a-long-term-35-year-investment">Q3 — Is HYPE worth a long-term (3–5 year) investment?</h2>
+<p><strong>The bull case.</strong> On-chain derivatives is a large and growing market; Hyperliquid has won it decisively (multiples of the #2 player). The buyback flywheel means that <em>if volume holds or grows</em>, HYPE is structurally bid by its own cash flows — ~7% of market cap in annual buybacks, roughly 4–5x ETH's or BNB's rate. No VC overhang, a tightening float (a January 2026 proposal even floated burning ~13% of supply), and an expanding HyperEVM ecosystem plus US ETF access (Bitwise, Grayscale) widen the buyer base. This is one of the few tokens with a defensible "it earns money and returns it" story.</p>
+<p><strong>The bear case.</strong> Revenue is almost entirely <strong>speculative leverage volume</strong> — cyclical and competition-sensitive. Fee compression is already visible (taker fees fall to ~0.024% at high volume; an ETF fee war is underway). Competitors are coming hard (CZ/Binance-linked <strong>Aster</strong>, plus dYdX, GMX). The buyback is only as strong as volume — in a bear market it shrinks exactly when price support is most needed. And the FDV multiple (~58–84x) prices in years of continued dominance; <strong>core-contributor unlocks vest through 2027–2028</strong> into a low float, a persistent dilution vector. Centralization and regulation (see Q5) are existential tail risks, not just haircuts.</p>
+<p><strong>Tokenomics that matter for a 3–5 yr hold.</strong> 1B max supply; ~70% community-allocated; <strong>0% VC</strong> (a genuine positive — no privileged early investors dumping). But <strong>23.8% (~238M) goes to core contributors</strong>, whose first cliff hit Nov 29, 2025 and vests through ~2027, and <strong>~39% is "future emissions"</strong> still largely undistributed — the biggest long-term overhang. Float is low (~25–27% of max supply), which amplifies both buyback impact <em>and</em> unlock impact. Next unlocks are ongoing through 2026 (e.g., a July 2026 event).</p>
+<p><strong>Scenarios (drivers, not price predictions).</strong>
+- <em>Bull:</em> on-chain perps keep taking share from CEXs, Hyperliquid holds its lead, fees grow, buyback + burn tighten float, ETF inflows compound demand → HYPE meaningfully re-rates and the FDV multiple is justified by growth.
+- <em>Base:</em> it stays the category leader but growth normalizes and fees compress; buyback offsets unlocks roughly; HYPE roughly tracks crypto beta with idiosyncratic upside.
+- <em>Bear:</em> a regulatory action restricts access, or a competitor/credibility event (another JELLY-type incident) erodes trust; volume falls, buyback shrinks, unlocks dilute → sharp, possibly permanent drawdown.</p>
+<p><strong>Verdict.</strong> <em>Worth a position, sized as a high-risk satellite — not a core holding.</em> The fundamentals are the best in the comparison set on a cash-flow basis, but the regulatory and centralization tails are real enough that the position should be sized to survive going to zero. "Worth it" is conditional on (a) you can hold it self-custody legally/practically as a US person, and (b) you accept venture-grade volatility.</p>
+<hr />
+<h2 id="q4-does-hype-complement-a-btc-eth-coin-crcl-portfolio">Q4 — Does HYPE complement a BTC / ETH / COIN / CRCL portfolio?</h2>
+<p><strong>Theme/exposure mapping of the existing book (25% each):</strong>
+- <strong>BTC</strong> — digital store of value (macro/liquidity beta, no cash flow)
+- <strong>ETH</strong> — smart-contract platform (infrastructure beta, weak 2026 cash flow)
+- <strong>COIN</strong> — regulated <em>exchange equity</em> (trading-volume cash flow, US-regulated wrapper)
+- <strong>CRCL</strong> — <em>stablecoin issuer equity</em> (interest-rate-sensitive reserve income)</p>
+<p><strong>Where HYPE adds something new.</strong> None of the four gives you direct exposure to the <strong>on-chain trading venue</strong> — a token that earns and returns trading fees with self-custody. HYPE is the "owning the casino, on-chain" bet. In theme terms it's additive: it's the app-layer, cash-flow-bearing token your book otherwise lacks (BTC/ETH are base-layer; COIN/CRCL are equities in a regulated wrapper).</p>
+<p><strong>Where it overlaps — and this matters.</strong> HYPE and <strong>COIN are the same fundamental business</strong> (an exchange earning fees on trading volume), just different wrappers (token vs. regulated equity) and different venues (on-chain perps vs. regulated spot/derivatives). They are arguably <em>competitors</em>: Hyperliquid's growth is partly share taken from centralized venues like Coinbase. So adding HYPE on top of COIN concentrates your book further into "exchange/trading-volume" as a factor rather than diversifying it. The pair is better thought of as <strong>two expressions of one thesis</strong> ("trading activity migrates and grows") — one regulated and bounded (COIN), one unregulated and asymmetric (HYPE).</p>
+<p><strong>Correlation reality.</strong> As a crypto-native, high-beta token, HYPE will be <strong>highly correlated with the overall crypto risk cycle</strong> (BTC/ETH) in drawdowns — diversification benefits tend to evaporate exactly when you want them. Its idiosyncratic drivers (buyback, unlocks, regulation) add return dispersion in normal times but not much downside protection in a crypto bear.</p>
+<p><strong>Verdict.</strong> HYPE is <strong>thematically complementary</strong> (new exposure: on-chain, fee-earning trading-venue token) but <strong>factor-overlapping with COIN</strong> and <strong>beta-correlated with BTC/ETH</strong>. It improves the <em>upside profile</em> and adds a genuinely different mechanism (fee buyback), but it does <strong>not</strong> materially reduce portfolio risk and it doubles down on exchange exposure. Treat it as a <strong>return-seeking satellite, not a diversifier.</strong> A sensible framing: fund it partly from the COIN sleeve (since they're the same thesis) rather than adding it as pure incremental risk on top, and keep the combined "exchange" exposure (COIN + HYPE) within your risk tolerance. Illustrative sizing: a <strong>low-single-digit % of the total crypto allocation</strong>, explicitly sized to survive a total loss.</p>
+<hr />
+<h2 id="q5-major-risks">Q5 — Major risks</h2>
+<p>Ranked by likelihood × impact for a US-based, self-custody, long-term holder.</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Risk</th>
+<th>Category</th>
+<th>Likelihood</th>
+<th>Impact</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>US regulatory enforcement / token-as-security / loss of access</td>
+<td>Regulatory</td>
+<td>High</td>
+<td>High</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Validator centralization &amp; the "validator put"</td>
+<td>Technical / Governance</td>
+<td>High</td>
+<td>High</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Recurring market-manipulation / HLP cascade exploits</td>
+<td>Technical / Market</td>
+<td>High</td>
+<td>Med</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Key-person dependence (Jeff Yan / ~11-person team)</td>
+<td>Governance</td>
+<td>Med</td>
+<td>High</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Unlock overhang &amp; dilution (core team vesting 2027–28)</td>
+<td>Tokenomics</td>
+<td>High</td>
+<td>Med</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Competitive fee compression / volume dependence</td>
+<td>Market</td>
+<td>Med</td>
+<td>Med</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Bridge as attack surface</td>
+<td>Technical</td>
+<td>Med</td>
+<td>High</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Buyback / Assistance Fund sustainability</td>
+<td>Tokenomics</td>
+<td>Med</td>
+<td>Med</td>
+</tr>
+</tbody>
+</table>
+<p><strong>1. Regulatory (top risk).</strong> Hyperliquid offers perpetual futures — a derivative US retail can't legally access on an unregistered venue. It geofences the US/Ontario/sanctioned jurisdictions by IP and uses no KYC (wallet access). On <strong>May 15, 2026</strong>, CME and ICE lobbied the CFTC/Congress, arguing Hyperliquid's perps could distort benchmarks and enable sanctions evasion, demanding CFTC registration, KYC, and surveillance. No formal complaint as of May 2026 — this is pressure, not yet enforcement — but the CFTC is separately moving to pull spot-referenced perps inside a US-regulated structure (could legitimize <em>registered</em> perps and marginalize unregistered ones). HYPE-as-security risk is analytical, not adjudicated, but the fee-to-token buyback arguably strengthens a Howey argument. For <em>you specifically</em>, this risk is double: value risk to HYPE, plus your own access depending on geofencing you'd be navigating as a US person.</p>
+<p><strong>2. Validator centralization / "validator put."</strong> Despite the decentralization narrative, ~21–27 validators run the L1, with ~5 Hyper Foundation nodes holding <strong>~83% of staked HYPE</strong> — sole two-thirds quorum. In the <strong>March 26, 2025 JELLY episode</strong>, validators voted within ~2 minutes to override the oracle, force-settle a market at the attacker's price, and delist it (saving a ~$230M HLP loss but proving the set can intervene in markets at will). This is documented fact, and it is the central counter to "decentralized."</p>
+<p><strong>3. Recurring manipulation / HLP cascades.</strong> The HLP vault auto-absorbs liquidations; combined with high leverage on thin tokens it's repeatedly exploitable: JELLY (Mar 2025, ~$12M+ HLP exposure), POPCAT (Nov 12–13, 2025, ~$4.9M HLP bad debt, ~$63M platform liquidations) — at least the third such attack in 2025. Losses absorbed so far, but the design flaw persists.</p>
+<p><strong>4. Key-person / governance.</strong> ~11 people; Jeff Yan is the one consistently public figure; no VC, no external board. Upgrades, treasury, and the Assistance Fund are effectively core-team controlled, with no visible succession plan.</p>
+<p><strong>5. Unlock overhang.</strong> Zero VC overhang is a real positive, but <strong>23.8% (~238M HYPE)</strong> to core contributors began vesting after a Nov 29, 2025 cliff and runs through ~2027, and ~39% "future emissions" is the larger long-term overhang — into a low float that amplifies price impact. One single unlock was estimated to dilute holders by ~$330M.</p>
+<p><strong>6. Competitive / volume dependence.</strong> Revenue is ~entirely speculative perp volume. Aster (CZ/Binance-backed, 2026), dYdX, and GMX compete; taker fees already compress at high volume and an ETF fee war signals margin pressure.</p>
+<p><strong>7. Bridge.</strong> A lock-and-mint Arbitrum bridge concentrates billions behind a small validator quorum (historically 3-of-4). Audited (Zellic, Cyfrin), no breach to date, but catastrophic if compromised; North-Korea-tagged wallets have probed the platform.</p>
+<p><strong>8. Buyback sustainability.</strong> The ~97%-of-fees buyback is real and not issuance-subsidized — but proportional to volume. A downturn shrinks it precisely when support is most needed.</p>
+<p><strong>Documented vs. speculative:</strong> JELLY (Mar 2025), POPCAT (Nov 2025), the ~83% Foundation validator stake, and the unlock schedule are documented facts. A HYPE-as-security ruling and a future bridge hack are risk <em>scenarios</em>, not realized events.</p>
+<hr />
+<h2 id="assumptions-open-questions-what-would-change-the-view">Assumptions, Open Questions &amp; What Would Change the View</h2>
+<p><strong>Key assumptions / caveats.</strong> Several headline figures conflict across sources and are given as ranges: HYPE circulating supply (~222–253M; an outlier self-reports ~334M), market cap (~$15.5B base case vs. ~$24B outlier), annualized fees (~$0.7B recent run-rate vs. ~$1.0–1.3B peak), and market share (~44–70% of <em>on-chain</em> perps vs. ~13% of <em>all</em> perps). Multiples shift materially with these inputs — hence market-cap P/F ~15–22x but FDV multiples ~58–84x. Treat all live numbers as early-June-2026 snapshots that will drift.</p>
+<p><strong>What would strengthen the bull thesis:</strong> sustained or growing volume share against CEXs; the proposed supply burn passing; clean execution with no further JELLY-type incidents; constructive US regulatory clarity (registered-perp pathway that Hyperliquid can join); continued ETF inflows.</p>
+<p><strong>What would invalidate it (exit/avoid signals):</strong> a US enforcement action or formal SEC/CFTC move against the protocol or HYPE; a validator/bridge security failure; evidence the buyback is being scaled back or the Foundation is selling; a credible competitor taking sustained share; or a major unlock met with persistent selling that the buyback can't absorb.</p>
+<p><strong>Practical open items for you before sizing:</strong> confirm you can hold HYPE self-custody as a US person in a way you're comfortable with (access and tax); decide whether to fund any HYPE position partly from the overlapping COIN sleeve; and set a hard, pre-committed max position size given the total-loss tail.</p>
+<hr />
+<h2 id="sources">Sources</h2>
+<p><strong>Protocol, product &amp; adoption</strong>
+- <a href="https://rocknblock.io/blog/how-does-hyperliquid-work-a-technical-deep-dive">How Hyperliquid Works (architecture, CLOB, HyperEVM) — rocknblock</a>
+- <a href="https://eco.com/support/en/articles/15192000-what-is-hyperevm-hyperliquid-s-evm-layer-for-defi-in-2026">What Is HyperEVM — Eco</a>
+- <a href="https://eco.com/support/en/articles/15191998-hyperliquid-fees-explained-maker-taker-funding-and-withdrawal-in-2026">Hyperliquid fees explained — Eco</a>
+- <a href="https://www.coinperps.com/learn/hyperliquid-vs-binance-fees">Hyperliquid vs Binance fees — coinperps</a>
+- <a href="https://www.coingecko.com/learn/what-is-hyperliquid-and-what-the-hyperliquid-airdrop-means-for-defi">What Is Hyperliquid / the airdrop — CoinGecko Learn</a>
+- <a href="https://phemex.com/academy/jeff-yan-hyperliquid-founder-exchange">Who is Jeff Yan — Phemex</a>
+- <a href="https://fortune.com/2026/01/12/hyperliquid-jeff-yan-defi-perpetuals-perps-exchange-defi/">11 people, no funding — Fortune (Jan 12, 2026)</a>
+- <a href="https://www.panewslab.com/en/articles/1m37x8gd">Airdrop data (avg 2,915 / median 64.5 HYPE) — PANews</a>
+- <a href="https://cryptobriefing.com/hyperliquid-rwa-perps-44-percent-volume/">Hyperliquid RWA perps 44% of volume — Crypto Briefing</a>
+- <a href="https://yellow.com/research/hyperliquid-perp-volume-dominance-how-2026">Perp volume dominance 2026 — yellow.com</a>
+- <a href="https://www.datawallet.com/crypto/hyperliquid-statistics">Hyperliquid statistics 2026 — Datawallet</a>
+- <a href="https://defillama.com/protocol/hyperliquid">Hyperliquid TVL/Fees/Revenue — DefiLlama</a></p>
+<p><strong>Tokenomics, valuation &amp; comparables</strong>
+- <a href="https://tokenomist.ai/hyperliquid">Hyperliquid tokenomics &amp; vesting — Tokenomist</a>
+- <a href="https://defillama.com/unlocks/hyperliquid">HYPE token unlocks — DefiLlama</a>
+- <a href="https://www.coingecko.com/en/coins/hyperliquid">HYPE price &amp; market cap — CoinGecko</a>
+- <a href="https://coinmarketcap.com/currencies/hyperliquid/">HYPE price &amp; market cap — CoinMarketCap</a>
+- <a href="https://tokenomics.com/articles/hyperliquid-tokenomics-how-hype-captures-65m-monthly-in-holder-revenue">HYPE captures $65M monthly holder revenue — Tokenomics.com</a>
+- <a href="https://crypto.news/why-hype-is-different-inside-hyperliquids-buyback/">Inside Hyperliquid's buyback — crypto.news</a>
+- <a href="https://thedefiant.io/news/tokens/hyperliquid-proposes-burning-13-percent-of-circulating-token-supply">Proposal to burn 13% of supply — The Defiant</a>
+- <a href="https://www.cnbc.com/2026/05/07/coinbase-coin-earnings-q1-2026.html">Coinbase Q1 2026 earnings — CNBC</a>
+- <a href="https://www.sec.gov/Archives/edgar/data/0001679788/000167978826000053/q126earningsdeck-finalse.htm">Coinbase Q1'26 8-K — SEC</a>
+- <a href="https://stockanalysis.com/stocks/coin/statistics/">COIN statistics — StockAnalysis</a>
+- <a href="https://www.sec.gov/Archives/edgar/data/0001876042/000187604226000148/final_05x11q1epr30.htm">Circle Q1 2026 results 8-K — SEC</a>
+- <a href="https://www.macrotrends.net/stocks/charts/CRCL/circle-internet/market-cap">CRCL market cap — MacroTrends</a>
+- <a href="https://fortune.com/article/price-of-bitcoin-06-05-2026/">Bitcoin price Jun 5, 2026 — Fortune</a>
+- <a href="https://www.coingecko.com/en/coins/ethereum">Ethereum price &amp; market cap — CoinGecko</a></p>
+<p><strong>Risk</strong>
+- <a href="https://oakresearch.io/en/analyses/investigations/hyperliquid-jelly-attack-context-vulnerability-team-solution">JELLY attack context &amp; solution — OAK Research</a>
+- <a href="https://www.coindesk.com/markets/2025/03/26/hyperliquid-delists-jellyjelly-after-vault-squeezed-in-usd13m-tussle">Hyperliquid delists JELLY after vault squeeze — CoinDesk (Mar 26, 2025)</a>
+- <a href="https://www.halborn.com/blog/post/explained-the-hyperliquid-hack-march-2025">The Hyperliquid hack, March 2025 — Halborn</a>
+- <a href="https://www.coindesk.com/markets/2025/11/13/peak-degen-warfare-alleged-popcat-manipulation-hits-hyperliquid-with-usd4-9m-loss">POPCAT manipulation, $4.9M loss — CoinDesk (Nov 13, 2025)</a>
+- <a href="https://www.halborn.com/blog/post/explained-the-hyperliquid-hack-november-2025">The Hyperliquid hack, November 2025 — Halborn</a>
+- <a href="https://blockworks.com/news/hyperliquid-decentralization-validator-put">The "validator put" — Blockworks</a>
+- <a href="https://onekey.so/blog/ecosystem/hyperliquid-validator-risk/">Hyperliquid validator risk briefing — OneKey</a>
+- <a href="https://www.coindesk.com/markets/2026/05/15/cme-ice-push-u-s-regulators-to-scrutinize-hyperliquid-over-manipulation-risks-bloomberg">CME, ICE push US regulators to scrutinize Hyperliquid — CoinDesk (May 15, 2026)</a>
+- <a href="https://www.theblock.co/post/401512/hyperliquid-onchain-perps-offer-efficiency-transparency-ice-cme-cftc-oversight">Hyperliquid policy response — The Block</a>
+- <a href="https://www.datawallet.com/crypto/hyperliquid-supported-and-restricted-countries">Supported &amp; restricted countries — Datawallet</a>
+- <a href="https://netcoins.com/blog/hyperliquids-hype-token-unlocks">First major HYPE unlock — Netcoins</a>
+- <a href="https://www.coindesk.com/markets/2026/06/03/grayscale-launches-lowest-fee-u-s-hyperliquid-etf-as-competition-heats-up-around-hype">Grayscale launches lowest-fee US Hyperliquid ETF — CoinDesk (Jun 3, 2026)</a>
+- <a href="https://messari.io/research/deep-research-reports/hyperliquid-diligence-report-fdf9486f-d978-4a6f-980e-ccadc697b120">Hyperliquid diligence report — Messari</a>
+- <a href="https://hyperliquid.gitbook.io/hyperliquid-docs/risks">Risks — Hyperliquid Docs</a></p>
+  </div>
+</body>
+</html>
