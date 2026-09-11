@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Local LLM Inference: vLLM vs SGLang vs llama.cpp</title>
+<style>
+  :root {
+    --paper: #f6f7f9;
+    --panel: #ffffff;
+    --ink: #161a22;
+    --ink-soft: #4c5462;
+    --ink-faint: #7b8494;
+    --rule: #e3e6ec;
+    --rule-strong: #cfd4dd;
+
+    --vllm: #2f57c4;     --vllm-wash: #eef2fc;
+    --sglang: #7a37cf;   --sglang-wash: #f3edfb;
+    --llama: #b0700c;    --llama-wash: #fbf3e4;
+
+    --pro: #1f7a45;
+    --con: #b23b3b;
+
+    --mono: ui-monospace, "SF Mono", "SFMono-Regular", Menlo, Consolas, "Liberation Mono", monospace;
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { -webkit-text-size-adjust: 100%; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    line-height: 1.55;
+    font-size: 17px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 56px 28px 80px;
+  }
+
+  /* ---------- header ---------- */
+  header { margin-bottom: 44px; }
+
+  .kicker {
+    font-size: 0.86rem;
+    color: var(--ink-faint);
+    letter-spacing: 0.01em;
+    margin: 0 0 14px;
+  }
+
+  h1 {
+    font-size: clamp(1.9rem, 4.4vw, 3rem);
+    line-height: 1.05;
+    font-weight: 750;
+    letter-spacing: -0.02em;
+    margin: 0 0 6px;
+  }
+  h1 .v { color: var(--vllm); }
+  h1 .s { color: var(--sglang); }
+  h1 .l { color: var(--llama); }
+
+  .lede {
+    font-size: 1.12rem;
+    color: var(--ink-soft);
+    max-width: 65ch;
+    margin: 18px 0 0;
+  }
+
+  /* ---------- positioning row ---------- */
+  .pillars {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    margin: 40px 0 52px;
+  }
+  .pillar {
+    background: var(--panel);
+    border: 1px solid var(--rule);
+    border-top: 4px solid var(--accent);
+    border-radius: 3px;
+    padding: 20px 20px 22px;
+  }
+  .pillar .name {
+    font-family: var(--mono);
+    font-size: 1.18rem;
+    font-weight: 600;
+    color: var(--accent);
+    margin: 0 0 2px;
+  }
+  .pillar .tag {
+    font-size: 1.02rem;
+    font-weight: 650;
+    margin: 6px 0 8px;
+    letter-spacing: -0.01em;
+  }
+  .pillar p {
+    margin: 0;
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+    line-height: 1.5;
+  }
+  .p-vllm  { --accent: var(--vllm); }
+  .p-sglang{ --accent: var(--sglang); }
+  .p-llama { --accent: var(--llama); }
+
+  /* ---------- section headings ---------- */
+  h2 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    letter-spacing: -0.015em;
+    margin: 56px 0 6px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--rule-strong);
+  }
+  h2:first-of-type { margin-top: 0; }
+  .sub {
+    color: var(--ink-soft);
+    font-size: 0.98rem;
+    margin: 0 0 26px;
+    max-width: 68ch;
+  }
+
+  /* ---------- decision guide ---------- */
+  .guide { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .card {
+    background: var(--panel);
+    border: 1px solid var(--rule);
+    border-left: 4px solid var(--accent);
+    border-radius: 3px;
+    padding: 22px 22px 24px;
+  }
+  .card h3 {
+    font-family: var(--mono);
+    font-size: 1.05rem;
+    color: var(--accent);
+    margin: 0 0 3px;
+    font-weight: 600;
+  }
+  .card .when { font-size: 0.82rem; color: var(--ink-faint); margin: 0 0 14px; }
+  .card ul { margin: 0; padding: 0; list-style: none; }
+  .card li {
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 11px;
+    font-size: 0.95rem;
+    color: var(--ink);
+    line-height: 1.45;
+  }
+  .card li:last-child { margin-bottom: 0; }
+  .card li::before {
+    content: "";
+    position: absolute;
+    left: 2px; top: 0.62em;
+    width: 6px; height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+  }
+
+  /* ---------- table ---------- */
+  .table-scroll { overflow-x: auto; border: 1px solid var(--rule); border-radius: 3px; }
+  table { border-collapse: collapse; width: 100%; min-width: 720px; background: var(--panel); }
+  caption { text-align: left; }
+
+  th, td {
+    text-align: left;
+    padding: 13px 16px;
+    vertical-align: top;
+    font-size: 0.92rem;
+    border-bottom: 1px solid var(--rule);
+  }
+  thead th {
+    position: sticky; top: 0;
+    background: var(--panel);
+    border-bottom: 2px solid var(--rule-strong);
+    font-family: var(--mono);
+    font-size: 0.95rem;
+    font-weight: 600;
+  }
+  thead th.dim { color: var(--ink-faint); font-family: var(--sans); font-weight: 600; }
+  thead th.c-vllm  { color: var(--vllm); }
+  thead th.c-sglang{ color: var(--sglang); }
+  thead th.c-llama { color: var(--llama); }
+
+  tbody tr:last-child td { border-bottom: none; }
+  td.dim { font-weight: 650; color: var(--ink); width: 20%; }
+  tbody tr:nth-child(even) { background: #fafbfc; }
+
+  .col-vllm  { box-shadow: inset 3px 0 0 var(--vllm-wash); }
+  .col-sglang{ box-shadow: inset 3px 0 0 var(--sglang-wash); }
+  .col-llama { box-shadow: inset 3px 0 0 var(--llama-wash); }
+
+  .best { font-weight: 650; }
+  .best.v { color: var(--vllm); }
+  .best.s { color: var(--sglang); }
+  .best.l { color: var(--llama); }
+  code, .mono { font-family: var(--mono); font-size: 0.88em; }
+
+  /* ---------- pros/cons ---------- */
+  .pc { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .pc-card {
+    background: var(--panel);
+    border: 1px solid var(--rule);
+    border-top: 4px solid var(--accent);
+    border-radius: 3px;
+    padding: 20px 20px 22px;
+  }
+  .pc-card .name {
+    font-family: var(--mono);
+    font-weight: 600;
+    color: var(--accent);
+    font-size: 1.05rem;
+    margin: 0 0 16px;
+  }
+  .pc-card h4 {
+    margin: 0 0 8px;
+    font-size: 0.8rem;
+    color: var(--ink-faint);
+    font-weight: 600;
+  }
+  .pc-card ul { list-style: none; margin: 0 0 18px; padding: 0; }
+  .pc-card ul:last-child { margin-bottom: 0; }
+  .pc-card li {
+    position: relative;
+    padding-left: 22px;
+    margin-bottom: 9px;
+    font-size: 0.9rem;
+    line-height: 1.42;
+    color: var(--ink);
+  }
+  .pc-card li::before {
+    position: absolute; left: 0; top: 0;
+    font-family: var(--mono); font-weight: 700;
+  }
+  .pros li::before  { content: "+"; color: var(--pro); }
+  .cons li::before  { content: "\2013"; color: var(--con); }
+
+  /* ---------- footnote ---------- */
+  .note {
+    margin-top: 52px;
+    padding: 22px 24px;
+    background: var(--panel);
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    font-size: 0.92rem;
+    color: var(--ink-soft);
+    line-height: 1.55;
+  }
+  .note strong { color: var(--ink); font-weight: 650; }
+  .foot {
+    margin-top: 28px;
+    font-size: 0.82rem;
+    color: var(--ink-faint);
+    line-height: 1.5;
+  }
+
+  a { color: var(--vllm); text-decoration: none; border-bottom: 1px solid var(--vllm-wash); }
+
+  /* ---------- responsive ---------- */
+  @media (max-width: 860px) {
+    .pillars, .guide, .pc { grid-template-columns: 1fr; }
+    .wrap { padding: 40px 20px 60px; }
+    body { font-size: 16px; }
+  }
+
+  @media print {
+    body { background: #fff; font-size: 11pt; }
+    .wrap { padding: 0; max-width: 100%; }
+    .pillar, .card, .pc-card, .note, .table-scroll { break-inside: avoid; }
+    thead th { position: static; }
+    a { border: none; color: var(--ink); }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <p class="kicker">Local LLM inference — a practical decision guide</p>
+    <h1><span class="v">vLLM</span>, <span class="s">SGLang</span> &amp; <span class="l">llama.cpp</span></h1>
+    <p class="lede">Three excellent open-source engines for running language models on your own hardware. They aren't really competitors so much as answers to different questions. Here's how to tell which one fits what you're doing.</p>
+  </header>
+
+  <div class="pillars">
+    <div class="pillar p-vllm">
+      <p class="name">vLLM</p>
+      <p class="tag">The concurrency workhorse</p>
+      <p>Production serving built to handle many requests at once. If you're feeding a fleet of users or agents from one box, this is the one that keeps aggregate throughput high.</p>
+    </div>
+    <div class="pillar p-sglang">
+      <p class="name">SGLang</p>
+      <p class="tag">The single-stream speedster</p>
+      <p>Fastest time-to-first-token and per-request speed, with the strongest structured-output engine. Shines on low-concurrency, latency-sensitive, and heavily-templated workloads.</p>
+    </div>
+    <div class="pillar p-llama">
+      <p class="name">llama.cpp</p>
+      <p class="tag">Runs anywhere</p>
+      <p>The portability champion — CPU, Apple Silicon, tiny VRAM, mixed hardware. GGUF quantization fits big models into small memory. The go-to for single-user and edge.</p>
+    </div>
+  </div>
+
+  <h2>Which one should you pick?</h2>
+  <p class="sub">Start here. The right choice is driven almost entirely by your workload and hardware, not by which engine is "best" — all three are genuinely good.</p>
+
+  <div class="guide">
+    <div class="card p-vllm">
+      <h3>vLLM</h3>
+      <p class="when">Choose it when…</p>
+      <ul>
+        <li>You serve <strong>many concurrent requests</strong> — multiple users, or an agent fleet hitting one endpoint.</li>
+        <li>Aggregate throughput matters more than the speed of any single reply.</li>
+        <li>You have datacenter-class NVIDIA GPUs and want a stable, well-worn production server.</li>
+        <li>You want fast support for brand-new model architectures.</li>
+      </ul>
+    </div>
+    <div class="card p-sglang">
+      <h3>SGLang</h3>
+      <p class="when">Choose it when…</p>
+      <ul>
+        <li>You want the <strong>fastest possible single response</strong> — lowest latency per request.</li>
+        <li>Your work is heavy on <strong>structured output</strong> (JSON, tool calls, constrained decoding).</li>
+        <li>You reuse long shared prefixes — RadixAttention caches them and pays off big.</li>
+        <li>Concurrency is low-to-moderate, and raw per-stream performance is the goal.</li>
+      </ul>
+    </div>
+    <div class="card p-llama">
+      <h3>llama.cpp</h3>
+      <p class="when">Choose it when…</p>
+      <ul>
+        <li>You're on <strong>CPU, a Mac, limited VRAM, or mixed hardware</strong> — anything but a big GPU.</li>
+        <li>You need heavy <strong>quantization</strong> (GGUF) to fit a large model into small memory.</li>
+        <li>It's a single-user, laptop, edge, or embedded setup.</li>
+        <li>You want the simplest possible setup — one binary, one model file, done.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2>Side by side</h2>
+  <p class="sub">The tinted cell in each row marks the engine that leads on that dimension (where one clearly does).</p>
+
+  <div class="table-scroll">
+  <table>
+    <thead>
+      <tr>
+        <th class="dim">Dimension</th>
+        <th class="c-vllm">vLLM</th>
+        <th class="c-sglang">SGLang</th>
+        <th class="c-llama">llama.cpp</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="dim">Built for</td>
+        <td>High-concurrency serving</td>
+        <td>Low-latency + structured output</td>
+        <td>Portability, single-user, edge</td>
+      </tr>
+      <tr>
+        <td class="dim">Concurrent throughput</td>
+        <td class="col-vllm"><span class="best v">Excellent</span> — continuous batching (PagedAttention) scales to many slots</td>
+        <td>Very good, but concurrency can be architecture-capped (e.g. some hybrid-Mamba models limit slots)</td>
+        <td>Limited — built for one-to-few streams, not multi-user serving</td>
+      </tr>
+      <tr>
+        <td class="dim">Single-stream speed</td>
+        <td>Very good</td>
+        <td class="col-sglang"><span class="best s">Best-in-class</span> — lowest TTFT and fastest decode</td>
+        <td>Good on GPU; modest on CPU (memory-bandwidth bound)</td>
+      </tr>
+      <tr>
+        <td class="dim">Hardware flexibility</td>
+        <td>NVIDIA CUDA first (some AMD/others)</td>
+        <td>NVIDIA CUDA first</td>
+        <td class="col-llama"><span class="best l">Runs everywhere</span> — CPU, CUDA, Apple Metal, ROCm, Vulkan, and CPU+GPU offload</td>
+      </tr>
+      <tr>
+        <td class="dim">KV-cache / memory tech</td>
+        <td>PagedAttention (efficient KV paging)</td>
+        <td>RadixAttention (prefix reuse — big win on shared prefixes)</td>
+        <td><code>mmap</code> + GGUF; spills to system RAM</td>
+      </tr>
+      <tr>
+        <td class="dim">Quantization</td>
+        <td>FP8, AWQ, GPTQ (GPU-oriented)</td>
+        <td>FP8, AWQ, GPTQ (GPU-oriented)</td>
+        <td class="col-llama"><span class="best l">Widest range</span> — GGUF from ~2-bit to 8-bit, incl. dynamic quants</td>
+      </tr>
+      <tr>
+        <td class="dim">New-architecture support</td>
+        <td class="col-vllm">Fast — often day-of</td>
+        <td class="col-sglang">Fast — often day-of, esp. new serving features</td>
+        <td>Lags (waits on GGUF conversion + kernels), but broad once landed</td>
+      </tr>
+      <tr>
+        <td class="dim">Structured output / tools</td>
+        <td>Good — guided decoding, tool parsers</td>
+        <td class="col-sglang"><span class="best s">Excellent</span> — fast constrained decoding (compressed FSM)</td>
+        <td>Solid — GBNF grammars</td>
+      </tr>
+      <tr>
+        <td class="dim">Multi-GPU (tensor parallel)</td>
+        <td class="col-vllm">Strong</td>
+        <td class="col-sglang">Strong</td>
+        <td>Basic — layer split, not true TP performance</td>
+      </tr>
+      <tr>
+        <td class="dim">CPU / RAM offload</td>
+        <td>Limited (GPU-first)</td>
+        <td>Limited (GPU-first)</td>
+        <td class="col-llama"><span class="best l">Excellent</span> — its home turf</td>
+      </tr>
+      <tr>
+        <td class="dim">Setup &amp; ops</td>
+        <td>Moderate — Python/CUDA stack, usually Docker</td>
+        <td>Moderate — Python/CUDA stack, usually Docker</td>
+        <td class="col-llama"><span class="best l">Easiest</span> — single binary, minimal deps</td>
+      </tr>
+      <tr>
+        <td class="dim">OpenAI-compatible server</td>
+        <td>Yes</td>
+        <td>Yes</td>
+        <td>Yes (<code>llama-server</code>)</td>
+      </tr>
+      <tr>
+        <td class="dim">License</td>
+        <td>Apache 2.0</td>
+        <td>Apache 2.0</td>
+        <td>MIT</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h2>The honest pros &amp; cons</h2>
+  <p class="sub">No engine wins everywhere — each buys its strengths with a real trade-off.</p>
+
+  <div class="pc">
+    <div class="pc-card p-vllm">
+      <p class="name">vLLM</p>
+      <h4>Strengths</h4>
+      <ul class="pros">
+        <li>Best concurrent throughput of the three</li>
+        <li>Mature, widely-deployed production server</li>
+        <li>Efficient KV memory (PagedAttention)</li>
+        <li>Quick to support new models; big ecosystem</li>
+        <li>Strong multi-GPU tensor parallelism</li>
+      </ul>
+      <h4>Trade-offs</h4>
+      <ul class="cons">
+        <li>GPU-only, CUDA-first — no real CPU path</li>
+        <li>Pre-allocates its KV pool, so it's memory-hungry at idle</li>
+        <li>Single-stream latency a touch behind SGLang</li>
+        <li>Heavier to stand up than llama.cpp</li>
+      </ul>
+    </div>
+
+    <div class="pc-card p-sglang">
+      <p class="name">SGLang</p>
+      <h4>Strengths</h4>
+      <ul class="pros">
+        <li>Fastest single-request latency and decode</li>
+        <li>RadixAttention reuses shared prefixes — great for agents and repeated system prompts</li>
+        <li>Best structured-output / constrained decoding</li>
+        <li>Excellent for complex, programmatic prompting</li>
+      </ul>
+      <h4>Trade-offs</h4>
+      <ul class="cons">
+        <li>GPU-only, CUDA-first</li>
+        <li>Concurrency can be capped on some architectures (notably hybrid-Mamba models)</li>
+        <li>Younger / less ubiquitous than vLLM</li>
+        <li>Some configs are finicky at the edges</li>
+      </ul>
+    </div>
+
+    <div class="pc-card p-llama">
+      <p class="name">llama.cpp</p>
+      <h4>Strengths</h4>
+      <ul class="pros">
+        <li>Runs on almost anything — CPU, Mac, low VRAM, mixed</li>
+        <li>GGUF gives unmatched quantization range to shrink big models</li>
+        <li>Trivial setup — a single binary and a model file</li>
+        <li>Ideal for single-user, laptop, and edge use</li>
+        <li>Very active community, huge model coverage</li>
+      </ul>
+      <h4>Trade-offs</h4>
+      <ul class="cons">
+        <li>Weak under concurrency — not a multi-user server</li>
+        <li>Lags on brand-new architectures (GGUF conversion delay)</li>
+        <li>Multi-GPU support is basic</li>
+        <li>CPU speed is bandwidth-bound — fine for one user, not throughput</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="note">
+    <strong>The one-line version:</strong> if you're serving a crowd, reach for vLLM; if you want one answer as fast as possible or lean hard on structured output, reach for SGLang; if you're running on whatever hardware you happen to have — especially without a big GPU — reach for llama.cpp. Many good setups use more than one: a GPU serving engine for the main workload and llama.cpp as a CPU fallback or for a second model on constrained hardware.
+  </div>
+
+  <p class="foot">Reflects hands-on testing of all three on the same models and hardware. Specifics (exact speeds, per-architecture quirks, feature support) shift with each release — treat the decision framework as durable and re-benchmark the numbers for your own setup and model.</p>
+
+</div>
+</body>
+</html>
